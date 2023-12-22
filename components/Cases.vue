@@ -18,7 +18,7 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases/jasmine-cove">
                 <div class="case-image">
-                  <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/d8e7cb0881-1703232297/gruppo-di-maschere-150.jpg">
+                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
                 </div>
                 <div class="case-info">
                   <div class="case-title">
@@ -33,7 +33,7 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases">
                 <div class="case-image">
-                  <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/9ca984b770-1702830845/gruppo-di-maschere-138.jpg">
+                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg">
                 </div>
                 <div class="case-info">
                   <div class="case-title">
