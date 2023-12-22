@@ -40,7 +40,7 @@ const props = defineProps<{
           </div>
         </div>
         <div class="case-image">
-          <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/9fadfa8d16-1702829972/aldar_reeman2_cgi26_rearyardarea-t4med_08.jpg">
+          <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/849c3fd15f-1703171957/aldar_reeman2_cgi26_rearyardarea-t4med_08.jpg">
         </div>
         <div class="case-content">
           <div class="single-module module-text-one-column">
@@ -69,19 +69,19 @@ const props = defineProps<{
           </div>
           <div class="single-module module-images">
             <div class="single-image">
-              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/9ca984b770-1702830845/gruppo-di-maschere-138.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/3aa4ed14cf-1703171941/gruppo-di-maschere-138.jpg">
               <div class="caption">
                 <p>Ut enim ad minima veniam, quis nostrum</p>
               </div>
             </div>
             <div class="single-image">
-              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/446714b892-1702830717/gruppo-di-maschere-137.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
               <div class="caption">
                 <p>Ut enim ad minima veniam, quis nostrum</p>
               </div>
             </div>
             <div class="single-image">
-              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/3e531f5f13-1702830739/c6dt.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/d9c30cbf73-1703171909/c6dt.jpg">
               <div class="caption">
                 <p>Ut enim ad minima veniam, quis nostrum</p>
               </div>
@@ -133,7 +133,7 @@ const props = defineProps<{
             <div class="row">
               <div class="col-lg-3 col-12"></div>
               <div class="col-lg-9 col-12">
-                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/c2c1dcc8b1-1702830455/bigger-plots.jpg">
+                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/2db97f6ed0-1703171963/bigger-plots.jpg">
                 <div class="caption">
                   <p>Ut enim ad minima veniam, quis nostrum exercitationem</p>
                 </div>
@@ -144,7 +144,7 @@ const props = defineProps<{
             <div class="row">
               <div class="col-lg-3 col-12"></div>
               <div class="col-lg-9 col-12">
-                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/cb6f35b007-1702830490/schermata-2023-12-17-alle-17.28.03.png">
+                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/df190ca522-1703171939/schermata-2023-12-17-alle-17.28.03.png">
                 <div class="caption">
                   <p>Ut enim ad minima veniam, quis nostrum exercitationem</p>
                 </div>
@@ -177,19 +177,19 @@ const props = defineProps<{
           </div>
           <div class="single-module module-images">
             <div class="single-image">
-              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/9ca984b770-1702830845/gruppo-di-maschere-138.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/3aa4ed14cf-1703171941/gruppo-di-maschere-138.jpg">
               <div class="caption">
                 <p>Ut enim ad minima veniam, quis nostrum</p>
               </div>
             </div>
             <div class="single-image">
-              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/446714b892-1702830717/gruppo-di-maschere-137.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
               <div class="caption">
                 <p>Ut enim ad minima veniam, quis nostrum</p>
               </div>
             </div>
             <div class="single-image">
-              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/3e531f5f13-1702830739/c6dt.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/d9c30cbf73-1703171909/c6dt.jpg">
               <div class="caption">
                 <p>Ut enim ad minima veniam, quis nostrum</p>
               </div>
@@ -221,13 +221,13 @@ const props = defineProps<{
               <div class="col-lg-9 col-12">
                 <div class="row">
                   <div class="col-lg-6 col-12">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/24e248cb57-1702830833/gruppo-di-maschere-149.jpg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg">
                     <div class="caption">
                       <p>Ut enim ad minima veniam, quis nostrum</p>
                     </div>
                   </div>
                   <div class="col-lg-6 col-12">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/9ca984b770-1702830845/gruppo-di-maschere-138.jpg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/3aa4ed14cf-1703171941/gruppo-di-maschere-138.jpg">
                     <div class="caption">
                       <p>Ut enim ad minima veniam, quis nostrum</p>
                     </div>
