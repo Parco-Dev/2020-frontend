@@ -1,0 +1,109 @@
+/* SPACER */
+
+$spacer-xl: 10px;
+$spacer: 10px;
+$spacer-sm: 20px;
+
+/* COLORS */
+
+$color-primary: #00f;
+$color-white: #ffffff;
+$color-light-grey: #d9d9da;
+$color-dark-grey: #838383;
+$color-black: #000000;
+
+/* TYPOGRAPHY */
+
+// Font size
+
+$nano: 12px;
+$micro: 15px;
+$ultrasmall: 20px;
+$extrasmall: 26px;
+$small: 46px;
+$medium: 5.28vw; // 68px
+$large: 7.78vw; // 100px
+$extralarge: 9.4vw; // 120px
+$ultralarge: 12.5vw; // 160px
+$massive: 16.45vw; // 210px
+
+$nano-xl: 12px;
+$micro-xl: 15px;
+$ultrasmall-xl: 20px;
+$extrasmall-xl: 26px;
+$small-xl: 46px;
+$medium-xl: 5.28vw; // 68px
+$large-xl: 7.78vw; // 100px
+$extralarge-xl: 9.4vw; // 120px
+$ultralarge-xl: 12.5vw; // 160px
+$massive-xl: 16.45vw; // 210px
+
+$nano-sm: 12px;
+$micro-sm: 15px;
+$ultrasmall-sm: 20px;
+$extrasmall-sm: 26px;
+$small-sm: 46px;
+$medium-sm: 5.28vw; // 68px
+$large-sm: 7.78vw; // 100px
+$extralarge-sm: 9.4vw; // 120px
+$ultralarge-sm: 12.5vw; // 160px
+$massive-sm: 16.45vw; // 210px
+
+// Line height
+
+$nano-lineh: 12px;
+$micro-lineh: 16px;
+$ultrasmall-lineh: 20px;
+$extrasmall-lineh: 16px;
+$small-lineh: 38px;
+$medium-lineh: 0.78; // 53px
+$large-lineh: 0.76; // 76px
+$extralarge-lineh: 0.765; // 92px
+$ultralarge-lineh: 0.75; // 120px
+$massive-lineh: 0.745; // 157px
+
+$nano-lineh-xl: 12px;
+$micro-lineh-xl: 16px;
+$ultrasmall-lineh-xl: 20px;
+$extrasmall-lineh-xl: 16px;
+$small-lineh-xl: 38px;
+$medium-lineh-xl: 0.78; // 53px
+$large-lineh-xl: 0.76; // 76px
+$extralarge-lineh-xl: 0.765; // 92px
+$ultralarge-lineh-xl: 0.75; // 120px
+$massive-lineh-xl: 0.745; // 157px
+
+$nano-lineh-sm: 12px;
+$micro-lineh-sm: 16px;
+$ultrasmall-lineh-sm: 20px;
+$extrasmall-lineh-sm: 16px;
+$small-lineh-sm: 38px;
+$medium-lineh-sm: 0.78; // 53px
+$large-lineh-sm: 0.76; // 76px
+$extralarge-lineh-sm: 0.765; // 92px
+$ultralarge-lineh-sm: 0.75; // 120px
+$massive-lineh-sm: 0.745; // 157px
+
+/* BREAKPOINTS */
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+
+/* MEDIA QUERIES */
+
+@mixin media-breakpoint-up($breakpoint) {
+    @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+    @media (max-width: map-get($grid-breakpoints, $breakpoint)) {
+        @content;
+    }
+}
