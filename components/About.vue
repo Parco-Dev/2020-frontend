@@ -91,25 +91,25 @@ const props = defineProps<{
           </div>
           <div class="block-about-strengths-images">
             <div class="strength-image">
-              <img src="http://2020-backend.test/media/pages/about/09ebc975f3-1702827506/cent-pak.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/about/09ebc975f3-1702827506/cent-pak.jpg">
               <div class="caption">
                 <p>Sed do eiusmod tempor incididunt ut.</p>
               </div>
             </div>
             <div class="strength-image">
-              <img src="http://2020-backend.test/media/pages/about/ad756da611-1702827519/contemporary-hotel_040616_06.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/about/ad756da611-1702827519/contemporary-hotel_040616_06.jpg">
               <div class="caption">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
               </div>
             </div>
             <div class="strength-image">
-              <img src="http://2020-backend.test/media/pages/about/c8f3419cfb-1702827533/03b-first-sight.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/about/c8f3419cfb-1702827533/03b-first-sight.jpg">
               <div class="caption">
                 <p>Sed do eiusmod tempor incididunt ut.</p>
               </div>
             </div>
             <div class="strength-image">
-              <img src="http://2020-backend.test/media/pages/about/ad756da611-1702827519/contemporary-hotel_040616_06.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/about/ad756da611-1702827519/contemporary-hotel_040616_06.jpg">
               <div class="caption">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
               </div>
@@ -211,7 +211,7 @@ const props = defineProps<{
               <div class="group-people">
                 <div class="row">
                   <div class="col-lg-4 col-12 single-person">
-                    <img src="http://2020-backend.test/media/pages/about/f969ebc649-1702827727/schermata-2023-12-17-alle-16.42.00.png">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/about/f969ebc649-1702827727/schermata-2023-12-17-alle-16.42.00.png">
                     <div class="person-info">
                       <div class="person-name">
                         <p>Lam le-nguyem</p>
@@ -222,7 +222,7 @@ const props = defineProps<{
                     </div>
                   </div>
                   <div class="col-lg-4 col-12 single-person">
-                    <img src="http://2020-backend.test/media/pages/about/0a87e76ce5-1702827806/gruppo-di-maschere-142.jpg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/about/0a87e76ce5-1702827806/gruppo-di-maschere-142.jpg">
                     <div class="person-info">
                       <div class="person-name">
                         <p>Travis Turner</p>
@@ -233,7 +233,7 @@ const props = defineProps<{
                     </div>
                   </div>
                   <div class="col-lg-4 col-12 single-person">
-                    <img src="http://2020-backend.test/media/pages/about/6695ee2d33-1702827828/gruppo-di-maschere-143.jpg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/about/6695ee2d33-1702827828/gruppo-di-maschere-143.jpg">
                     <div class="person-info">
                       <div class="person-name">
                         <p>Michael Ngan</p>

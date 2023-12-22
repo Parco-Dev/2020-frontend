@@ -18,7 +18,7 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases/jasmine-cove">
                 <div class="case-image">
-                  <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/d8e7cb0881-1703232297/gruppo-di-maschere-150.jpg">
+                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/d8e7cb0881-1703232297/gruppo-di-maschere-150.jpg">
                 </div>
                 <div class="case-info">
                   <div class="case-title">
@@ -33,7 +33,7 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases">
                 <div class="case-image">
-                  <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/24e248cb57-1702830833/gruppo-di-maschere-149.jpg">
+                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/24e248cb57-1702830833/gruppo-di-maschere-149.jpg">
                 </div>
                 <div class="case-info">
                   <div class="case-title">
@@ -48,7 +48,7 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases">
                 <div class="case-image">
-                  <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/941a1a1cdd-1702830765/c8.jpg">
+                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/941a1a1cdd-1702830765/c8.jpg">
                 </div>
                 <div class="case-info">
                   <div class="case-title">
@@ -63,7 +63,7 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases">
                 <div class="case-image">
-                  <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/446714b892-1702830717/gruppo-di-maschere-137.jpg">
+                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/446714b892-1702830717/gruppo-di-maschere-137.jpg">
                 </div>
                 <div class="case-info">
                   <div class="case-title">

@@ -14,7 +14,7 @@ const props = defineProps<{
       <div class="single-section-inner">
         <NuxtLink to="/" class="section-header"></NuxtLink>
         <div class="site-header">
-          <img src="http://2020-backend.test/media/site/145c3ed371-1702824530/logo-2020.svg">
+          <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg">
           <p>Our studio is an experiential strategy company based between Melbourne, Los Angeles and London. </p>
         </div>
         <div class="section-content">
@@ -29,7 +29,7 @@ const props = defineProps<{
                 <div class="col-lg-5 col-12"></div>
               </div>
             </div>
-            <img src="http://2020-backend.test/media/pages/home/02d9fc5d33-1702825771/gruppo-di-maschere-118.jpg" />
+            <img src="https://davideg29.sg-host.com/2020/media/pages/home/02d9fc5d33-1702825771/gruppo-di-maschere-118.jpg" />
           </div>
 
           <div class="block-experience">
@@ -91,7 +91,7 @@ const props = defineProps<{
               <div class="single-case">
                 <NuxtLink to="/cases/jasmine-cover">
                   <div class="case-image">
-                    <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/d8e7cb0881-1703232297/gruppo-di-maschere-150.jpg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/d8e7cb0881-1703232297/gruppo-di-maschere-150.jpg">
                   </div>
                   <div class="case-info">
                     <div class="case-title">
@@ -106,7 +106,7 @@ const props = defineProps<{
               <div class="single-case">
                 <NuxtLink to="/cases">
                   <div class="case-image">
-                    <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/24e248cb57-1702830833/gruppo-di-maschere-149.jpg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/24e248cb57-1702830833/gruppo-di-maschere-149.jpg">
                   </div>
                   <div class="case-info">
                     <div class="case-title">
@@ -121,7 +121,7 @@ const props = defineProps<{
               <div class="single-case">
                 <NuxtLink to="/cases">
                   <div class="case-image">
-                    <img src="http://2020-backend.test/media/pages/cases/jasmine-cove/941a1a1cdd-1702830765/c8.jpg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/941a1a1cdd-1702830765/c8.jpg">
                   </div>
                   <div class="case-info">
                     <div class="case-title">
@@ -170,7 +170,7 @@ const props = defineProps<{
               <div class="row">
                 <div class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img src="http://2020-backend.test/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
                   </div>
                   <div class="client-name">
                     <p>University of oxford</p>
@@ -181,7 +181,7 @@ const props = defineProps<{
                 </div>
                 <div class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img src="http://2020-backend.test/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
                   </div>
                   <div class="client-name">
                     <p>Pax world</p>
@@ -192,7 +192,7 @@ const props = defineProps<{
                 </div>
                 <div class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img src="http://2020-backend.test/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
                   </div>
                   <div class="client-name">
                     <p>MGM Resorts</p>
@@ -203,7 +203,7 @@ const props = defineProps<{
                 </div>
                 <div class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img src="http://2020-backend.test/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
                   </div>
                   <div class="client-name">
                     <p>Walt disney world</p>
@@ -214,7 +214,7 @@ const props = defineProps<{
                 </div>
                 <div class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img src="http://2020-backend.test/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
                   </div>
                   <div class="client-name">
                     <p>University of oxford</p>
@@ -225,7 +225,7 @@ const props = defineProps<{
                 </div>
                 <div class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img src="http://2020-backend.test/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
+                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
                   </div>
                   <div class="client-name">
                     <p>Pax world</p>
@@ -249,7 +249,7 @@ const props = defineProps<{
               </div>
             </div>
             <div class="block-team-image">
-              <img src="http://2020-backend.test/media/pages/home/d7dd564b9a-1702826055/gruppo-di-maschere-140.jpg">
+              <img src="https://davideg29.sg-host.com/2020/media/pages/home/d7dd564b9a-1702826055/gruppo-di-maschere-140.jpg">
             </div>
             <a href="#" class="button">Read more</a>
           </div>
