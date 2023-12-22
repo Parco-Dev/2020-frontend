@@ -248,6 +248,60 @@ const props = defineProps<{
         </div>
       </div>
 
+      <div class="section-related">
+        <div class="block-main-text">
+          <p>RELATED CASE STUDIES</p>
+        </div>
+        <div class="block-related-cases-list">
+          <div class="single-case">
+            <NuxtLink to="/cases/jasmine-cover">
+              <div class="case-image">
+                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
+              </div>
+              <div class="case-info">
+                <div class="case-title">
+                  <p>Jasmine Cove</p>
+                </div>
+                <div class="case-subtitle">
+                  <p>A peaceful hidden gem</p>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+          <div class="single-case">
+            <NuxtLink to="/cases">
+              <div class="case-image">
+                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg">
+              </div>
+              <div class="case-info">
+                <div class="case-title">
+                  <p>The new marina</p>
+                </div>
+                <div class="case-subtitle">
+                  <p>The land that lies in-between</p>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+          <div class="single-case">
+            <NuxtLink to="/cases">
+              <div class="case-image">
+                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
+              </div>
+              <div class="case-info">
+                <div class="case-title">
+                  <p>Split</p>
+                </div>
+                <div class="case-subtitle">
+                  <p>The land that lies in-between</p>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+        </div>
+        <a href="#" class="button">View all</a>
+      </div>
+
       <AppFooter/>
 
     </div>

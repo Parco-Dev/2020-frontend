@@ -236,7 +236,7 @@ const props = defineProps<{
                 </div>
               </div>
             </div>
-            <a href="#" class="button">See all</a>
+            <a href="#" class="button">View all</a>
           </div>
 
           <div class="block-team">

@@ -23,7 +23,7 @@ const site = useSite()
     <div class="bottom-footer">
       <div class="row">
         <div class="col-lg-2 col-12">
-          <p>©2023 All rights reserved</p>
+          <p class="copyright">©2023 All rights reserved</p>
           <p>20-20 studio</p>
         </div>
         <div class="col-lg-7 col-12">

@@ -11,7 +11,7 @@ const props = defineProps<{
       <div class="single-section-inner">
         <NuxtLink to="/cases" class="section-header"></NuxtLink>
         <div class="section-title">
-          <p>Cases</p>
+          <p>Case studies</p>
         </div>
         <div v-if="open" class="section-content">
           <div class="cases-list">
