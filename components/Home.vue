@@ -1,16 +1,23 @@
 <script setup lang="ts">
+import { homeQuery } from '~/queries';
+
 const page = usePage().value;
 const site = useSite();
-console.log(page);
+// console.log(page.intendedTemplate);
 const props = defineProps<{
   open: boolean,
 }>()
+
+console.log(page.homeabouttext);
+// console.log(page);
+// console.log(homeQuery);
 
 </script>
 
 <template>
   
     <section :class="{open}" class="single-section section-home">
+      
       <div class="single-section-inner">
         <NuxtLink to="/" class="section-header"></NuxtLink>
         <div class="site-header">
@@ -19,17 +26,24 @@ const props = defineProps<{
         </div>
         <div class="section-content">
            
-          <div class="block-about">
+          <div class="block-about"> 
             <div class="about-text">
               <div class="row">
                 <div class="col-lg-7 col-12">
-                  <p>We generate ideas for places that create long-lasting value and recognition.</p>
-                  <a href="#" class="button">About us</a>
+
+                  <!-- <p>{{ page?.homeabouttext }} -1</p> -->
+                  <!-- <p v-html="`${page?.homeabouttext}`"></p> -->
+                  <p v-html="page?.homeabouttext"></p>
+                  
+                  <NuxtLink to="/about" class="button">About us</NuxtLink>
+                  <!-- page.homeaboutlink > deve prendere solo la parte dopo la root > /about e non l'url completo -->
+                  
                 </div>
                 <div class="col-lg-5 col-12"></div>
               </div>
             </div>
-            <img src="https://davideg29.sg-host.com/2020/media/pages/home/02d9fc5d33-1702825771/gruppo-di-maschere-118.jpg" />
+            <!-- <img src="https://davideg29.sg-host.com/2020/media/pages/home/02d9fc5d33-1702825771/gruppo-di-maschere-118.jpg" /> -->
+            <img :src="page?.homeaboutimage?.url" />
           </div>
 
           <div class="block-experience">
@@ -37,7 +51,8 @@ const props = defineProps<{
             <div class="block-main-text">
               <div class="row">
                 <div class="col-lg-6 col-12">
-                  <p>EXPERIENCE VISION<br>Through the 3 pillars of Culture, Place & Technology we bring clarity and creativity to the most ambitious aspirations.</p>
+                  <p v-html="page?.homeexperience"></p>
+                  <!-- <p>EXPERIENCE VISION<br>Through the 3 pillars of Culture, Place & Technology we bring clarity and creativity to the most ambitious aspirations.</p> -->
                 </div>
                 <div class="col-lg-6 col-12"></div>
               </div>
@@ -46,10 +61,10 @@ const props = defineProps<{
               <div class="row">
                 <div class="col-lg-6 col-12">
                   <div class="experience-word">
-                    <p>CULTURE</p>
+                    <p v-html="page?.homeculturetitle"></p>
                   </div>
                   <div class="experience-text">
-                    <p>Emotional and brand resonance & ethnographic cultural analysis.</p>
+                    <p v-html="page?.homeculturetext"></p>
                   </div>
                 </div>
                 <div class="col-lg-6 col-12"></div>
@@ -60,10 +75,10 @@ const props = defineProps<{
                 <div class="col-lg-6 col-12"></div>
                 <div class="col-lg-6 col-12">
                   <div class="experience-word">
-                    <p>PLACE</p>
+                    <p v-html="page?.homeplacetitle"></p>
                   </div>
                   <div class="experience-text">
-                    <p>Understanding of spatial parameters for place & space specific solutions.</p>
+                    <p v-html="page?.homeplacetext"></p>
                   </div>
                 </div>
               </div>
@@ -72,10 +87,10 @@ const props = defineProps<{
               <div class="row">
                 <div class="col-lg-6 col-12">
                   <div class="experience-word">
-                    <p>TECHNOLOGY</p>
+                    <p v-html="page?.hometechnologytitle"></p>
                   </div>
                   <div class="experience-text">
-                    <p>Innovation & tech analysis to understand future digital trends affecting lifestyle.</p>
+                    <p v-html="page?.hometechnologytext"></p>
                   </div>
                 </div>
                 <div class="col-lg-6 col-12"></div>
@@ -85,178 +100,99 @@ const props = defineProps<{
 
           <div class="block-latest-cases">
             <div class="block-main-text">
-              <p>LATEST CASE STUDIES</p>
+              <p v-html="page?.homecasestitle"></p>
             </div>
             <div class="block-latest-cases-list">
-              <div class="single-case">
-                <NuxtLink to="/cases/jasmine-cover">
-                  <div class="case-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
-                  </div>
-                  <div class="case-info">
-                    <div class="case-title">
-                      <p>Jasmine Cove</p>
+
+              <div v-for="cases in page?.homelatestcases" :key="cases.id" class="single-case">
+                <div v-for="caseitem in cases.case" :key="caseitem.id" :class="`columns-${cases.columns}`">
+                  <NuxtLink :to="`/cases/${caseitem.url}`">
+                    <div class="case-image">
+                      <!-- <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"> -->
+                      <img :src="caseitem.casemainimage?.url" />
                     </div>
-                    <div class="case-subtitle">
-                      <p>A peaceful hidden gem</p>
+                    <div class="case-info">
+                      <div class="case-title">
+                        <p>{{ caseitem.title }}</p>
+                      </div>
+                      <div class="case-subtitle">
+                        <p v-html="caseitem.excerpt"></p>
+                      </div>
                     </div>
-                  </div>
-                </NuxtLink>
+                  </NuxtLink>
+                </div>
               </div>
-              <div class="single-case">
-                <NuxtLink to="/cases">
-                  <div class="case-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg">
-                  </div>
-                  <div class="case-info">
-                    <div class="case-title">
-                      <p>The new marina</p>
-                    </div>
-                    <div class="case-subtitle">
-                      <p>The land that lies in-between</p>
-                    </div>
-                  </div>
-                </NuxtLink>
-              </div>
-              <div class="single-case">
-                <NuxtLink to="/cases">
-                  <div class="case-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
-                  </div>
-                  <div class="case-info">
-                    <div class="case-title">
-                      <p>Split</p>
-                    </div>
-                    <div class="case-subtitle">
-                      <p>The land that lies in-between</p>
-                    </div>
-                  </div>
-                </NuxtLink>
-              </div>
+              
             </div>
-            <a href="#" class="button">View all</a>
+            <!-- <a href="#" class="button">View all</a> -->
+            <NuxtLink :to="`${page?.homelatestcaseslink}`">{{ page?.homelatestcaseslinktext }}</NuxtLink>
           </div>
 
           <div class="block-outcomes">
             <div class="block-main-text">
               <div class="row">
                 <div class="col-lg-6 col-12">
-                  <p>OUR OUTCOMES<br>Our outcomes are centered around creating strong, compelling visions and narratives that engage audiences, prepare for the future and ultimately enhance value.</p>
+                  <p v-html="page?.homeoutcomes"></p>
                 </div>
                 <div class="col-lg-6 col-12"></div>
               </div>
             </div>
             <div class="block-outcomes-list">
-              <p>Enhance value</p>
-              <p>ENGAGing STAKeHOLDERS</p>
-              <p>CREATE THE FUTURE</p>
+              <div v-for="outcomes in page?.homeoutcomeslinks" :key="outcomes.id" class="single-outcome">
+                <a :href="outcomes.homeoutcomeslinkslink?.url">{{ outcomes.homeoutcomeslinkstext }}</a>
+              </div>
             </div>
-            <a href="#" class="button">Read more</a>
+            <NuxtLink :to="`${page?.homeoutcomeslink}`">{{ page?.homeoutcomeslinktext }}</NuxtLink>
           </div>
 
           <div class="block-clients">
             <div class="block-title">
-              <p>OUR CLIENTS</p>
+              <p v-html="page?.homeclientstitle"></p>
             </div>
             <div class="block-main-text">
               <div class="row">
                 <div class="col-lg-8 col-12">
-                  <p>The thinkers and companies we’re changing  the status quo with.</p>
+                  <p v-html="page?.homeclientstext"></p>
                 </div>
                 <div class="col-lg-4 col-12"></div>
               </div>
             </div>
             <div class="block-clients-list">
               <div class="row">
-                <div class="col-lg-4 col-12 single-client">
+                <div v-for="clients in page?.homeclients" :key="clients.id" class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
+                    <img :src="clients.homeclientslogo?.url" />
                   </div>
                   <div class="client-name">
-                    <p>University of oxford</p>
+                    <p v-html="page?.homeclientsname"></p>
                   </div>
                   <div class="client-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut animi adisciplit est. </p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-12 single-client">
-                  <div class="client-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
-                  </div>
-                  <div class="client-name">
-                    <p>Pax world</p>
-                  </div>
-                  <div class="client-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut animi adisciplit est. </p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-12 single-client">
-                  <div class="client-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
-                  </div>
-                  <div class="client-name">
-                    <p>MGM Resorts</p>
-                  </div>
-                  <div class="client-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut animi adisciplit est. </p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-12 single-client">
-                  <div class="client-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
-                  </div>
-                  <div class="client-name">
-                    <p>Walt disney world</p>
-                  </div>
-                  <div class="client-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut animi adisciplit est. </p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-12 single-client">
-                  <div class="client-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
-                  </div>
-                  <div class="client-name">
-                    <p>University of oxford</p>
-                  </div>
-                  <div class="client-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut animi adisciplit est. </p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-12 single-client">
-                  <div class="client-image">
-                    <img src="https://davideg29.sg-host.com/2020/media/pages/home/8e4c6298d7-1703150245/wdw.svg">
-                  </div>
-                  <div class="client-name">
-                    <p>Pax world</p>
-                  </div>
-                  <div class="client-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut animi adisciplit est. </p>
+                    <p v-html="page?.homeclientstext"></p>
                   </div>
                 </div>
               </div>
             </div>
-            <a href="#" class="button">View all</a>
+            <NuxtLink :to="`${page?.homeclientslink}`">{{ page?.homeclientslinktext }}</NuxtLink>
           </div>
 
           <div class="block-team">
             <div class="block-main-text">
               <div class="row">
                 <div class="col-lg-6 col-12">
-                  <p>THE TEAM<br>We are a group of strategists and designers whose competencies range from research and analysis to visioning and implementing. We work across disciplines to ensure the right outputs to achieve the best outcome.</p>
+                  <p v-html="page?.hometeamtext"></p>
                 </div>
                 <div class="col-lg-6 col-12"></div>
               </div>
             </div>
             <div class="block-team-image">
-              <img src="https://davideg29.sg-host.com/2020/media/pages/home/d7dd564b9a-1702826055/gruppo-di-maschere-140.jpg">
+              <img :src="page?.hometeamimage?.url" />
             </div>
-            <a href="#" class="button">Read more</a>
+            <NuxtLink :to="`${page?.hometeamlink}`">{{ page?.hometeamlinktext }}</NuxtLink>
           </div>
 
           <div class="block-newsletter">
             <div class="block-title">
-              <p>Newsletter</p>
+              <p v-html="page?.homenewsletter"></p>
             </div>
           </div>
 

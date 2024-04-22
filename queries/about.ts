@@ -8,6 +8,6 @@ export const aboutQuery: KirbyQuerySchema = {
     id: true,
     isListed: true,
     intendedTemplate: true,
-    
+    aboutmaintext: 'page.aboutmaintext',
   }
 }

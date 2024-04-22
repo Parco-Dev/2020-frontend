@@ -15,17 +15,18 @@ const props = defineProps<{
         </div>
         <div v-if="open" class="section-content">
           <div class="cases-list">
+
             <div class="single-case">
               <NuxtLink to="/cases/jasmine-cove">
                 <div class="case-image">
-                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
+                  <img :src="page?.casethumbnail?.url" />
                 </div>
                 <div class="case-info">
                   <div class="case-title">
-                    <p>Jasmine Cove</p>
+                    <p v-html="page?.title"></p>
                   </div>
                   <div class="case-subtitle">
-                    <p>A peaceful hidden gem</p>
+                    <p v-html="page?.casesubtitle"></p>
                   </div>
                 </div>
               </NuxtLink>
@@ -33,14 +34,14 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases">
                 <div class="case-image">
-                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg">
+                  <img :src="page?.casethumbnail?.url" />
                 </div>
                 <div class="case-info">
                   <div class="case-title">
-                    <p>The new marina</p>
+                    <p v-html="page?.title"></p>
                   </div>
                   <div class="case-subtitle">
-                    <p>The land that lies in-between</p>
+                    <p v-html="page?.casesubtitle"></p>
                   </div>
                 </div>
               </NuxtLink>
@@ -48,14 +49,14 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases">
                 <div class="case-image">
-                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
+                  <img :src="page?.casethumbnail?.url" />
                 </div>
                 <div class="case-info">
                   <div class="case-title">
-                    <p>Split</p>
+                    <p v-html="page?.title"></p>
                   </div>
                   <div class="case-subtitle">
-                    <p>The land that lies in-between</p>
+                    <p v-html="page?.casesubtitle"></p>
                   </div>
                 </div>
               </NuxtLink>
@@ -63,14 +64,14 @@ const props = defineProps<{
             <div class="single-case">
               <NuxtLink to="/cases">
                 <div class="case-image">
-                  <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/df190ca522-1703171939/schermata-2023-12-17-alle-17.28.03.png">
+                  <img :src="page?.casethumbnail?.url" />
                 </div>
                 <div class="case-info">
                   <div class="case-title">
-                    <p>Yas beach</p>
+                    <p v-html="page?.title"></p>
                   </div>
                   <div class="case-subtitle">
-                    <p>A beach lifestyle concept</p>
+                    <p v-html="page?.casesubtitle"></p>
                   </div>
                 </div>
               </NuxtLink>

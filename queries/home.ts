@@ -8,20 +8,20 @@ export const homeQuery: KirbyQuerySchema = {
     id: true,
     isListed: true,
     intendedTemplate: true,
-    homeabouttext: 'page.homeabouttext.kirbytext',
+    homeabouttext: 'page.homeabouttext',
     homeaboutlink: 'page.homeaboutlink',
     homeaboutlinktext: 'page.homeaboutlinktext',
     homeaboutimage: {
       query: "page.homeaboutimage.toFiles.first",
       select: imageQuery,
     },
-    homeexperience: 'page.homeexperience.kirbytext',
+    homeexperience: 'page.homeexperience',
     homeculturetitle: 'page.homeculturetitle',
-    homeculturetext: 'page.homeculturetext.kirbytext',
+    homeculturetext: 'page.homeculturetext',
     homeplacetitle: 'page.homeplacetitle',
-    homeplacetext: 'page.homeplacetext.kirbytext',
+    homeplacetext: 'page.homeplacetext',
     hometechnologytitle: 'page.hometechnologytitle',
-    hometechnologytext: 'page.hometechnologytext.kirbytext',
+    hometechnologytext: 'page.hometechnologytext',
     homecasestitle: 'page.hometechnologytitle',
     homelatestcases: {
       query: 'page.homelatestcases.toStructure',
@@ -48,7 +48,9 @@ export const homeQuery: KirbyQuerySchema = {
     homeoutcomeslinks: {
       query: 'page.homeoutcomeslinks.toStructure',
       select: {
+        id: true,
         homeoutcomeslinkslink: 'page.homeoutcomeslinkslink',
+        homeoutcomeslinkstext: 'page.homeoutcomeslinkstext',
       }
     },
     homeoutcomeslink: 'page.homeoutcomeslink',

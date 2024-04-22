@@ -83,4 +83,10 @@ export default defineNuxtConfig({
 
   // ENABLED: SKIP DEFAULT NUXT LOADING PAGE
   spaLoadingTemplate: 'loading.html',
+
+  // NUXT DEVTOOLS
+  devtools: { 
+    enabled: true 
+  },
+
 })

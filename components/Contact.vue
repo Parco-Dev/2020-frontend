@@ -19,7 +19,7 @@ const props = defineProps<{
               <p>Los Angeles</p>
             </div>
             <div class="block-content">
-              <p>Ste 2020. 1019 E 4th Pl, CA 90013</p>
+              <p v-html="page?.contactlosangeles"></p>
             </div>
           </div>
           <div class="block-address">
@@ -27,7 +27,7 @@ const props = defineProps<{
               <p>Dubai</p>
             </div>
             <div class="block-content">
-              <p>Ste 2020. One Central 8th and 9th Floor - DWTC - Trade Centre 2, UAE</p>
+              <p v-html="page?.contactdubai"></p>
             </div>
           </div>
           <div class="block-email">
@@ -35,7 +35,7 @@ const props = defineProps<{
               <p>Email</p>
             </div>
             <div class="block-content">
-              <a href="mailto:info@20-20.studio">info@20-20.studio</a>
+              <a :href="`mailto:${page?.contactemail}`">{{ page?.contactemail }}</a>
             </div>
           </div>
           <div class="block-email">
@@ -43,9 +43,7 @@ const props = defineProps<{
               <p>Social</p>
             </div>
             <div class="block-content">
-              <a href="#" target="_blank">Instagram</a>
-              <a href="#" target="_blank">Facebook</a>
-              <a href="#" target="_blank">LinkedIn</a>
+              <p v-html="page?.contactsocial"></p>
             </div>
           </div>
         </div>

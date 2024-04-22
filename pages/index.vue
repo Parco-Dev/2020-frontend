@@ -6,11 +6,13 @@ const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
 setPage(page);
-// console.log(queryApi);
-// console.log(queryParams);
+console.log(queryApi);
+console.log(queryParams);
 // console.log(homeQuery);
-// console.log(data);
+// console.log(data?.value);
 // console.log(page);
+
+
 
 </script>
 
