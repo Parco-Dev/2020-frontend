@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { homeQuery } from '~/queries';
 import { CasesQuery } from '~/queries';
 import { BASE_DELAY } from '~/data/constants';
 
@@ -23,7 +24,7 @@ onUnmounted(() => {
 
 <template>
     <div class="page-cases">
-        <Home :open="false"/>
+        <Home :open="true"/>
         <About :open="false"/>
         <Cases :open="true"/>
         <Contact :open="false"/>

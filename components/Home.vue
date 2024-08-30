@@ -2,15 +2,22 @@
 import { homeQuery } from '~/queries';
 
 const page = usePage().value;
-const site = useSite();
+const site = useSite().value;
 // console.log(page.intendedTemplate);
 const props = defineProps<{
   open: boolean,
 }>()
 
-console.log(page.homeabouttext);
+// console.log(page.homeabouttext);
 // console.log(page);
 // console.log(homeQuery);
+
+const latestcases = page?.homelatestcases?.map((item: any) => {
+  return {
+    ...item.case[0],
+    columns: item.columns,
+  }
+})
 
 </script>
 
@@ -22,6 +29,7 @@ console.log(page.homeabouttext);
         <NuxtLink to="/" class="section-header"></NuxtLink>
         <div class="site-header">
           <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg">
+          <!-- <img :src="page?.sitelogo?.url" /> -->
           <p>Our studio is an experiential strategy company based between Melbourne, Los Angeles and London. </p>
         </div>
         <div class="section-content">
@@ -100,32 +108,30 @@ console.log(page.homeabouttext);
 
           <div class="block-latest-cases">
             <div class="block-main-text">
-              <p v-html="page?.homecasestitle"></p>
+              <p v-html="page?.homelatestcasestitle"></p>
             </div>
             <div class="block-latest-cases-list">
 
-              <div v-for="cases in page?.homelatestcases" :key="cases.id" class="single-case">
-                <div v-for="caseitem in cases.case" :key="caseitem.id" :class="`columns-${cases.columns}`">
-                  <NuxtLink :to="`/cases/${caseitem.url}`">
+              <div v-for="cases in latestcases" :key="cases?.id" :class="`featured-project single-case columns-${cases?.columns}`">
+                <NuxtLink :to="`/cases/${cases?.url}`">
                     <div class="case-image">
                       <!-- <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"> -->
-                      <img :src="caseitem.casemainimage?.url" />
+                      <img :src="cases?.casethumbnail?.url" />
                     </div>
                     <div class="case-info">
                       <div class="case-title">
-                        <p>{{ caseitem.title }}</p>
+                        <p>{{ cases?.title }}</p>
                       </div>
                       <div class="case-subtitle">
-                        <p v-html="caseitem.excerpt"></p>
+                        <p v-html="cases?.casesubtitle"></p>
                       </div>
                     </div>
                   </NuxtLink>
-                </div>
               </div>
               
             </div>
             <!-- <a href="#" class="button">View all</a> -->
-            <NuxtLink :to="`${page?.homelatestcaseslink}`">{{ page?.homelatestcaseslinktext }}</NuxtLink>
+            <NuxtLink :to="`/cases/`" class="cta">View all</NuxtLink>
           </div>
 
           <div class="block-outcomes">
@@ -139,10 +145,10 @@ console.log(page.homeabouttext);
             </div>
             <div class="block-outcomes-list">
               <div v-for="outcomes in page?.homeoutcomeslinks" :key="outcomes.id" class="single-outcome">
-                <a :href="outcomes.homeoutcomeslinkslink?.url">{{ outcomes.homeoutcomeslinkstext }}</a>
+                <a :href="outcomes.homeoutcomeslinkslink" target="_blank">{{ outcomes.homeoutcomeslinkstext }}</a>
               </div>
             </div>
-            <NuxtLink :to="`${page?.homeoutcomeslink}`">{{ page?.homeoutcomeslinktext }}</NuxtLink>
+            <NuxtLink :to="`${page?.homeoutcomeslink}`" class="cta">{{ page?.homeoutcomeslinktext }}</NuxtLink>
           </div>
 
           <div class="block-clients">
@@ -161,18 +167,18 @@ console.log(page.homeabouttext);
               <div class="row">
                 <div v-for="clients in page?.homeclients" :key="clients.id" class="col-lg-4 col-12 single-client">
                   <div class="client-image">
-                    <img :src="clients.homeclientslogo?.url" />
+                    <img :src="clients?.homeclientslogo?.url" />
                   </div>
                   <div class="client-name">
-                    <p v-html="page?.homeclientsname"></p>
+                    <p v-html="clients?.homeclientsname"></p>
                   </div>
                   <div class="client-description">
-                    <p v-html="page?.homeclientstext"></p>
+                    <p v-html="clients?.homeclientsdescription"></p>
                   </div>
                 </div>
               </div>
             </div>
-            <NuxtLink :to="`${page?.homeclientslink}`">{{ page?.homeclientslinktext }}</NuxtLink>
+            <NuxtLink :to="`${page?.homeclientslink}`" class="cta">{{ page?.homeclientslinktext }}</NuxtLink>
           </div>
 
           <div class="block-team">
@@ -187,7 +193,7 @@ console.log(page.homeabouttext);
             <div class="block-team-image">
               <img :src="page?.hometeamimage?.url" />
             </div>
-            <NuxtLink :to="`${page?.hometeamlink}`">{{ page?.hometeamlinktext }}</NuxtLink>
+            <NuxtLink :to="`${page?.hometeamlink}`" class="cta">{{ page?.hometeamlinktext }}</NuxtLink>
           </div>
 
           <div class="block-newsletter">

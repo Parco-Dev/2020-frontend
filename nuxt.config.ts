@@ -1,7 +1,13 @@
 // import { siteQuery } from './queries'
 
 export default defineNuxtConfig({
-  modules: ['@vueuse/nuxt', 'nuxt-kql', '@nuxtjs/google-fonts', '@nuxtjs/device'],
+  modules: [
+    '@vueuse/nuxt',
+    'nuxt-kql',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/device',
+    '@pinia/nuxt',
+  ],
 
   app: {
     pageTransition: { 

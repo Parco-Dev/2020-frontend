@@ -15,10 +15,10 @@ export function CasesQuery(): KirbyQuerySchema {
           url: true,
           id: true,
           title: true,
-          casesubtitle: 'page.casesubtitle.kirbytext',
+          casesubtitle: true,
           casethumbnail: {
             query: "page.casethumbnail.toFiles.first",
-            select: imageQuery,
+            select: [ 'url', 'alt' ],
           },
         }
       }

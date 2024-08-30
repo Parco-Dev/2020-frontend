@@ -9,20 +9,18 @@ export const homeQuery: KirbyQuerySchema = {
     isListed: true,
     intendedTemplate: true,
     homeabouttext: 'page.homeabouttext',
-    homeaboutlink: 'page.homeaboutlink',
-    homeaboutlinktext: 'page.homeaboutlinktext',
     homeaboutimage: {
-      query: "page.homeaboutimage.toFiles.first",
-      select: imageQuery,
+      query: 'page.homeaboutimage.toFiles.first',
+      select: [ 'url', 'alt' ],
     },
-    homeexperience: 'page.homeexperience',
-    homeculturetitle: 'page.homeculturetitle',
-    homeculturetext: 'page.homeculturetext',
-    homeplacetitle: 'page.homeplacetitle',
-    homeplacetext: 'page.homeplacetext',
-    hometechnologytitle: 'page.hometechnologytitle',
-    hometechnologytext: 'page.hometechnologytext',
-    homecasestitle: 'page.hometechnologytitle',
+    homeexperience: true,
+    homeculturetitle: true,
+    homeculturetext: true,
+    homeplacetitle: true,
+    homeplacetext: true,
+    hometechnologytitle: true,
+    hometechnologytext: true,
+    homelatestcasestitle: true,
     homelatestcases: {
       query: 'page.homelatestcases.toStructure',
       select: {
@@ -34,50 +32,49 @@ export const homeQuery: KirbyQuerySchema = {
             url: 'page.slug',
             title: true,
             excerpt: true,
-            casemainimage: {
-              query: "page.casemainimage.toFiles.first",
-              select: imageQuery,
+            casethumbnail: {
+              query: "page.casethumbnail.toFiles.first",
+              select: [ 'url', 'alt' ],
             },
+            casesubtitle: true
           }
         }
-      },
+      }
     },
-    homelatestcaseslink: 'page.homelatestcaseslink',
-    homelatestcaseslinktext: 'page.homelatestcaseslinktext',
-    homeoutcomes: 'page.homeoutcomes.kirbytext',
+    homelatestcaseslink: true,
+    homelatestcaseslinktext: true,
+    homeoutcomes: true,
     homeoutcomeslinks: {
       query: 'page.homeoutcomeslinks.toStructure',
       select: {
-        id: true,
-        homeoutcomeslinkslink: 'page.homeoutcomeslinkslink',
-        homeoutcomeslinkstext: 'page.homeoutcomeslinkstext',
+        homeoutcomeslinkslink: true,
+        homeoutcomeslinkstext: true
       }
     },
-    homeoutcomeslink: 'page.homeoutcomeslink',
-    homeoutcomeslinktext: 'page.homeoutcomeslinktext',
-    homeclientstitle: 'page.homeclientstitle',
-    homeclientstext: 'page.homeclientstext.kirbytext',
+    homeoutcomeslink: true,
+    homeoutcomeslinktext: true,
+    homeclientstitle: true,
+    homeclientstext: true,
     homeclients: {
       query: 'page.homeclients.toStructure',
       select: {
-        id: true,
         homeclientslogo: {
           query: "structureItem.homeclientslogo.toFiles.first",
-          select: imageQuery,
+          select: [ 'url', 'alt' ],
         },
-        homeclientsname: 'structureItem.homeclientstitle',
-        homeclientstext: 'structureItem.homeclientstext.kirbytext',
+        homeclientsname: true,
+        homeclientsdescription: true
       }
     },
-    homeclientslink: 'page.homeclientslink',
-    homeclientslinktext: 'page.homeclientslinktext',
-    hometeamtext: 'page.hometeamtext.kirbytext',
+    homeclientslink: true,
+    homeclientslinktext: true,
+    hometeamtext: true,
     hometeamimage: {
-      query: "page.hometeamimage.toFiles.first",
-      select: imageQuery,
+      query: 'page.hometeamimage.toFiles.first',
+      select: [ 'url', 'alt' ],
     },
-    hometeamlink: 'page.hometeamlink',
-    hometeamlinktext: 'page.hometeamlinktext',
-    homenewsletter: 'page.homenewsletter',
+    hometeamlink: true,
+    hometeamlinktext: true,
+    homenewsletter: true
   }
 }

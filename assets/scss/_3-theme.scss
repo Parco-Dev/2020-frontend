@@ -103,7 +103,7 @@
 	font-size: $medium;
 	line-height: $medium-lineh;
 	letter-spacing: -0.35px;
-	font-variation-settings: 'wght' 700, 'wdth' 25;
+	font-variation-settings: 'wght' 700, 'wdth' 15;
 	transition: font-variation-settings 0.2s ease-in, letter-spacing 0.2s ease-in;
 	@include media-breakpoint-up(xl) { 
 		font-size: $medium-xl;
@@ -420,19 +420,44 @@ img {
 		.block-latest-cases {
 			margin-bottom: $spacer*24;
 			padding: $spacer;
+			.block-main-text {
+				text-transform: uppercase;
+			}
 			.block-latest-cases-list {
 				display: flex;
-				.single-case {
+				.featured-project {
 					margin-right: $spacer;
 					width: auto;
 					height: 30vw;
+					margin-right: $spacer;
+					&.columns-4 {
+						width: 40%;
+					}
+					&.columns-3 {
+						width: 30%;
+					}
+					&.columns-2 {
+						width: 20%;
+					}
+					&.columns-1 {
+						width: 10%;
+					}
+					img {
+						width: 100%;
+						height: 30vw;
+						object-fit: cover;
+					}
 				}
 			}
 		}
 		.block-outcomes {
 			margin-bottom: $spacer*24;
 			padding: $spacer;
+			.block-main-text {
+				margin-bottom: 0px;
+			}
 			.block-outcomes-list {
+				margin-bottom: $spacer;
 				p {
 					@extend %extralarge;
 					text-transform: uppercase;
@@ -440,6 +465,17 @@ img {
 					transition: font-variation-settings 0.1s ease-in;
 					&:hover {
 						font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
+					}
+				}
+				.single-outcome {
+					a {
+						@extend %extralarge;
+						margin-bottom: 0px;
+						font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 1;
+						transition: font-variation-settings 0.1s ease-in;
+						&:hover {
+							font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
+						}
 					}
 				}
 			}
@@ -551,6 +587,11 @@ body[data-template=about] {
 						.nav-item {
 							padding: 0px;
 							margin-right: $spacer*2;
+							&.active {
+								.nav-link {
+									color: $color-white;
+								}
+							}
 							.nav-link {
 								background-color: transparent;
 								padding: 0px;
@@ -561,8 +602,9 @@ body[data-template=about] {
 								color: $color-white;
 								letter-spacing: -0.1vw;
 								font-variation-settings: "wght" 700, "wdth" 25;
+								color: $color-dark-grey;
 								&:hover {
-									color: $color-dark-grey;
+									color: $color-white;
 								}
 							}
 						}
@@ -642,7 +684,10 @@ body[data-template=about] {
 				margin-bottom: $spacer*24;
 				padding: $spacer;
 				.block-main-text {
-					margin-bottom: $spacer*4;
+					margin-bottom: $spacer*3.5;
+					p {
+						margin-bottom: calc(#{$spacer} / 2);
+					}
 				}
 				.block-about-methodology-list {
 					.nav-pills {
@@ -650,6 +695,11 @@ body[data-template=about] {
 						.nav-item {
 							padding: 0px;
 							margin-right: $spacer*2;
+							&.active {
+								.nav-link {
+									color: $color-white;
+								}
+							}
 							.nav-link {
 								background-color: transparent;
 								padding: 0px;
@@ -657,17 +707,17 @@ body[data-template=about] {
 								@extend %small;
 								margin-bottom: 0px;
 								text-transform: uppercase;
-								color: $color-white;
 								letter-spacing: -0.1vw;
 								font-variation-settings: "wght" 700, "wdth" 25;
+								color: $color-dark-grey;
 								&:hover {
-									color: $color-dark-grey;
+									color: $color-white;
 								}
 							}
 						}
 					}
 					.tab-content {
-						.tab-pane {
+						.tab-content-inner {
 							.methodology-title {
 								margin-bottom: $spacer*2;
 								p {
@@ -713,12 +763,19 @@ body[data-template=about] {
 								}
 							}
 						}
+						.group-title {
+							&.button-active {
+								p {
+									font-variation-settings: 'wght' 700, 'wdth' 165;
+									letter-spacing: -1.4vw;
+								}
+							}
+						}
 						&.opened {
 							.group-title {
 								p {
-									font-variation-settings: 'wght' 700, 'wdth' 150;
-									letter-spacing: -1.7vw;
-									margin-left: -1vw;
+									font-variation-settings: 'wght' 700, 'wdth' 165;
+									letter-spacing: -1.4vw;
 								}
 							}
 						}
@@ -768,11 +825,24 @@ body[data-template=about] {
 			.block-about-network {
 				margin-bottom: $spacer*24;
 				padding: $spacer;
+				.block-main-text {
+					p {
+						margin-bottom: calc(#{$spacer} / 2);
+					}
+				}
 				.block-network-list {
 					margin-bottom: $spacer;
-					a {
-						@extend %extralarge;
-						text-transform: uppercase;
+					p {
+						margin-bottom: $spacer/4;
+						a {
+							@extend %extralarge;
+							text-transform: uppercase;
+							font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 1;
+							transition: font-variation-settings 0.1s ease-in;
+							&:hover {
+								font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
+							}
+						}
 					}
 				}
 			}
@@ -907,6 +977,10 @@ body {
 					p {
 						@extend %small;
 					}
+				}
+				.case-meta-label {
+					text-transform: uppercase;
+					margin-bottom: 0px;
 				}
 			}
 			.case-image {
@@ -1078,6 +1152,11 @@ body[data-template=contact] {
 		.block-social {
 			margin-bottom: $spacer*4;
 			padding: 0px $spacer;
+			.block-content {
+				br {
+					display: none;
+				}
+			}
 		}
 	}
 }
@@ -1101,6 +1180,11 @@ body[data-template=contact] {
 				text-transform: uppercase;
 				display: block;
 				@extend %small;
+				font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 1;
+				transition: font-variation-settings 0.1s ease-in;
+				&:hover {
+					font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
+				}
 			}
 		}
 		.footer-social {
@@ -1108,6 +1192,10 @@ body[data-template=contact] {
 				text-transform: uppercase;
 				display: block;
 				@extend %ultrasmall;
+				color: $color-white;
+				&:hover {
+					color: $color-dark-grey;
+				}
 			}
 		}
 	}
@@ -1119,5 +1207,23 @@ body[data-template=contact] {
 				@extend %micro;
 			}
 		}
+		a {
+			color: $color-white;
+			&:hover {
+				color: $color-dark-grey;
+			}
+		}
+	}
+}
+
+/* CTA */
+
+.cta {
+	font-variation-settings: "wght" 600, "wdth" 30;
+	border-bottom: 2px solid $color-white;
+	color: $color-white;
+	&:hover {
+		color: $color-dark-grey;
+		border-bottom: 2px solid $color-dark-grey;
 	}
 }

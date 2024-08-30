@@ -4,6 +4,7 @@ const props = defineProps<{
   open?: boolean,
 }>()
 
+/*
 const collapsevisible1 = ref(true);
 const collapsevisible2 = ref(false);
 const collapsevisible3 = ref(false);
@@ -38,7 +39,7 @@ const tabs1 = () => {
   } else {
     tabvisible1.value = true;
   }
-  console.log("tab 1");
+  // console.log("tab 1");
 }
 const tabs2 = () => {
   if (tabvisible2.value == true) {
@@ -46,7 +47,7 @@ const tabs2 = () => {
   } else {
     tabvisible2.value = true;
   }
-  console.log("tab 2");
+  // console.log("tab 2");
 }
 const tabs3 = () => {
   if (tabvisible3.value == true) {
@@ -54,8 +55,43 @@ const tabs3 = () => {
   } else {
     tabvisible3.value = true;
   }
-  console.log("tab 3"); 
+  // console.log("tab 3"); 
 }
+  */
+
+// Assuming you have a `page` object available in your component
+const activeIndexFocusAreas = ref(0); // Track the active focus area index
+
+// Function to set the active focus area index
+const setActiveFocusAreas = (index: number) => {
+  activeIndexFocusAreas.value = index;
+};
+
+// Get the focus areas from the page object
+const focusAreas = computed(() => page?.aboutfocusareas || []);
+
+// Assuming you have a `page` object available in your component
+const activeIndexMethodology = ref(0); // Track the active focus area index
+
+// Function to set the active focus area index
+const setActiveMethodology = (index: number) => {
+  activeIndexMethodology.value = index;
+};
+
+// Get the focus areas from the page object
+const methodologySections = computed(() => page?.aboutmethodology || []);
+
+// Assuming you have a `page` object available in your component
+const activeIndexTeam = ref(0); // Track the active focus area index
+
+// Function to set the active focus area index
+const setActiveTeam = (index: number) => {
+  activeIndexTeam.value = index;
+};
+
+// Get the focus areas from the page object
+const teamGroups = computed(() => page?.aboutteamgroups || []);
+
 </script>
 
 <template>
@@ -74,30 +110,33 @@ const tabs3 = () => {
             <p v-html="page?.aboutfocusareastext"></p>
           </div>
           <div class="block-about-focus-areas-list">
+
             <ul class="nav nav-pills">
-              <li v-for="focusareas in page?.homelatestfocusareas" :key="focusareas.id" class="nav-item">
-                <button class="nav-link" @click="tabs1()">{{ page?.focusareaname }}</button>
+              <li v-for="(focusarea, index) in focusAreas" :key="index" :class="{ active: activeIndexFocusAreas === index }" @click="setActiveFocusAreas(index)" class="nav-item">
+                <button class="nav-link" :class="{ 'button-active': activeIndexFocusAreas === index }">
+                  {{ focusarea.focusareaname }}
+                </button>
               </li>
             </ul>
+
             <div class="tab-content">
-              <div v-for="focusareas in page?.homelatestfocusareas" :key="focusareas.id" class="tab-pane">
-                <div v-if="tabvisible1" class="">
-                  <div class="focus-title">
-                    <p v-html="page?.focusareabigtext"></p>
-                  </div>
-                  <div class="focus-content">
-                    <div class="row">
-                      <div class="col-lg-3 col-12 focus-question">
-                        <p v-html="page?.focusarealefttext"></p>
-                      </div>
-                      <div class="col-lg-9 col-12 focus-answer">
-                        <p v-html="page?.focusarearighttext"></p>
-                      </div>
+              <div  v-for="(focusarea, index) in focusAreas" :key="index" v-show="activeIndexFocusAreas === index" class="tab-pane active" :class="{ 'tab-active': activeIndexFocusAreas === index }">
+                <div class="focus-title">
+                  <p v-html="focusarea.focusareabigtext"></p>
+                </div>
+                <div class="focus-content">
+                  <div class="row">
+                    <div class="col-lg-3 col-12 focus-question">
+                      <p v-html="focusarea.focusarealefttext"></p>
+                    </div>
+                    <div class="col-lg-9 col-12 focus-answer">
+                      <p v-html="focusarea.focusarearighttext"></p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         <div class="block-about-strengths">
@@ -109,7 +148,7 @@ const tabs3 = () => {
           </div>
           <div class="block-about-strengths-images">
             <div v-for="strengths in page?.aboutstrengthsslider" :key="strengths.id" class="strength-image">
-              <img :src="strengths.aboutstrengthssliderimage?.url" />
+              <img :src="strengths?.aboutstrengthssliderimage?.url" />
               <div class="caption">
                 <p v-html="strengths.aboutstrengthsslidercaption"></p>
               </div>
@@ -126,15 +165,15 @@ const tabs3 = () => {
             </div>
           </div>
           <div class="block-about-methodology-list">
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-              <li v-for="methodology in page?.aboutmethodology" :key="methodology.id" class="nav-item">
-                <button class="nav-link" @click="tabs1()">{{ methodology.methodologyname }}</button>
+            <ul class="nav nav-pills mb-3" role="tablist">
+              <li v-for="(methodology, index) in methodologySections" :key="index" :class="{ active: activeIndexMethodology === index }" class="nav-item" @click="setActiveMethodology(index)">
+                <button class="nav-link" :class="{ 'button-active': activeIndexMethodology === index }">{{ methodology.methodologyname }}</button>
               </li>
             </ul>
-            <div class="tab-content" id="pills-tabContent">
-              <div v-for="methodology in page?.aboutmethodology" :key="methodology.id" class="tab-pane">
+            <div class="tab-content">
+              <div v-for="(methodology, index) in methodologySections" :key="index" v-show="activeIndexMethodology === index" class="tab-content-inner active" :class="{ 'tab-active': activeIndexMethodology === index }">
                 <div class="methodology-title">
-                  <p v-html="page?.methodologyname"></p>
+                  <p v-html="methodology.methodologyname"></p>
                 </div>
                 <div class="methodology-content">
                   <div v-for="methodologycontent in methodology.methodologysections" :key="methodologycontent.id" class="tab-pane">
@@ -162,11 +201,11 @@ const tabs3 = () => {
             </div>
           </div>
           <div class="block-about-team-list">
-            <div v-for="team in page?.aboutteamgroups" :key="team.id" class="block-team-group">
-              <div class="group-title" @click="collapse1()">
-                <p v-html="page?.aboutteamgroupname"></p>
+            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group">
+              <div class="group-title" @click="setActiveTeam(index)" :class="{ 'button-active': activeIndexTeam === index }">
+                <p v-html="team.aboutteamgroupname"></p>
               </div>
-              <div v-if="collapsevisible1" class="group-people">
+              <div v-show="activeIndexTeam === index" class="group-people" :class="{ 'tab-active': activeIndexTeam === index }">
                 <div class="row">
                   <div v-for="teamperson in team.aboutteamgrouppeople" :key="teamperson.id" class="col-lg-4 col-12 single-person">
                     <img :src="teamperson.aboutteamgrouppeopleimage?.url" />
@@ -195,10 +234,10 @@ const tabs3 = () => {
           </div>
           <div class="block-network-list">
             <p v-for="network in page?.aboutnetworklist" :key="network.id" class="">
-              <a :href="network.aboutnetworklistlink?.url">{{ network.aboutnetworklistlinktext }}</a>
+              <a :href="network.aboutnetworklistlink">{{ network.aboutnetworklistlinktext }}</a>
             </p>
           </div>
-          <NuxtLink :to="`${page?.aboutnetworklink}`">{{ page?.aboutnetworklinktext }}</NuxtLink>
+          <NuxtLink :to="`${page?.aboutnetworklink}`" class="cta">{{ page?.aboutnetworklinktext }}</NuxtLink>
         </div>
         <AppFooter/>
       </div>

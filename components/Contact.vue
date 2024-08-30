@@ -38,7 +38,7 @@ const props = defineProps<{
               <a :href="`mailto:${page?.contactemail}`">{{ page?.contactemail }}</a>
             </div>
           </div>
-          <div class="block-email">
+          <div class="block-social">
             <div class="block-title">
               <p>Social</p>
             </div>

@@ -14,7 +14,7 @@ const props = defineProps<{
     <div class="single-section-inner">
       <NuxtLink to="/" class="section-header"></NuxtLink>
       <div class="site-header">
-        <img :src="page?.casemainimage?.url" />
+        <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" />
         <p>Case study</p>
       </div>
       <div class="section-content">
@@ -27,14 +27,19 @@ const props = defineProps<{
               <p v-html="page?.casesubtitle"></p>
             </div>
             <div class="col-lg-2 col-12">
+              <p class="case-meta-label">Location</p>
               <p v-html="page?.caselocation"></p>
+              <p class="case-meta-label">Year</p>
               <p v-html="page?.caseyear"></p>
             </div>
             <div class="col-lg-2 col-12">
+              <p class="case-meta-label">Client</p>
               <p v-html="page?.caseclient"></p>
+              <p class="case-meta-label">Collaborators</p>
               <p v-html="page?.casecollaborators"></p>
             </div>
             <div class="col-lg-2 col-12">
+              <p class="case-meta-label">Services</p>
               <p v-html="page?.caseservices"></p>
             </div>
           </div>
@@ -43,14 +48,14 @@ const props = defineProps<{
           <img :src="page?.casemainimage?.url" />
         </div>
         <div class="case-content">
-          <div v-for="block in page.casecontentblocks" :key="block.id" class="single-module">
+          <div v-for="block in page?.casecontentblocks" :key="block.id" class="single-module">
             <div v-if="block.type === 'textblock'" class="module-text-one-column">
               <div class="row">
                 <div class="col-lg-3 col-12 column-title">
-                  <p v-html="block.blocktitle"></p>
+                  <p v-html="block.content.blocktitle"></p>
                 </div>
                 <div class="col-lg-9 col-12 column-content">
-                  <p v-html="block.paragraph"></p>
+                  <p v-html="block.content.paragraph"></p>
                 </div>
               </div>
             </div>
@@ -58,9 +63,9 @@ const props = defineProps<{
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
-                  <img :src="block.image?.url" />
+                  <img :src="block.content.image.url" />
                   <div class="caption">
-                    <p v-html="block.caption"></p>
+                    <p v-html="block.content.caption"></p>
                   </div>
                 </div>
               </div>
@@ -71,10 +76,10 @@ const props = defineProps<{
                 <div class="col-lg-9 col-12">
                   <div class="row">
                     <div class="col-lg-6 col-12 single-column">
-                      <p v-html="block.paragraphleft"></p>
+                      <p v-html="block.content.paragraphleft"></p>
                     </div>
                     <div class="col-lg-6 col-12 single-column">
-                      <p v-html="block.paragraphright"></p>
+                      <p v-html="block.content.paragraphright"></p>
                     </div>
                   </div>
                 </div>
@@ -86,15 +91,15 @@ const props = defineProps<{
                 <div class="col-lg-9 col-12">
                   <div class="row">
                     <div class="col-lg-6 col-12">
-                      <img :src="block.imageleft?.url" />
+                      <img :src="block.content.imageleft.url" />
                       <div class="caption">
-                        <p v-html="block.captionleft"></p>
+                        <p v-html="block.content.captionleft"></p>
                       </div>
                     </div>
                     <div class="col-lg-6 col-12">
-                      <img :src="block.imageright?.url" />
+                      <img :src="block.content.imageright.url" />
                       <div class="caption">
-                        <p v-html="block.captionright"></p>
+                        <p v-html="block.content.captionright"></p>
                       </div>
                     </div>
                   </div>
@@ -102,11 +107,12 @@ const props = defineProps<{
               </div>
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
-              <div v-for="blockimage in block.imagesblockimages" :key="blockimage.id" class="single-image">
-                <img :src="block.imagesblockimagesimage?.url" />
-                <div class="caption">
-                  <p v-html="block.imagesblockimagescaption"></p>
-                </div>
+              <div v-for="blockimage in block.content.imagesblockimages" :key="blockimage.id" class="single-image">
+                <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
+                <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
+                <!-- <div class="caption">
+                  <p v-html="blockimage.imagesblockimagescaption"></p>
+                </div> -->
               </div>
             </div>
             <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>

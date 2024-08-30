@@ -22,6 +22,7 @@
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/google-fonts": "^3.0.2",
+    "@pinia/nuxt": "^0.5.4",
     "@sindresorhus/slugify": "^2.2.1",
     "@types/node": "^18.16.18",
     "@vueuse/nuxt": "^10.2.0",

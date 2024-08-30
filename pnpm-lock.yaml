@@ -25,6 +25,9 @@ devDependencies:
   '@nuxtjs/google-fonts':
     specifier: ^3.0.2
     version: 3.0.2
+  '@pinia/nuxt':
+    specifier: ^0.5.4
+    version: 0.5.4(typescript@5.1.3)
   '@sindresorhus/slugify':
     specifier: ^2.2.1
     version: 2.2.1
@@ -1722,7 +1725,7 @@ packages:
     resolution: {integrity: sha512-Z2UmPkBy5WjxvHKuUcl1X6vKWnIyWSP+9UGde1F+MzzZxYgAQybFud1uL2B3KCowxZdoqT1hd2WklV7EtyCwrQ==}
     hasBin: true
     dependencies:
-      '@nuxt/kit': 3.6.1
+      '@nuxt/kit': 3.10.3
       chalk: 5.2.0
       ci-info: 3.8.0
       consola: 3.2.1
@@ -1838,6 +1841,19 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+    dev: true
+
+  /@pinia/nuxt@0.5.4(typescript@5.1.3):
+    resolution: {integrity: sha512-nNEs2pq6+Ji5qIyRwmeD9LUdctL8aJ8QMVLTYxUc16cXEOcIIN+MSA8Xudsd0lVETYgEAROT5HiBHnOYRDY3yQ==}
+    dependencies:
+      '@nuxt/kit': 3.10.3
+      pinia: 2.2.2(typescript@5.1.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - rollup
+      - supports-color
+      - typescript
+      - vue
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
@@ -2588,8 +2604,8 @@ packages:
       '@vue/shared': 3.4.21
     dev: true
 
-  /@vue/devtools-api@6.5.0:
-    resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
+  /@vue/devtools-api@6.6.3:
+    resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==}
     dev: true
 
   /@vue/language-core@1.8.2(typescript@5.1.3):
@@ -2709,7 +2725,7 @@ packages:
   /@vueuse/shared@10.2.0:
     resolution: {integrity: sha512-dIeA8+g9Av3H5iF4NXR/sft4V6vys76CpZ6hxwj8eMXybXk2WRl3scSsOVi+kQ9SX38COR7AH7WwY83UcuxbSg==}
     dependencies:
-      vue-demi: 0.14.5
+      vue-demi: 0.14.10
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -6532,6 +6548,25 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /pinia@2.2.2(typescript@5.1.3):
+    resolution: {integrity: sha512-ja2XqFWZC36mupU4z1ZzxeTApV7DOw44cV4dhQ9sGwun+N89v/XP7+j7q6TanS1u1tdbK4r+1BUx7heMaIdagA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.6.3
+      typescript: 5.1.3
+      vue-demi: 0.14.10
+    dev: true
+
   /pkg-types@1.0.3:
     resolution: {integrity: sha512-nN7pYi0AQqJnoLPC9eHFQ8AcyaixBUOwvqc5TDnIKCMEE6I0y8P7OKA7fPexsXGCGxQDl/cmrLAp26LhcwxZ4A==}
     dependencies:
@@ -8366,6 +8401,21 @@ packages:
       ufo: 1.1.2
     dev: true
 
+  /vue-demi@0.14.10:
+    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+    dev: true
+
   /vue-demi@0.14.5:
     resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
     engines: {node: '>=12'}
@@ -8411,7 +8461,7 @@ packages:
       vue:
         optional: true
     dependencies:
-      '@vue/devtools-api': 6.5.0
+      '@vue/devtools-api': 6.6.3
       vue: 3.3.4
     dev: true
 
