@@ -7,7 +7,7 @@
     <Body>
       <div class="page">
         <AppHeader />
-        <NuxtPage /> 
+        <NuxtPage />
         <AppFooter />
       </div>
     </Body>

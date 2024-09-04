@@ -1,5 +1,5 @@
 import type { KirbyQuerySchema } from 'kirby-fest'
-import { imageQuery } from './image';
+import { imageQuery } from './image'
 
 export function getCaseQuery(pageId: string): KirbyQuerySchema {
   return {
@@ -15,11 +15,11 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
       casecollaborators: 'page.casecollaborators.kirbytext',
       caseservices: 'page.caseservices.kirbytext',
       casethumbnail: {
-        query: "page.casethumbnail.toFiles.first",
+        query: 'page.casethumbnail.toFiles.first',
         select: imageQuery,
       },
       casemainimage: {
-        query: "page.casemainimage.toFiles.first",
+        query: 'page.casemainimage.toFiles.first',
         select: imageQuery,
       },
       casecontentblocks: 'page.casecontentblocks.toBlocks',
@@ -35,5 +35,5 @@ export function getProjectNavigationQuery(projectId: string): KirbyQuerySchema {
       title: true,
       url: 'page.slug',
     },
-  };
+  }
 }

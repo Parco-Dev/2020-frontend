@@ -10,10 +10,10 @@ export default defineNuxtConfig({
   ],
 
   app: {
-    pageTransition: { 
-      name: 'page', 
-      mode: 'out-in' 
-    }
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+    },
   },
 
   css: [
@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       'IBM+Plex+Mono': [400, 700],
-    }
+    },
   },
 
   runtimeConfig: {
@@ -91,8 +91,7 @@ export default defineNuxtConfig({
   spaLoadingTemplate: 'loading.html',
 
   // NUXT DEVTOOLS
-  devtools: { 
-    enabled: true 
+  devtools: {
+    enabled: true,
   },
-
 })

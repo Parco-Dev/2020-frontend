@@ -1,5 +1,5 @@
 import type { KirbyQuerySchema } from 'kirby-fest'
-import { imageQuery } from './image';
+import { imageQuery } from './image'
 
 export function CasesQuery(): KirbyQuerySchema {
   return {
@@ -17,11 +17,11 @@ export function CasesQuery(): KirbyQuerySchema {
           title: true,
           casesubtitle: true,
           casethumbnail: {
-            query: "page.casethumbnail.toFiles.first",
-            select: [ 'url', 'alt' ],
+            query: 'page.casethumbnail.toFiles.first',
+            select: ['url', 'alt'],
           },
-        }
-      }
+        },
+      },
     },
   }
 }

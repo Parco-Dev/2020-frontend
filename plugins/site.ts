@@ -1,10 +1,10 @@
 // import { siteQuery } from '~/queries'
 // import type { FetchError } from 'ofetch'
 
-import { siteQuery } from '~/queries';
+import { siteQuery } from '~/queries'
 
 export default defineNuxtPlugin(async () => {
-  const site = useSite();
+  const site = useSite()
 
   // NOTE: This is disabled as $kql is not working
 
@@ -19,9 +19,9 @@ export default defineNuxtPlugin(async () => {
   // }
 
   // TEMPORARY FIX:
-  const { queryApi, queryParams } = useQueryParams(siteQuery);
-  const { data } = await useFetch(queryApi, queryParams);
+  const { queryApi, queryParams } = useQueryParams(siteQuery)
+  const { data } = await useFetch(queryApi, queryParams)
 
   // Override site with useFetch, as useKql is not working
-  site.value = (data?.value as any)?.result;
+  site.value = (data?.value as any)?.result
 })

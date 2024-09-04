@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { BASE_DELAY } from '~/data/constants';
+import { BASE_DELAY } from '~/data/constants'
 
 const route = useRoute()
 const site = useSite()
-const page = usePage();
-const project = useProject() as any;
-
+const page = usePage()
+const project = useProject() as any
 </script>
 
 <template>
-<div></div>
+  <div></div>
 </template>
 
 <style scoped lang="scss">
@@ -41,10 +40,12 @@ const project = useProject() as any;
 }
 
 .top-header {
-  &-bio, &-filters, &-project {
+  &-bio,
+  &-filters,
+  &-project {
     position: fixed;
     width: 100%;
-    animation: fade-from-top .75s ease-in-out 1;
+    animation: fade-from-top 0.75s ease-in-out 1;
   }
 }
 
@@ -56,15 +57,24 @@ const project = useProject() as any;
   }
 
   &__item {
-    [aria-current="page"] {
+    [aria-current='page'] {
       text-decoration: underline;
     }
   }
 }
 
 @keyframes fade-from-top {
-  0%   { opacity: 0; transform: translateY(-10px); }
-  50%  { opacity: 0; transform: translateY(-10px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

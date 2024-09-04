@@ -8,6 +8,6 @@ export function useSite() {
 }
 
 export function useHomepage() {
-  const site = useSite().value;
-  return site.children.find((p: any) => p.id === 'home');
+  const site = useSite().value
+  return site.children.find((p: any) => p.id === 'home')
 }

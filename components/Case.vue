@@ -1,20 +1,20 @@
 <script setup lang="ts">
-const page = usePage().value;
-const site = useSite();
-console.log(page);
+const page = usePage().value
+const site = useSite()
+console.log(page)
 const props = defineProps<{
-  open: boolean,
+  open: boolean
 }>()
-
 </script>
 
 <template>
-  
-  <section :class="{open}" class="single-section section-case">
+  <section :class="{ open }" class="single-section section-case">
     <div class="single-section-inner">
       <NuxtLink to="/" class="section-header"></NuxtLink>
       <div class="site-header">
-        <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" />
+        <img
+          src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg"
+        />
         <p>Case study</p>
       </div>
       <div class="section-content">
@@ -48,8 +48,15 @@ const props = defineProps<{
           <img :src="page?.casemainimage?.url" />
         </div>
         <div class="case-content">
-          <div v-for="block in page?.casecontentblocks" :key="block.id" class="single-module">
-            <div v-if="block.type === 'textblock'" class="module-text-one-column">
+          <div
+            v-for="block in page?.casecontentblocks"
+            :key="block.id"
+            class="single-module"
+          >
+            <div
+              v-if="block.type === 'textblock'"
+              class="module-text-one-column"
+            >
               <div class="row">
                 <div class="col-lg-3 col-12 column-title">
                   <p v-html="block.content.blocktitle"></p>
@@ -70,7 +77,10 @@ const props = defineProps<{
                 </div>
               </div>
             </div>
-            <div v-else-if="block.type === 'doubletextblock'" class="module-text-two-columns">
+            <div
+              v-else-if="block.type === 'doubletextblock'"
+              class="module-text-two-columns"
+            >
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
@@ -85,7 +95,10 @@ const props = defineProps<{
                 </div>
               </div>
             </div>
-            <div v-else-if="block.type === 'doubleimageblock'" class="module-double-image">
+            <div
+              v-else-if="block.type === 'doubleimageblock'"
+              class="module-double-image"
+            >
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
@@ -107,7 +120,11 @@ const props = defineProps<{
               </div>
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
-              <div v-for="blockimage in block.content.imagesblockimages" :key="blockimage.id" class="single-image">
+              <div
+                v-for="blockimage in block.content.imagesblockimages"
+                :key="blockimage.id"
+                class="single-image"
+              >
                 <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
                 <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
                 <!-- <div class="caption">
@@ -115,9 +132,11 @@ const props = defineProps<{
                 </div> -->
               </div>
             </div>
-            <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>
+            <div
+              v-else-if="block.type === 'spacerblock'"
+              class="module-spacer"
+            ></div>
           </div>
-
         </div>
       </div>
 
@@ -129,7 +148,9 @@ const props = defineProps<{
           <div class="single-case">
             <NuxtLink to="/cases/jasmine-cover">
               <div class="case-image">
-                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
+                <img
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"
+                />
               </div>
               <div class="case-info">
                 <div class="case-title">
@@ -144,7 +165,9 @@ const props = defineProps<{
           <div class="single-case">
             <NuxtLink to="/cases">
               <div class="case-image">
-                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg">
+                <img
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg"
+                />
               </div>
               <div class="case-info">
                 <div class="case-title">
@@ -159,7 +182,9 @@ const props = defineProps<{
           <div class="single-case">
             <NuxtLink to="/cases">
               <div class="case-image">
-                <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg">
+                <img
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"
+                />
               </div>
               <div class="case-info">
                 <div class="case-title">
@@ -175,9 +200,7 @@ const props = defineProps<{
         <a href="#" class="button">View all</a>
       </div>
 
-      <AppFooter/>
-
+      <AppFooter />
     </div>
   </section>
-
 </template>

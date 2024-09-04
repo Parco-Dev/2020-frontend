@@ -1,4 +1,4 @@
-import type { KirbyQuerySchema } from 'kirby-fest';
+import type { KirbyQuerySchema } from 'kirby-fest'
 import { imageQuery } from './image'
 
 export const siteQuery: KirbyQuerySchema = {
@@ -6,8 +6,8 @@ export const siteQuery: KirbyQuerySchema = {
   select: {
     title: true,
     sitelogo: {
-      query: "page.sitelogo.toFiles.first",
-      select: [ 'url', 'alt' ],
+      query: 'page.sitelogo.toFiles.first',
+      select: ['url', 'alt'],
     },
     shortbio: 'page.shortbio.kirbytext',
     social: {
@@ -16,7 +16,7 @@ export const siteQuery: KirbyQuerySchema = {
         id: true,
         url: 'structureItem.url',
         name: 'structureItem.name',
-      }
+      },
     },
     copyright: 'page.copyright.kirbytext',
     sitetitle: 'page.sitetitle.kirbytext',
@@ -24,4 +24,4 @@ export const siteQuery: KirbyQuerySchema = {
     footeremail: 'page.footeremail.kirbytext',
     privacycookies: 'page.privacycookies.kirbytext',
   },
-};
+}
