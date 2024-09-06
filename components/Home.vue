@@ -1,23 +1,29 @@
 <script setup lang="ts">
-import { homeQuery } from '~/queries';
+import { CasesQuery, homeQuery, siteQuery } from '~/queries'
 
-const page = usePage().value;
-const site = useSite().value;
-// console.log(page.intendedTemplate);
-const props = defineProps<{
-  open: boolean,
-}>()
+defineProps<{ open: boolean }>()
 
-// console.log(page.homeabouttext);
-// console.log(page);
-// console.log(homeQuery);
+const { queryApi, queryParams } = useQueryParams(homeQuery)
+const { data } = await useFetch<{ result: any }>(
+  queryApi,
+  queryParams
+)
+const page = computed(() => data!.value!.result)
 
-const latestcases = page?.homelatestcases?.map((item: any) => {
+const siteQueryData = useQueryParams(siteQuery)
+const { data: site } = await useFetch<{ result: any }>(
+  siteQueryData.queryApi,
+  siteQueryData.queryParams
+)
+
+const latestcases = computed(() => page.value.homelatestcases?.map((item: any) => {
   return {
     ...item.case[0],
     columns: item.columns,
   }
-})
+}))
+
+watchEffect(() => console.log(site.value));
 
 </script>
 
@@ -28,8 +34,8 @@ const latestcases = page?.homelatestcases?.map((item: any) => {
       <div class="single-section-inner">
         <NuxtLink to="/" class="section-header"></NuxtLink>
         <div class="site-header">
-          <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg">
-          <!-- <img :src="page?.sitelogo?.url" /> -->
+          <!--<img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg">-->
+          <img :src="site?.result.sitelogo?.url" />
           <p>Our studio is an experiential strategy company based between Melbourne, Los Angeles and London. </p>
         </div>
         <div class="section-content">
@@ -114,19 +120,19 @@ const latestcases = page?.homelatestcases?.map((item: any) => {
 
               <div v-for="cases in latestcases" :key="cases?.id" :class="`featured-project single-case columns-${cases?.columns}`">
                 <NuxtLink :to="`/cases/${cases?.url}`">
-                    <div class="case-image">
-                      <!-- <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"> -->
-                      <img :src="cases?.casethumbnail?.url" />
+                  <div class="case-image">
+                    <!-- <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"> -->
+                    <img :src="cases?.casethumbnail?.url" />
+                  </div>
+                  <div class="case-info">
+                    <div class="case-title">
+                      <p>{{ cases?.title }}</p>
                     </div>
-                    <div class="case-info">
-                      <div class="case-title">
-                        <p>{{ cases?.title }}</p>
-                      </div>
-                      <div class="case-subtitle">
-                        <p v-html="cases?.casesubtitle"></p>
-                      </div>
+                    <div class="case-subtitle">
+                      <p v-html="cases?.casesubtitle"></p>
                     </div>
-                  </NuxtLink>
+                  </div>
+                </NuxtLink>
               </div>
               
             </div>

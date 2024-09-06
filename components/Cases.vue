@@ -16,66 +16,25 @@ const props = defineProps<{
         <div v-if="open" class="section-content">
           <div class="cases-list">
 
-            <div class="single-case">
-              <NuxtLink to="/cases/jasmine-cove">
+            <div v-for="{ id, title, url, slug, casethumbnail, casesubtitle } of page?.children" :key="id" class="single-case">
+              <NuxtLink :to="`/${id}`">
                 <div class="case-image">
-                  <img :src="page?.casethumbnail?.url" />
+                  <img :src="casethumbnail?.url" />
                 </div>
                 <div class="case-info">
                   <div class="case-title">
-                    <p v-html="page?.title"></p>
+                    <p>{{ title }}</p>
                   </div>
                   <div class="case-subtitle">
-                    <p v-html="page?.casesubtitle"></p>
+                    <p v-html="casesubtitle"></p>
                   </div>
                 </div>
               </NuxtLink>
             </div>
-            <div class="single-case">
-              <NuxtLink to="/cases">
-                <div class="case-image">
-                  <img :src="page?.casethumbnail?.url" />
-                </div>
-                <div class="case-info">
-                  <div class="case-title">
-                    <p v-html="page?.title"></p>
-                  </div>
-                  <div class="case-subtitle">
-                    <p v-html="page?.casesubtitle"></p>
-                  </div>
-                </div>
-              </NuxtLink>
-            </div>
-            <div class="single-case">
-              <NuxtLink to="/cases">
-                <div class="case-image">
-                  <img :src="page?.casethumbnail?.url" />
-                </div>
-                <div class="case-info">
-                  <div class="case-title">
-                    <p v-html="page?.title"></p>
-                  </div>
-                  <div class="case-subtitle">
-                    <p v-html="page?.casesubtitle"></p>
-                  </div>
-                </div>
-              </NuxtLink>
-            </div>
-            <div class="single-case">
-              <NuxtLink to="/cases">
-                <div class="case-image">
-                  <img :src="page?.casethumbnail?.url" />
-                </div>
-                <div class="case-info">
-                  <div class="case-title">
-                    <p v-html="page?.title"></p>
-                  </div>
-                  <div class="case-subtitle">
-                    <p v-html="page?.casesubtitle"></p>
-                  </div>
-                </div>
-              </NuxtLink>
-            </div>
+
+          </div>
+          <div class="cases-view-all">
+            <NuxtLink :to="`/cases/`" class="cta">View all</NuxtLink>
           </div>
         </div>
       </div>

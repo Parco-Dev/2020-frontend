@@ -113,6 +113,10 @@ const props = defineProps<{
                 <!-- <div class="caption">
                   <p v-html="blockimage.imagesblockimagescaption"></p>
                 </div> -->
+                <p>{{ blockimage.imagesblockimagesimage }}</p>
+                <div class="caption">
+                  <p v-html="blockimage.imagesblockimagescaption"></p>
+                </div>
               </div>
             </div>
             <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>

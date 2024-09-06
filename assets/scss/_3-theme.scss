@@ -832,8 +832,7 @@ body[data-template=about] {
 				}
 				.block-network-list {
 					margin-bottom: $spacer;
-					p {
-						margin-bottom: $spacer/4;
+					p { margin-bottom: calc(#{$spacer} / 4);
 						a {
 							@extend %extralarge;
 							text-transform: uppercase;
@@ -876,6 +875,9 @@ body[data-template=cases] {
 			.cases-list {
 				padding: $spacer;
 				
+			}
+			.cases-view-all {
+				padding: $spacer;
 			}
 		}
 	}
