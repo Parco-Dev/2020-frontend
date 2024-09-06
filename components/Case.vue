@@ -113,7 +113,7 @@ console.log(page)
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
               <div v-for="blockimages in block.content.imagesblockimages" :key="blockimages.id" class="single-image">
-                <img :src="blockimages.image.url" alt="Image" />
+                <!-- <img :src="blockimages.image.url" alt="Image" /> -->
                 <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
                 <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
                 <!-- <div class="caption">
