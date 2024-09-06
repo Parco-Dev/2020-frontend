@@ -112,17 +112,13 @@ console.log(page)
               </div>
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
-              <div v-for="blockimages in page?.casecontentblocksimages" :key="blockimages.image.id" class="single-image">
+              <div v-for="blockimages in block.content.imagesblockimages" :key="blockimages.id" class="single-image">
                 <img :src="blockimages.image.url" alt="Image" />
                 <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
                 <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
                 <!-- <div class="caption">
                   <p v-html="blockimage.imagesblockimagescaption"></p>
                 </div> -->
-                <p>{{ blockimage.imagesblockimagesimage }}</p>
-                <div class="caption">
-                  <p v-html="blockimage.imagesblockimagescaption"></p>
-                </div>
               </div>
             </div>
             <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>
