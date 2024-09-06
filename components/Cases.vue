@@ -1,8 +1,12 @@
 <script setup lang="ts">
-const page = usePage().value
-const props = defineProps<{
-  open: boolean
-}>()
+import { CasesQuery } from '~/queries'
+
+defineProps<{ open: boolean }>()
+
+const { queryApi, queryParams } = useQueryParams(CasesQuery())
+const { data: page } = await useFetch(queryApi, queryParams)
+
+watchEffect(() => console.log(page.value.children))
 </script>
 
 <template>
@@ -12,6 +16,7 @@ const props = defineProps<{
       <div class="section-title">
         <p>Case studies</p>
       </div>
+      <p v-for="{ id, title, url } of page?.result.children" :key="id">{{ title }}</p>
       <div v-if="open" class="section-content">
         <div class="cases-list">
           <div class="single-case">
@@ -31,8 +36,8 @@ const props = defineProps<{
           </div>
           <div class="single-case">
             <NuxtLink to="/cases">
+              <img :src="page?.casethumbnail?.url" />
               <div class="case-image">
-                <img :src="page?.casethumbnail?.url" />
               </div>
               <div class="case-info">
                 <div class="case-title">

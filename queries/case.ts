@@ -22,7 +22,17 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
         query: 'page.casemainimage.toFiles.first',
         select: imageQuery,
       },
-      casecontentblocks: 'page.casecontentblocks.toBlocks',
+      casecontentblocks: {
+        query: 'page.casecontentblocks.toBlocks',
+      },
+      casecontentblocksimages: {
+        query: "page.casecontentblocks.toBlocks.filterBy('type','imageblock')",
+        select: {
+          image: {
+            query: 'block.content.image.toFiles.first',
+          },
+        },
+      },
     },
   }
 }

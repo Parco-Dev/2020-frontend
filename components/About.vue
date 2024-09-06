@@ -114,8 +114,8 @@ const teamGroups = computed(() => page?.aboutteamgroups || [])
                 v-for="(focusarea, index) in focusAreas"
                 :key="index"
                 :class="{ active: activeIndexFocusAreas === index }"
-                @click="setActiveFocusAreas(index)"
                 class="nav-item"
+                @click="setActiveFocusAreas(index)"
               >
                 <button
                   class="nav-link"
@@ -129,8 +129,8 @@ const teamGroups = computed(() => page?.aboutteamgroups || [])
             <div class="tab-content">
               <div
                 v-for="(focusarea, index) in focusAreas"
-                :key="index"
                 v-show="activeIndexFocusAreas === index"
+                :key="index"
                 class="tab-pane active"
                 :class="{ 'tab-active': activeIndexFocusAreas === index }"
               >
@@ -200,8 +200,8 @@ const teamGroups = computed(() => page?.aboutteamgroups || [])
             <div class="tab-content">
               <div
                 v-for="(methodology, index) in methodologySections"
-                :key="index"
                 v-show="activeIndexMethodology === index"
+                :key="index"
                 class="tab-content-inner active"
                 :class="{ 'tab-active': activeIndexMethodology === index }"
               >
@@ -254,8 +254,8 @@ const teamGroups = computed(() => page?.aboutteamgroups || [])
             >
               <div
                 class="group-title"
-                @click="setActiveTeam(index)"
                 :class="{ 'button-active': activeIndexTeam === index }"
+                @click="setActiveTeam(index)"
               >
                 <p v-html="team.aboutteamgroupname"></p>
               </div>
