@@ -1,5 +1,3 @@
-export const BASE_DELAY = 800;
+export const BASE_DELAY = 800
 
-export const STRINGS = {
- 
-}
+export const STRINGS = {}

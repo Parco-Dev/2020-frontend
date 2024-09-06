@@ -22,29 +22,26 @@ export function setPage<T extends Record<string, any>>(page?: T) {
 
   // Build the page meta tags
 
-  
   const { siteUrl } = useRuntimeConfig().public
   const site = useSite()
 
-  
   // const title = page.title
   //  ? `${page.title} – ${site.value.title}`
   //  : site.value.title
   // const description = page.excerpt || site.value.short_bio
   const url = joinURL(siteUrl, useRoute().path)
   // const image = page.main_image?.url || page.about_image?.url || page.home_icon?.url
-  
 
   useHead({
     bodyAttrs: {
-      'class': page.intendedTemplate || 'default',
+      class: page.intendedTemplate || 'default',
       'data-template': page.intendedTemplate || 'default',
     },
     link: [{ rel: 'canonical', href: url }],
   })
 
-  console.log('Page:', page);
-  console.log('Intended Template:', page.intendedTemplate);
+  console.log('Page:', page)
+  console.log('Intended Template:', page.intendedTemplate)
 
   /*
   useSeoMeta({
@@ -84,10 +81,10 @@ function usePageState() {
   )
 }
 
-export function useProject () {
+export function useProject() {
   return useState('app.case', () => {})
 }
 
-export function setProject (page?: any) {
-  useProject().value = page;
+export function setProject(page?: any) {
+  useProject().value = page
 }

@@ -16,8 +16,8 @@ export const aboutQuery: KirbyQuerySchema = {
         focusareaname: true,
         focusareabigtext: true,
         focusarealefttext: true,
-        focusarearighttext: true
-      }
+        focusarearighttext: true,
+      },
     },
     aboutstrengthstext: true,
     aboutstrengthsbigtext: true,
@@ -27,9 +27,9 @@ export const aboutQuery: KirbyQuerySchema = {
         aboutstrengthsslidercaption: true,
         aboutstrengthssliderimage: {
           query: 'structureItem.aboutstrengthssliderimage.toFiles.first',
-          select: [ 'url', 'alt' ],
+          select: ['url', 'alt'],
         },
-      }
+      },
     },
     aboutmethodologytext: true,
     aboutmethodology: {
@@ -42,9 +42,9 @@ export const aboutQuery: KirbyQuerySchema = {
           select: {
             methodologysectionslefttext: true,
             methodologysectionsrighttext: true,
-          }
+          },
         },
-      }
+      },
     },
     aboutteamtext: true,
     aboutteamgroups: {
@@ -56,13 +56,13 @@ export const aboutQuery: KirbyQuerySchema = {
           select: {
             aboutteamgrouppeopleimage: {
               query: 'structureItem.aboutteamgrouppeopleimage.toFiles.first',
-              select: [ 'url', 'alt' ],
+              select: ['url', 'alt'],
             },
             aboutteamgrouppeoplename: true,
             aboutteamgrouppeoplerole: true,
-          }
+          },
         },
-      }
+      },
     },
     aboutnetworktext: true,
     aboutnetworklist: {
@@ -70,9 +70,9 @@ export const aboutQuery: KirbyQuerySchema = {
       select: {
         aboutnetworklistlink: true,
         aboutnetworklistlinktext: true,
-      }
+      },
     },
     aboutnetworklink: true,
     aboutnetworklinktext: true,
-  }
+  },
 }

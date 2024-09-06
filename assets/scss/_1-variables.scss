@@ -87,23 +87,23 @@ $massive-lineh-sm: 0.745; // 157px
 /* BREAKPOINTS */
 
 $grid-breakpoints: (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
 );
 
 /* MEDIA QUERIES */
 
 @mixin media-breakpoint-up($breakpoint) {
-    @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
-        @content;
-    }
+  @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+    @content;
+  }
 }
 
 @mixin media-breakpoint-down($breakpoint) {
-    @media (max-width: map-get($grid-breakpoints, $breakpoint)) {
-        @content;
-    }
+  @media (max-width: map-get($grid-breakpoints, $breakpoint)) {
+    @content;
+  }
 }

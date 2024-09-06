@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const site = useSite()
-
 </script>
 
 <template>
   <footer class="site-footer">
     <div class="top-footer">
       <div class="footer-logo">
-        <img src="https://davideg29.sg-host.com/2020/media/site/3a37f09b57-1703171845/logo-2020.svg">
+        <img
+          src="https://davideg29.sg-host.com/2020/media/site/3a37f09b57-1703171845/logo-2020.svg"
+        />
       </div>
       <div class="footer-menu">
         <NuxtLink to="/about">About</NuxtLink>
@@ -28,10 +29,15 @@ const site = useSite()
         </div>
         <div class="col-lg-7 col-12">
           <p>Los Angeles Ste 2020. 1019 E 4th Pl, CA 90013</p>
-          <p>Dubai Ste 2020. One Central 8th and 9th Floor - DWTC - Trade Centre 2, UAE</p>
+          <p>
+            Dubai Ste 2020. One Central 8th and 9th Floor - DWTC - Trade Centre
+            2, UAE
+          </p>
         </div>
         <div class="col-lg-3 col-12">
-          <p>EMAIL <a href="mailto:studio@20-20.studio">studio@20-20.studio</a></p>
+          <p>
+            EMAIL <a href="mailto:studio@20-20.studio">studio@20-20.studio</a>
+          </p>
           <p><a href="#">Privacy cookies</a></p>
         </div>
       </div>
@@ -39,5 +45,4 @@ const site = useSite()
   </footer>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

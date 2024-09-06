@@ -11,7 +11,7 @@ export const homeQuery: KirbyQuerySchema = {
     homeabouttext: 'page.homeabouttext',
     homeaboutimage: {
       query: 'page.homeaboutimage.toFiles.first',
-      select: [ 'url', 'alt' ],
+      select: ['url', 'alt'],
     },
     homeexperience: true,
     homeculturetitle: true,
@@ -33,13 +33,13 @@ export const homeQuery: KirbyQuerySchema = {
             title: true,
             excerpt: true,
             casethumbnail: {
-              query: "page.casethumbnail.toFiles.first",
-              select: [ 'url', 'alt' ],
+              query: 'page.casethumbnail.toFiles.first',
+              select: ['url', 'alt'],
             },
-            casesubtitle: true
-          }
-        }
-      }
+            casesubtitle: true,
+          },
+        },
+      },
     },
     homelatestcaseslink: true,
     homelatestcaseslinktext: true,
@@ -48,8 +48,8 @@ export const homeQuery: KirbyQuerySchema = {
       query: 'page.homeoutcomeslinks.toStructure',
       select: {
         homeoutcomeslinkslink: true,
-        homeoutcomeslinkstext: true
-      }
+        homeoutcomeslinkstext: true,
+      },
     },
     homeoutcomeslink: true,
     homeoutcomeslinktext: true,
@@ -59,22 +59,22 @@ export const homeQuery: KirbyQuerySchema = {
       query: 'page.homeclients.toStructure',
       select: {
         homeclientslogo: {
-          query: "structureItem.homeclientslogo.toFiles.first",
-          select: [ 'url', 'alt' ],
+          query: 'structureItem.homeclientslogo.toFiles.first',
+          select: ['url', 'alt'],
         },
         homeclientsname: true,
-        homeclientsdescription: true
-      }
+        homeclientsdescription: true,
+      },
     },
     homeclientslink: true,
     homeclientslinktext: true,
     hometeamtext: true,
     hometeamimage: {
       query: 'page.hometeamimage.toFiles.first',
-      select: [ 'url', 'alt' ],
+      select: ['url', 'alt'],
     },
     hometeamlink: true,
     hometeamlinktext: true,
-    homenewsletter: true
-  }
+    homenewsletter: true,
+  },
 }

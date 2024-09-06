@@ -12,5 +12,5 @@ export const contactQuery: KirbyQuerySchema = {
     contactdubai: true,
     contactemail: true,
     contactsocial: 'page.contactsocial.kirbytext',
-  }
+  },
 }
