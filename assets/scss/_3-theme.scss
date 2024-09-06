@@ -363,22 +363,40 @@ img {
 .section-about {
   width: 95vw;
   transition: transform 0.2s linear, right 0.3s ease-in;
+  @include media-breakpoint-down(sm) {
+    width: 100vw;
+  }
   &:hover {
     transform: translateX(-1vw);
+    @include media-breakpoint-down(sm) {
+      transform: translateX(0vw);
+    }
   }
 }
 .section-cases {
   width: 45vw;
   transition: transform 0.2s linear, right 0.3s ease-in;
+  @include media-breakpoint-down(sm) {
+    width: 100vw;
+  }
   &:hover {
     transform: translateX(-1vw);
+    @include media-breakpoint-down(sm) {
+      transform: translateX(0vw);
+    }
   }
 }
 .section-contact {
   width: 40vw;
   transition: transform 0.2s linear, right 0.3s ease-in;
+  @include media-breakpoint-down(sm) {
+    width: 100vw;
+  }
   &:hover {
     transform: translateX(-1vw);
+    @include media-breakpoint-down(sm) {
+      transform: translateX(0vw);
+    }
   }
 }
 
@@ -413,14 +431,32 @@ img {
     align-items: flex-start;
     padding: calc(#{$spacer} / 2 * 3) $spacer;
     margin-bottom: calc(#{$spacer} * 4);
-    img {
-      width: 55px;
-      margin-right: #{$spacer};
+    @include media-breakpoint-down(sm) {
+      justify-content: space-between;
     }
-    p {
-      @extend %micro;
-      width: 245px;
-      margin-bottom: 0px;
+    .site-header-heading {
+      display: flex;
+      img {
+        width: 55px;
+        margin-right: #{$spacer};
+      }
+      p {
+        @extend %micro;
+        width: 245px;
+        margin-bottom: 0px;
+      }
+    }
+    .site-header-mobile {
+      display: none;
+      @include media-breakpoint-down(sm) {
+        display: block;
+      }
+      .line {
+        margin: calc(#{$spacer} / 4) 0px;
+        height: 2px;
+        background-color: $color-white;
+        width: $spacer-sm*2;
+      }
     }
   }
   .section-content {
@@ -888,7 +924,7 @@ body[data-template='about'] {
         .block-network-list {
           margin-bottom: $spacer;
           p {
-            margin-bottom: $spacer/4;
+            margin-bottom: calc(#{$spacer} / 4);
             a {
               @extend %extralarge;
               text-transform: uppercase;
@@ -1063,13 +1099,18 @@ body {
               margin-bottom: $spacer * 2;
             }
             ol {
+              margin-bottom: $spacer*2;
               li {
+                display: flex;
                 &::before {
                   display: inline-block;
                   content: counter(item) ') ';
                   counter-increment: item;
                   width: 2em;
                   margin-left: -2em;
+                }
+                p {
+                  margin-bottom: 0px;
                 }
               }
             }

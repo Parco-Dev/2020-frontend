@@ -9,5 +9,6 @@ export const siteQuery: KirbyQuerySchema = {
       query: 'site.sitelogo.toFiles.first',
       select: ['url', 'alt'],
     },
+    shortbio: true,
   },
 }

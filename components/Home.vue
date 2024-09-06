@@ -11,12 +11,12 @@ const { data } = await useFetch<{ result: any }>(
 const page = computed(() => data!.value!.result)
 
 const siteQueryData = useQueryParams(siteQuery)
-console.log(siteQueryData)
+// console.log(siteQueryData)
 const { data: site } = await useFetch<{ result: any }>(
   siteQueryData.queryApi,
   siteQueryData.queryParams
 )
-watchEffect(() => console.log(site.value))
+// watchEffect(() => console.log(site.value))
 
 
 const latestcases = computed(() => page.value.homelatestcases?.map((item: any) => {
@@ -32,12 +32,18 @@ const latestcases = computed(() => page.value.homelatestcases?.map((item: any) =
     <div class="single-section-inner">
       <NuxtLink to="/" class="section-header"></NuxtLink>
       <div class="site-header">
-        <!-- <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" /> -->
-        <img :src="site?.result.sitelogo?.url" />
-        <p>
-          Our studio is an experiential strategy company based between
-          Melbourne, Los Angeles and London.
-        </p>
+        <div class="site-header-heading">
+          <img :src="site?.result.sitelogo?.url" />
+          <p>
+            Our studio is an experiential strategy company based between
+            Melbourne, Los Angeles and London.
+          </p>
+        </div>
+        <div class="site-header-mobile">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
       </div>
       <div class="section-content">
         <div class="block-about">

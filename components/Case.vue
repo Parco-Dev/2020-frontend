@@ -60,10 +60,15 @@ console.log(page)
               </div>
             </div>
             <div v-else-if="block.type === 'imageblock'" class="module-image">
+              
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
-                  <img :src="block.content.image.url" />
+                  <div v-for="blockimage in page?.casecontentblocksimage" :key="blockimage.image.id" class="image-block">
+                    <img :src="blockimage.image.url" alt="Image" />
+                  </div>
+                  <!-- <img :src="page?.casecontentblocksimage?.id"> -->
+                  <!-- {{ JSON.stringify(page?.casecontentblocksimage, null, 2) }} -->
                   <div class="caption">
                     <p v-html="block.content.caption"></p>
                   </div>
@@ -107,7 +112,8 @@ console.log(page)
               </div>
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
-              <div v-for="blockimage in block.content.imagesblockimages" :key="blockimage.id" class="single-image">
+              <div v-for="blockimages in page?.casecontentblocksimages" :key="blockimages.image.id" class="single-image">
+                <img :src="blockimages.image.url" alt="Image" />
                 <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
                 <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
                 <!-- <div class="caption">

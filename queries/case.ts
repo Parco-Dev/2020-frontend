@@ -25,7 +25,7 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
       casecontentblocks: {
         query: 'page.casecontentblocks.toBlocks',
       },
-      casecontentblocksimages: {
+      casecontentblocksimage: {
         query: "page.casecontentblocks.toBlocks.filterBy('type','imageblock')",
         select: {
           image: {
