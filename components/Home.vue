@@ -11,19 +11,13 @@ const { data } = await useFetch<{ result: any }>(
 const page = computed(() => data!.value!.result)
 
 const siteQueryData = useQueryParams(siteQuery)
-<<<<<<< HEAD
-=======
 // console.log(siteQueryData)
->>>>>>> development
 const { data: site } = await useFetch<{ result: any }>(
   siteQueryData.queryApi,
   siteQueryData.queryParams
 )
-<<<<<<< HEAD
-=======
 // watchEffect(() => console.log(site.value))
 
->>>>>>> development
 
 const latestcases = computed(() => page.value.homelatestcases?.map((item: any) => {
   return {
@@ -31,23 +25,6 @@ const latestcases = computed(() => page.value.homelatestcases?.map((item: any) =
     columns: item.columns,
   }
 }))
-<<<<<<< HEAD
-
-watchEffect(() => console.log(site.value));
-
-</script>
-
-<template>
-  
-    <section :class="{open}" class="single-section section-home">
-      
-      <div class="single-section-inner">
-        <NuxtLink to="/" class="section-header"></NuxtLink>
-        <div class="site-header">
-          <!--<img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg">-->
-          <img :src="site?.result.sitelogo?.url" />
-          <p>Our studio is an experiential strategy company based between Melbourne, Los Angeles and London. </p>
-=======
 </script>
 
 <template>
@@ -61,7 +38,6 @@ watchEffect(() => console.log(site.value));
             Our studio is an experiential strategy company based between
             Melbourne, Los Angeles and London.
           </p>
->>>>>>> development
         </div>
         <div class="site-header-mobile">
           <div class="line"></div>
@@ -140,31 +116,6 @@ watchEffect(() => console.log(site.value));
           </div>
         </div>
 
-<<<<<<< HEAD
-          <div class="block-latest-cases">
-            <div class="block-main-text">
-              <p v-html="page?.homelatestcasestitle"></p>
-            </div>
-            <div class="block-latest-cases-list">
-
-              <div v-for="cases in latestcases" :key="cases?.id" :class="`featured-project single-case columns-${cases?.columns}`">
-                <NuxtLink :to="`/cases/${cases?.url}`">
-                  <div class="case-image">
-                    <!-- <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"> -->
-                    <img :src="cases?.casethumbnail?.url" />
-                  </div>
-                  <div class="case-info">
-                    <div class="case-title">
-                      <p>{{ cases?.title }}</p>
-                    </div>
-                    <div class="case-subtitle">
-                      <p v-html="cases?.casesubtitle"></p>
-                    </div>
-                  </div>
-                </NuxtLink>
-              </div>
-              
-=======
         <div class="block-latest-cases">
           <div class="block-main-text">
             <p v-html="page?.homelatestcasestitle"></p>
@@ -187,7 +138,6 @@ v-for="cases in latestcases" :key="cases?.id"
                   </div>
                 </div>
               </NuxtLink>
->>>>>>> development
             </div>
           </div>
           <!-- <a href="#" class="button">View all</a> -->
