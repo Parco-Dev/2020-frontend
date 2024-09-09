@@ -1,9 +1,8 @@
 <script setup lang="ts">
-const page = usePage().value;
+const page = usePage().value
 const props = defineProps<{
-  open: boolean,
+  open: boolean
 }>()
-
 </script>
 
 <template>
@@ -15,7 +14,11 @@ const props = defineProps<{
       </div>
       <div v-if="open" class="section-content">
         <div class="cases-list">
-          <div v-for="{ id, title, casethumbnail, casesubtitle } of page?.children" :key="id" class="single-case">
+          <div
+            v-for="{ id, title, casethumbnail, casesubtitle } of page?.children"
+            :key="id"
+            class="single-case"
+          >
             <NuxtLink :to="`/${id}`">
               <div class="case-image">
                 <img :src="casethumbnail?.url" />

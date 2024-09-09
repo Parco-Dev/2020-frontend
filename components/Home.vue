@@ -4,10 +4,7 @@ import { CasesQuery, homeQuery, siteQuery } from '~/queries'
 defineProps<{ open: boolean }>()
 
 const { queryApi, queryParams } = useQueryParams(homeQuery)
-const { data } = await useFetch<{ result: any }>(
-  queryApi,
-  queryParams
-)
+const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
 const page = computed(() => data!.value!.result)
 
 const siteQueryData = useQueryParams(siteQuery)
@@ -18,13 +15,14 @@ const { data: site } = await useFetch<{ result: any }>(
 )
 // watchEffect(() => console.log(site.value))
 
-
-const latestcases = computed(() => page.value.homelatestcases?.map((item: any) => {
-  return {
-    ...item.case[0],
-    columns: item.columns,
-  }
-}))
+const latestcases = computed(() =>
+  page.value.homelatestcases?.map((item: any) => {
+    return {
+      ...item.case[0],
+      columns: item.columns,
+    }
+  })
+)
 </script>
 
 <template>
@@ -122,8 +120,10 @@ const latestcases = computed(() => page.value.homelatestcases?.map((item: any) =
           </div>
           <div class="block-latest-cases-list">
             <div
-v-for="cases in latestcases" :key="cases?.id"
-              :class="`featured-project single-case columns-${cases?.columns}`">
+              v-for="cases in latestcases"
+              :key="cases?.id"
+              :class="`featured-project single-case columns-${cases?.columns}`"
+            >
               <NuxtLink :to="`/cases/${cases?.url}`">
                 <div class="case-image">
                   <!-- <img src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"> -->
@@ -154,15 +154,19 @@ v-for="cases in latestcases" :key="cases?.id"
             </div>
           </div>
           <div class="block-outcomes-list">
-            <div v-for="outcomes in page?.homeoutcomeslinks" :key="outcomes.id" class="single-outcome">
+            <div
+              v-for="outcomes in page?.homeoutcomeslinks"
+              :key="outcomes.id"
+              class="single-outcome"
+            >
               <a :href="outcomes.homeoutcomeslinkslink" target="_blank">{{
                 outcomes.homeoutcomeslinkstext
-                }}</a>
+              }}</a>
             </div>
           </div>
           <NuxtLink :to="`${page?.homeoutcomeslink}`" class="cta">{{
             page?.homeoutcomeslinktext
-            }}</NuxtLink>
+          }}</NuxtLink>
         </div>
 
         <div class="block-clients">
@@ -179,7 +183,11 @@ v-for="cases in latestcases" :key="cases?.id"
           </div>
           <div class="block-clients-list">
             <div class="row">
-              <div v-for="clients in page?.homeclients" :key="clients.id" class="col-lg-4 col-12 single-client">
+              <div
+                v-for="clients in page?.homeclients"
+                :key="clients.id"
+                class="col-lg-4 col-12 single-client"
+              >
                 <div class="client-image">
                   <img :src="clients?.homeclientslogo?.url" />
                 </div>
@@ -194,7 +202,7 @@ v-for="cases in latestcases" :key="cases?.id"
           </div>
           <NuxtLink :to="`${page?.homeclientslink}`" class="cta">{{
             page?.homeclientslinktext
-            }}</NuxtLink>
+          }}</NuxtLink>
         </div>
 
         <div class="block-team">
@@ -211,7 +219,7 @@ v-for="cases in latestcases" :key="cases?.id"
           </div>
           <NuxtLink :to="`${page?.hometeamlink}`" class="cta">{{
             page?.hometeamlinktext
-            }}</NuxtLink>
+          }}</NuxtLink>
         </div>
 
         <div class="block-newsletter">

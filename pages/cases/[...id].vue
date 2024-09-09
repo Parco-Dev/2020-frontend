@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { getCaseQuery } from '~/queries'
-import { BASE_DELAY } from '~/data/constants'
 
 const kirbyPath = useRoute().path
 const { queryApi, queryParams } = useQueryParams(getCaseQuery(kirbyPath))
@@ -9,9 +8,6 @@ const page = (data?.value as any)?.result
 
 setPage(page)
 setProject(page)
-console.log(page)
-
-onMounted(() => {})
 </script>
 
 <template>

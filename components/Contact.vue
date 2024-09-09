@@ -1,6 +1,12 @@
 <script setup lang="ts">
-const page = usePage().value
-const props = defineProps<{
+import { contactQuery } from '~/queries'
+
+const { queryApi, queryParams } = useQueryParams(contactQuery)
+// TODO: type any
+const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
+const page = computed(() => data.value?.result)
+
+defineProps<{
   open: boolean
 }>()
 </script>
@@ -36,7 +42,7 @@ const props = defineProps<{
           <div class="block-content">
             <a :href="`mailto:${page?.contactemail}`">{{
               page?.contactemail
-            }}</a>
+              }}</a>
           </div>
         </div>
         <div class="block-social">

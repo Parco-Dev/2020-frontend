@@ -6,8 +6,8 @@ export const siteQuery: KirbyQuerySchema = {
   select: {
     title: true,
     sitelogo: {
-      query: "site.sitelogo.toFiles.first",
-      select: [ 'url', 'alt' ],
+      query: 'site.sitelogo.toFiles.first',
+      select: ['url', 'alt'],
     },
     shortbio: true,
   },

@@ -1,12 +1,15 @@
 <script setup lang="ts">
-const page = usePage().value
-const site = useSite()
-console.log(page)
-const props = defineProps<{
+import { getCaseQuery } from '~/queries'
+
+defineProps<{
   open: boolean
 }>()
 
-console.log(page)
+const route = useRoute()
+const { queryApi, queryParams } = useQueryParams(getCaseQuery(route.path))
+// TODO: type any
+const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
+const page = computed(() => data.value?.result)
 </script>
 
 <template>
@@ -14,7 +17,9 @@ console.log(page)
     <div class="single-section-inner">
       <NuxtLink to="/" class="section-header"></NuxtLink>
       <div class="site-header">
-        <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" />
+        <img
+          src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg"
+        />
         <p>Case study</p>
       </div>
       <div class="section-content">
@@ -24,23 +29,23 @@ console.log(page)
         <div class="case-info">
           <div class="row">
             <div class="col-lg-6 col-12 case-subtitle">
-              <p v-html="page?.casesubtitle"></p>
+              <span v-html="page?.casesubtitle"></span>
             </div>
             <div class="col-lg-2 col-12">
               <p class="case-meta-label">Location</p>
-              <p v-html="page?.caselocation"></p>
+              <span v-html="page?.caselocation"></span>
               <p class="case-meta-label">Year</p>
-              <p v-html="page?.caseyear"></p>
+              <span v-html="page?.caseyear"></span>
             </div>
             <div class="col-lg-2 col-12">
               <p class="case-meta-label">Client</p>
-              <p v-html="page?.caseclient"></p>
+              <span v-html="page?.caseclient"></span>
               <p class="case-meta-label">Collaborators</p>
-              <p v-html="page?.casecollaborators"></p>
+              <span v-html="page?.casecollaborators"></span>
             </div>
             <div class="col-lg-2 col-12">
               <p class="case-meta-label">Services</p>
-              <p v-html="page?.caseservices"></p>
+              <span v-html="page?.caseservices"></span>
             </div>
           </div>
         </div>
@@ -48,49 +53,65 @@ console.log(page)
           <img :src="page?.casemainimage?.url" />
         </div>
         <div class="case-content">
-          <div v-for="block in page?.casecontentblocks" :key="block.id" class="single-module">
-            <div v-if="block.type === 'textblock'" class="module-text-one-column">
+          <div
+            v-for="block in page?.casecontentblocks"
+            :key="block.id"
+            class="single-module"
+          >
+            <div
+              v-if="block.type === 'textblock'"
+              class="module-text-one-column"
+            >
               <div class="row">
                 <div class="col-lg-3 col-12 column-title">
-                  <p v-html="block.content.blocktitle"></p>
+                  <span v-html="block.content.blocktitle"></span>
                 </div>
                 <div class="col-lg-9 col-12 column-content">
-                  <p v-html="block.content.paragraph"></p>
+                  <span v-html="block.content.paragraph" />
                 </div>
               </div>
             </div>
             <div v-else-if="block.type === 'imageblock'" class="module-image">
-              
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
-                  <div v-for="blockimage in page?.casecontentblocksimage" :key="blockimage.image.id" class="image-block">
+                  <div
+                    v-for="blockimage in page?.casecontentblocksimage"
+                    :key="blockimage.image.id"
+                    class="image-block"
+                  >
                     <img :src="blockimage.image.url" alt="Image" />
                   </div>
                   <!-- <img :src="page?.casecontentblocksimage?.id"> -->
                   <!-- {{ JSON.stringify(page?.casecontentblocksimage, null, 2) }} -->
                   <div class="caption">
-                    <p v-html="block.content.caption"></p>
+                    <span v-html="block.content.caption"></span>
                   </div>
                 </div>
               </div>
             </div>
-            <div v-else-if="block.type === 'doubletextblock'" class="module-text-two-columns">
+            <div
+              v-else-if="block.type === 'doubletextblock'"
+              class="module-text-two-columns"
+            >
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
                   <div class="row">
                     <div class="col-lg-6 col-12 single-column">
-                      <p v-html="block.content.paragraphleft"></p>
+                      <span v-html="block.content.paragraphleft"></span>
                     </div>
                     <div class="col-lg-6 col-12 single-column">
-                      <p v-html="block.content.paragraphright"></p>
+                      <span v-html="block.content.paragraphright"></span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div v-else-if="block.type === 'doubleimageblock'" class="module-double-image">
+            <div
+              v-else-if="block.type === 'doubleimageblock'"
+              class="module-double-image"
+            >
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
@@ -98,13 +119,13 @@ console.log(page)
                     <div class="col-lg-6 col-12">
                       <img :src="block.content.imageleft.url" />
                       <div class="caption">
-                        <p v-html="block.content.captionleft"></p>
+                        <span v-html="block.content.captionleft"></span>
                       </div>
                     </div>
                     <div class="col-lg-6 col-12">
                       <img :src="block.content.imageright.url" />
                       <div class="caption">
-                        <p v-html="block.content.captionright"></p>
+                        <span v-html="block.content.captionright"></span>
                       </div>
                     </div>
                   </div>
@@ -112,16 +133,23 @@ console.log(page)
               </div>
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
-              <div v-for="blockimages in block.content.imagesblockimages" :key="blockimages.id" class="single-image">
+              <div
+                v-for="blockimages in block.content.imagesblockimages"
+                :key="blockimages.id"
+                class="single-image"
+              >
                 <!-- <img :src="blockimages.image.url" alt="Image" /> -->
                 <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
                 <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
                 <!-- <div class="caption">
-                  <p v-html="blockimage.imagesblockimagescaption"></p>
+                  <span v-html="blockimage.imagesblockimagescaption"></p>
                 </div> -->
               </div>
             </div>
-            <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>
+            <div
+              v-else-if="block.type === 'spacerblock'"
+              class="module-spacer"
+            ></div>
           </div>
         </div>
       </div>
@@ -135,7 +163,8 @@ console.log(page)
             <NuxtLink to="/cases/jasmine-cover">
               <div class="case-image">
                 <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg" />
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"
+                />
               </div>
               <div class="case-info">
                 <div class="case-title">
@@ -151,7 +180,8 @@ console.log(page)
             <NuxtLink to="/cases">
               <div class="case-image">
                 <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg" />
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg"
+                />
               </div>
               <div class="case-info">
                 <div class="case-title">
@@ -167,7 +197,8 @@ console.log(page)
             <NuxtLink to="/cases">
               <div class="case-image">
                 <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg" />
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"
+                />
               </div>
               <div class="case-info">
                 <div class="case-title">
