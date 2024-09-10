@@ -404,7 +404,7 @@ img {
 
 .block-title {
   margin-bottom: $spacer;
-  p {
+  span {
     @extend %ultrasmall;
     text-transform: uppercase;
   }
@@ -811,7 +811,7 @@ body[data-template=about] {
 						.tab-content-inner {
 							.methodology-title {
 								margin-bottom: $spacer*2;
-								p {
+								span {
 									@extend %massive;
 									margin-bottom: 0px;
 									text-transform: uppercase;
@@ -848,7 +848,7 @@ body[data-template=about] {
 					.block-team-group {
 						&:hover {
 							.group-title {
-								p {
+								span {
 									font-variation-settings: 'wght' 700, 'wdth' 55;
 									letter-spacing: -0.65px;
 								}
@@ -856,7 +856,7 @@ body[data-template=about] {
 						}
 						.group-title {
 							&.button-active {
-								p {
+								span {
 									font-variation-settings: 'wght' 700, 'wdth' 165;
 									letter-spacing: -1.4vw;
 								}
@@ -864,7 +864,7 @@ body[data-template=about] {
 						}
 						&.opened {
 							.group-title {
-								p {
+								span {
 									font-variation-settings: 'wght' 700, 'wdth' 165;
 									letter-spacing: -1.4vw;
 								}
@@ -872,7 +872,7 @@ body[data-template=about] {
 						}
 						.group-title {
 							cursor: pointer;
-							p {
+							span {
 								@extend %massive;
 								text-transform: uppercase;
 							}
@@ -894,14 +894,14 @@ body[data-template=about] {
 									padding: $spacer;
 									.person-name {
 										margin-bottom: calc(#{$spacer} / 2);
-										p {
+										span {
 											@extend %small;
 											text-transform: uppercase;
 											margin-bottom: 0px;
 										}
 									}
 									.person-role {
-										p {
+										span {
 											@extend %ultrasmall;
 											text-transform: uppercase;
 											margin-bottom: 0px;
@@ -1088,7 +1088,7 @@ body {
         }
         .module-text-one-column {
           .column-title {
-            p {
+            span {
               text-transform: uppercase;
             }
           }
