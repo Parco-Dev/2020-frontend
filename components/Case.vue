@@ -10,6 +10,7 @@ const { queryApi, queryParams } = useQueryParams(getCaseQuery(route.path))
 // TODO: type any
 const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
 const page = computed(() => data.value?.result)
+watchEffect(() => console.log(page.value))
 </script>
 
 <template>
@@ -17,9 +18,7 @@ const page = computed(() => data.value?.result)
     <div class="single-section-inner">
       <NuxtLink to="/" class="section-header"></NuxtLink>
       <div class="site-header">
-        <img
-          src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg"
-        />
+        <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" />
         <p>Case study</p>
       </div>
       <div class="section-content">
@@ -53,15 +52,8 @@ const page = computed(() => data.value?.result)
           <img :src="page?.casemainimage?.url" />
         </div>
         <div class="case-content">
-          <div
-            v-for="block in page?.casecontentblocks"
-            :key="block.id"
-            class="single-module"
-          >
-            <div
-              v-if="block.type === 'textblock'"
-              class="module-text-one-column"
-            >
+          <div v-for="block in page?.casecontentblocks" :key="block.id" class="single-module">
+            <div v-if="block.type === 'textblock'" class="module-text-one-column">
               <div class="row">
                 <div class="col-lg-3 col-12 column-title">
                   <span v-html="block.content.blocktitle"></span>
@@ -75,13 +67,7 @@ const page = computed(() => data.value?.result)
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
-                  <div
-                    v-for="blockimage in page?.casecontentblocksimage"
-                    :key="blockimage.image.id"
-                    class="image-block"
-                  >
-                    <img :src="blockimage.image.url" alt="Image" />
-                  </div>
+                  <img :src="page?.casecontentblocksimage.find(b => b.id === block.id).image.url" alt="Image" />
                   <!-- <img :src="page?.casecontentblocksimage?.id"> -->
                   <!-- {{ JSON.stringify(page?.casecontentblocksimage, null, 2) }} -->
                   <div class="caption">
@@ -90,10 +76,7 @@ const page = computed(() => data.value?.result)
                 </div>
               </div>
             </div>
-            <div
-              v-else-if="block.type === 'doubletextblock'"
-              class="module-text-two-columns"
-            >
+            <div v-else-if="block.type === 'doubletextblock'" class="module-text-two-columns">
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
@@ -108,10 +91,7 @@ const page = computed(() => data.value?.result)
                 </div>
               </div>
             </div>
-            <div
-              v-else-if="block.type === 'doubleimageblock'"
-              class="module-double-image"
-            >
+            <div v-else-if="block.type === 'doubleimageblock'" class="module-double-image">
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
@@ -133,11 +113,7 @@ const page = computed(() => data.value?.result)
               </div>
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
-              <div
-                v-for="blockimages in block.content.imagesblockimages"
-                :key="blockimages.id"
-                class="single-image"
-              >
+              <div v-for="blockimages in block.content.imagesblockimages" :key="blockimages.id" class="single-image">
                 <!-- <img :src="blockimages.image.url" alt="Image" /> -->
                 <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
                 <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
@@ -146,10 +122,7 @@ const page = computed(() => data.value?.result)
                 </div> -->
               </div>
             </div>
-            <div
-              v-else-if="block.type === 'spacerblock'"
-              class="module-spacer"
-            ></div>
+            <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>
           </div>
         </div>
       </div>
@@ -163,8 +136,7 @@ const page = computed(() => data.value?.result)
             <NuxtLink to="/cases/jasmine-cover">
               <div class="case-image">
                 <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"
-                />
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg" />
               </div>
               <div class="case-info">
                 <div class="case-title">
@@ -180,8 +152,7 @@ const page = computed(() => data.value?.result)
             <NuxtLink to="/cases">
               <div class="case-image">
                 <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg"
-                />
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg" />
               </div>
               <div class="case-info">
                 <div class="case-title">
@@ -197,8 +168,7 @@ const page = computed(() => data.value?.result)
             <NuxtLink to="/cases">
               <div class="case-image">
                 <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg"
-                />
+                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg" />
               </div>
               <div class="case-info">
                 <div class="case-title">
