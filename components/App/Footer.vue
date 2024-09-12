@@ -21,7 +21,7 @@ const site = useSite()
         <a href="#" target="_blank">LinkedIn</a>
       </div>
     </div>
-    <div class="bottom-footer">
+    <div class="bottom-footer bottom-footer-desktop">
       <div class="row">
         <div class="col-lg-2 col-12">
           <p class="copyright">©2023 All rights reserved</p>
@@ -35,6 +35,27 @@ const site = useSite()
           </p>
         </div>
         <div class="col-lg-3 col-12">
+          <p>
+            EMAIL <a href="mailto:studio@20-20.studio">studio@20-20.studio</a>
+          </p>
+          <p><a href="#">Privacy cookies</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-footer bottom-footer-mobile">
+      <div class="row"> 
+        <div class="col-lg-12 col-12 bottom-footer-row">
+          <p>Los Angeles Ste 2020. 1019 E 4th Pl, CA 90013</p>
+          <p>
+            Dubai Ste 2020. One Central 8th and 9th Floor - DWTC - Trade Centre
+            2, UAE
+          </p>
+        </div>
+        <div class="col-lg-6 col-6">
+          <p class="copyright">©2023 All rights reserved</p>
+          <p>20-20 studio</p>
+        </div>
+        <div class="col-lg-6 col-6">
           <p>
             EMAIL <a href="mailto:studio@20-20.studio">studio@20-20.studio</a>
           </p>

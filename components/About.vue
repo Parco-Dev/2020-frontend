@@ -41,12 +41,24 @@ const setActiveTeam = (index: number) => {
 
 // Get the focus areas from the page object
 const teamGroups = computed(() => page.value?.aboutteamgroups || [])
+
+
+// Inject the closeMenuMobile method provided by the parent component
+const closeMenuMobile = inject<() => void>('closeMenuMobile');
+
+// Define a function to call closeMenuMobile when the button is clicked
+const closeMenu = () => {
+  if (closeMenuMobile) {
+    closeMenuMobile();
+  }
+};
+
 </script>
 
 <template>
   <section :class="{ open }" class="single-section section-about">
     <div class="single-section-inner">
-      <NuxtLink to="/about" class="section-header"></NuxtLink>
+      <NuxtLink to="/about" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
         <p>About</p>
       </div>

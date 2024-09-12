@@ -186,7 +186,7 @@ const latestcases = computed(() =>
               <div
                 v-for="clients in page?.homeclients"
                 :key="clients.id"
-                class="col-lg-4 col-12 single-client"
+                class="col-lg-4 col-6 single-client"
               >
                 <div class="client-image">
                   <img :src="clients?.homeclientslogo?.url" />

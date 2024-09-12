@@ -1,3 +1,26 @@
+<script setup lang="ts">
+  import { useToggleStore } from '@/stores/toggleStore';
+  import { watch } from 'vue';
+
+  const toggleStore = useToggleStore();
+
+  // Watch the `isClassActive` state and apply/remove class to/from <body>
+  watch(() => toggleStore.isClassActive, (newValue) => {
+    if (newValue) {
+      document.body.classList.add('active-class');
+    } else {
+      document.body.classList.remove('active-class');
+    }
+  });
+
+  const closeMenuMobile = () => {
+    document.body.classList.remove('active-class');
+  };
+
+  provide('closeMenuMobile', closeMenuMobile);
+
+</script>
+
 <template>
   <Html lang="en">
     <Head>

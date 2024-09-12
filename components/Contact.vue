@@ -9,12 +9,23 @@ const page = computed(() => data.value?.result)
 defineProps<{
   open: boolean
 }>()
+
+// Inject the closeMenuMobile method provided by the parent component
+const closeMenuMobile = inject<() => void>('closeMenuMobile');
+
+// Define a function to call closeMenuMobile when the button is clicked
+const closeMenu = () => {
+  if (closeMenuMobile) {
+    closeMenuMobile();
+  }
+};
+
 </script>
 
 <template>
   <section :class="{ open }" class="single-section section-contact">
     <div class="single-section-inner">
-      <NuxtLink to="/contact" class="section-header"></NuxtLink>
+      <NuxtLink to="/contact" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
         <p>Contacts</p>
       </div>

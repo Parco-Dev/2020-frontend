@@ -1,3 +1,5 @@
+@import '@/assets/scss/1-variables';
+
 /* RESET */
 
 * {
@@ -111,6 +113,7 @@
   @include media-breakpoint-down(sm) {
     font-size: $medium-sm;
     line-height: $medium-lineh-sm;
+    font-variation-settings: 'wght' 700, 'wdth' 20;
   }
 }
 
@@ -301,6 +304,116 @@ img {
   @extend %button;
 }
 
+/* MOBILE HEADER */
+
+.mobile-navigation {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  display: none;
+  justify-content: space-between;
+  background-color: $color-black;
+  border-bottom: 1px solid $color-white;
+  z-index: 1;
+  padding: calc(#{$spacer} / 2 * 3) $spacer;
+  @include media-breakpoint-up(xl) {
+    padding: calc(#{$spacer-xl} / 2 * 3) $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+    display: flex;
+  }
+  .site-heading {
+    .mobile-home-link {
+      display: flex;
+      img {
+        width: 55px;
+        margin-right: #{$spacer};
+        @include media-breakpoint-up(xl) {
+          margin-right: #{$spacer-xl};
+        }
+        @include media-breakpoint-down(sm) {
+          margin-right: #{$spacer-sm};
+        }
+      }
+      p {
+        @extend %micro;
+        width: 245px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+  .menu-toggle {
+    cursor: pointer;
+    .line {
+      transition: right 0.15s linear;
+      position: relative;
+      right: 0px;
+      background-color: $color-white;
+      width: $spacer*4;
+      height: 4px;
+      margin-bottom: 7px;
+      @include media-breakpoint-up(xl) {
+        width: $spacer-xl*4;
+      }
+      @include media-breakpoint-down(sm) {
+        width: $spacer-sm*4;
+      }
+    }
+  }
+}
+
+body.active-class {
+  .mobile-navigation {
+    .menu-toggle {
+      cursor: pointer;
+      .line {
+        &.line-1 {
+          right: 4px;
+        }
+        &.line-2 {
+          right: 14px;
+        }
+        &.line-3 {
+          right: 0px;
+        }
+      }
+    }
+  }
+  .single-section {
+    .single-section-inner {
+      .section-header {
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
+      }
+      .section-content {
+        .section-content-body {
+          @include media-breakpoint-down(sm) {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    &.section-about {
+      @include media-breakpoint-down(sm) {
+        right: 0px;
+      }
+    }
+    &.section-cases {
+      @include media-breakpoint-down(sm) {
+        right: -33.333vw;
+      }
+    }
+    &.section-contact {
+      @include media-breakpoint-down(sm) {
+        right: -66.666vw;
+      }
+    }
+  }
+}
+
 /* SECTIONS */
 
 .single-section {
@@ -313,7 +426,16 @@ img {
   -webkit-box-shadow: 0px 0px 15px 5px $color-black;
   box-shadow: 0px 0px 15px 5px $color-black;
   overflow-y: auto;
+  @include media-breakpoint-down(sm) {
+    width: 100vw;
+    right: -100vw;
+    padding-top: 78px;
+    box-shadow: none;
+  }
   &.open {
+    @include media-breakpoint-down(sm) {
+      right: 0vw;
+    }
     .single-section-inner {
       .section-content {
         .section-content-body {
@@ -327,6 +449,7 @@ img {
     width: 100%;
     height: 100%;
     .section-header {
+      transition: width 0.15s linear;
       height: 100vh;
       width: 5vw;
       display: inline-block;
@@ -337,6 +460,12 @@ img {
     }
     .section-title {
       padding: calc(#{$spacer} / 2 * 3) $spacer;
+      @include media-breakpoint-up(xl) {
+        padding: calc(#{$spacer-xl} / 2 * 3) $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+      }
       p {
         text-transform: uppercase;
       }
@@ -404,6 +533,12 @@ img {
 
 .block-title {
   margin-bottom: $spacer;
+  @include media-breakpoint-up(xl) {
+    margin-bottom: $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-bottom: calc(#{$spacer-sm} / 2);
+  }
   span {
     @extend %ultrasmall;
     text-transform: uppercase;
@@ -412,6 +547,12 @@ img {
 
 .block-text {
   margin-bottom: $spacer;
+  @include media-breakpoint-up(xl) {
+    margin-bottom: $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-bottom: $spacer-sm;
+  }
   p {
     @extend %ultrasmall;
   }
@@ -419,8 +560,17 @@ img {
 
 .block-main-text {
   margin-bottom: $spacer;
+  @include media-breakpoint-up(xl) {
+    margin-bottom: $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 0px;
+  }
   p {
     @extend %ultrasmall;
+    @include media-breakpoint-down(sm) {
+      margin-bottom: calc(#{$spacer-sm} / 1);
+    }
   }
 }
 
@@ -431,14 +581,27 @@ img {
     align-items: flex-start;
     padding: calc(#{$spacer} / 2 * 3) $spacer;
     margin-bottom: calc(#{$spacer} * 4);
+    @include media-breakpoint-up(xl) {
+      padding: calc(#{$spacer-xl} / 2 * 3) $spacer-xl;
+      margin-bottom: calc(#{$spacer-xl} * 4);
+    }
     @include media-breakpoint-down(sm) {
+      padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+      margin-bottom: calc(#{$spacer-sm} * 4);
       justify-content: space-between;
+      display: none;
     }
     .site-header-heading {
       display: flex;
       img {
         width: 55px;
         margin-right: #{$spacer};
+        @include media-breakpoint-up(xl) {
+          margin-right: #{$spacer-xl};
+        }
+        @include media-breakpoint-down(sm) {
+          margin-right: #{$spacer-sm};
+        }
       }
       p {
         @extend %micro;
@@ -455,17 +618,44 @@ img {
         margin: calc(#{$spacer} / 4) 0px;
         height: 2px;
         background-color: $color-white;
-        width: $spacer-sm*2;
+        width: $spacer*2;
+        @include media-breakpoint-up(xl) {
+          margin: calc(#{$spacer-xl} / 4) 0px;
+          width: $spacer-xl*2;
+        }
+        @include media-breakpoint-down(sm) {
+          margin: calc(#{$spacer-sm} / 4) 0px;
+          width: $spacer-sm*2;
+        }
       }
     }
   }
   .section-content {
     padding-right: 15vw;
+    @include media-breakpoint-down(sm) {
+      padding-right: 0vw;
+    }
     .block-about {
       margin-bottom: $spacer * 8;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 8;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm* 8;
+        display: flex;
+        flex-direction: column-reverse;
+      }
       .about-text {
         margin-bottom: $spacer * 4;
         padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl * 4;
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm * 4;
+          padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+        }
         p {
           @extend %medium;
           text-transform: uppercase;
@@ -473,11 +663,23 @@ img {
         a {
         }
       }
+      img {
+        @include media-breakpoint-down(sm) {
+          object-fit: cover;
+          height: 80vw;
+        }
+      }
     }
     .block-experience {
       margin-bottom: $spacer * 24;
       padding: $spacer;
       position: relative;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+      }
       .experience-circle {
         position: absolute;
         top: 11vw;
@@ -487,13 +689,28 @@ img {
         height: 45vw;
         border-radius: 100vw;
         border: 4px solid $color-white;
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
       }
       .experience-section {
         margin-bottom: $spacer * 4;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl * 4;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm * 6;
+        }
         .experience-word {
           background-color: $color-black;
           padding-bottom: calc(#{$spacer} * 2);
           display: inline-block;
+          @include media-breakpoint-up(xl) {
+            padding-bottom: calc(#{$spacer-xl} * 2);
+          }
+          @include media-breakpoint-down(sm) {
+            padding-bottom: calc(#{$spacer-xl} * 1);
+          }
           p {
             @extend %extralarge;
             margin-bottom: 0px;
@@ -512,32 +729,75 @@ img {
     .block-latest-cases {
       margin-bottom: $spacer * 24;
       padding: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 24;
+        padding: $spacer-sm;
+      }
       .block-main-text {
         text-transform: uppercase;
       }
       .block-latest-cases-list {
         display: flex;
+        @include media-breakpoint-down(sm) {
+          flex-wrap: wrap;
+        }
         .featured-project {
           margin-right: $spacer;
           width: auto;
           height: 30vw;
           margin-right: $spacer;
+          @include media-breakpoint-up(xl) {
+            margin-right: $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-right: 0px;
+            height: 100%;
+          }
           &.columns-4 {
             width: 40%;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              height: 120vw;
+            }
           }
           &.columns-3 {
             width: 30%;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              height: 100vw;
+            }
           }
           &.columns-2 {
             width: 20%;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              height: 80vw;
+            }
           }
           &.columns-1 {
             width: 10%;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              height: 60vw;
+            }
           }
-          img {
-            width: 100%;
-            height: 30vw;
-            object-fit: cover;
+          a {
+            height: 100%;
+            .case-image {
+              height: 100%;
+              img {
+                width: 100%;
+                height: 30vw;
+                object-fit: cover;
+                @include media-breakpoint-down(sm) {
+                  height: 100%;
+                }
+              }
+            }
           }
         }
       }
@@ -545,11 +805,25 @@ img {
     .block-outcomes {
       margin-bottom: $spacer * 24;
       padding: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 24;
+        padding: $spacer-sm;
+      }
       .block-main-text {
         margin-bottom: 0px;
       }
       .block-outcomes-list {
         margin-bottom: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm;
+        }
         p {
           @extend %extralarge;
           text-transform: uppercase;
@@ -560,6 +834,9 @@ img {
           }
         }
         .single-outcome {
+          @include media-breakpoint-down(sm) {
+            margin-bottom: calc(#{$spacer-sm} * 2);
+          }
           a {
             @extend %extralarge;
             margin-bottom: 0px;
@@ -575,6 +852,14 @@ img {
     .block-clients {
       margin-bottom: $spacer * 24;
       padding: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+        padding: $spacer-sm;
+      }
       .block-title {
         p {
           margin-bottom: 0px;
@@ -582,6 +867,12 @@ img {
       }
       .block-main-text {
         margin-bottom: $spacer * 4;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl * 4;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm * 4;
+        }
         p {
           @extend %small;
           margin-bottom: 0px;
@@ -590,22 +881,51 @@ img {
       .block-clients-list {
         .single-client {
           margin-bottom: $spacer * 8;
+          @include media-breakpoint-up(xl) {
+            margin-bottom: $spacer-xl * 8;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-bottom: $spacer-sm * 4;
+          }
           .client-image {
             margin-bottom: $spacer;
+            @include media-breakpoint-up(xl) {
+              margin-bottom: $spacer-xl;
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: $spacer-sm;
+            }
             img {
               height: $spacer * 4;
               width: auto;
+              @include media-breakpoint-up(xl) {
+                height: $spacer-xl * 4;
+              }
+              @include media-breakpoint-down(sm) {
+                width: 80%;
+                height: auto;
+              }
             }
           }
           .client-name {
+            @include media-breakpoint-down(sm) {
+              padding-right: $spacer-sm;
+            }
             p {
               text-transform: uppercase;
               @extend %ultrasmall;
             }
           }
           .client-description {
+            @include media-breakpoint-down(sm) {
+              padding-right: $spacer-sm;
+            }
             p {
               @extend %micro;
+              @include media-breakpoint-down(sm) {
+                font-size: 13px;
+                line-height: 15px;
+              }
             }
           }
         }
@@ -614,19 +934,53 @@ img {
     .block-team {
       margin-bottom: $spacer * 24;
       padding: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+        padding: $spacer-sm;
+      }
       .block-main-text {
         margin-bottom: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm;
+        }
         p {
           margin-bottom: 0px;
         }
       }
       .block-team-image {
         margin-bottom: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm;
+        }
+        img {
+          @include media-breakpoint-down(sm) {
+            height: 120vw;
+            object-fit: cover;
+          }
+        }
       }
     }
     .block-newsletter {
       margin-bottom: $spacer * 24;
       padding: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+        padding: $spacer-sm;
+      }
       .block-main-text {
         p {
           margin-bottom: 0px;
@@ -649,6 +1003,24 @@ img {
 
 /* ABOUT */
 
+body[data-template=about].active-class {
+  .section-about {
+    @include media-breakpoint-down(sm) {
+      right: 0px;
+    }
+  }
+  .section-cases {
+    @include media-breakpoint-down(sm) {
+      right: -100vw;
+    }
+  }
+  .section-contact {
+    @include media-breakpoint-down(sm) {
+      right: -100vw;
+    }
+  }
+}
+
 body[data-template=about] {
 	.section-home {
 		right: 0px;
@@ -661,9 +1033,20 @@ body[data-template=about] {
 		.section-content {
 			padding-right: 10vw;
 			overflow-x: hidden;
+      @include media-breakpoint-down(sm) {
+        padding-right: 0px;
+      }
 			.block-about-main-text {
 				margin-bottom: $spacer*24;
 				padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl * 24;
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm * 10;
+          padding: $spacer-sm;
+        }
 				p {
 					@extend %extralarge;
 					text-transform: uppercase;
@@ -672,12 +1055,32 @@ body[data-template=about] {
 			.block-about-focus-areas {
 				margin-bottom: $spacer*24;
 				padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl * 24;
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm * 10;
+          padding: $spacer-sm;
+        }
 				.block-about-focus-areas-list {
 					.nav-pills {
 						margin-bottom: $spacer*2;
+            @include media-breakpoint-up(xl) {
+              margin-bottom: $spacer-xl * 2;
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: $spacer-sm;
+            }
 						.nav-item {
 							padding: 0px;
 							margin-right: $spacer*2;
+              @include media-breakpoint-up(xl) {
+                margin-right: $spacer-xl * 2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-right: $spacer-sm;
+              }
 							&.active {
 								.nav-link {
 									color: $color-white;
@@ -704,6 +1107,12 @@ body[data-template=about] {
 						.tab-pane {
 							.focus-title {
 								margin-bottom: $spacer*2;
+                @include media-breakpoint-up(xl) {
+                  margin-bottom: $spacer-xl * 2;
+                }
+                @include media-breakpoint-down(sm) {
+                  margin-bottom: $spacer-sm;
+                }
 								p {
 									@extend %massive;
 									margin-bottom: 0px;
@@ -713,6 +1122,12 @@ body[data-template=about] {
 							.focus-content {
 								.focus-question {
 									margin-bottom: $spacer*2;
+                  @include media-breakpoint-up(xl) {
+                    margin-bottom: $spacer-xl * 2;
+                  }
+                  @include media-breakpoint-down(sm) {
+                    margin-bottom: $spacer-sm;
+                  }
 									p {
 										margin-bottom: 0px;
 										@extend %ultrasmall;
@@ -721,6 +1136,12 @@ body[data-template=about] {
 								}
 								.focus-answer {
 									margin-bottom: $spacer*2;
+                  @include media-breakpoint-up(xl) {
+                    margin-bottom: $spacer-xl * 2;
+                  }
+                  @include media-breakpoint-down(sm) {
+                    margin-bottom: $spacer-sm * 2;
+                  }
 									p {
 										@extend %small;
 										margin-bottom: 0px;
@@ -734,12 +1155,35 @@ body[data-template=about] {
 			.block-about-strengths {
 				margin-bottom: $spacer*24;
 				padding: $spacer 0px;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl * 24;
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm * 10;
+          padding: $spacer-sm 0px;
+        }
 				.block-title {
 					padding: 0px $spacer;
+          @include media-breakpoint-up(xl) {
+            padding: 0px $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            padding: 0px $spacer-sm;
+            margin-bottom: $spacer-sm;
+          }
 				}
 				.block-about-strengths-text {
 					padding: 0px $spacer;
 					margin-bottom: $spacer;
+          @include media-breakpoint-up(xl) {
+            padding: 0px $spacer-xl;
+					  margin-bottom: $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            padding: 0px $spacer-sm;
+					  margin-bottom: $spacer-sm;
+          }
 					p {
 						@extend %extralarge;
 						margin-bottom: 0px;
@@ -754,19 +1198,45 @@ body[data-template=about] {
 					.strength-image {
 						flex: 0 0 auto;
 						margin-right: $spacer;
+            @include media-breakpoint-up(xl) {
+              margin-right: $spacer-xl;
+            }
+            @include media-breakpoint-down(sm) {
+              margin-right: $spacer-sm;
+              width: 55vw;
+            }
 						&:first-child {
 							padding-left: $spacer;
+              @include media-breakpoint-up(xl) {
+                padding-left: $spacer-xl;
+              }
+              @include media-breakpoint-down(sm) {
+                padding-left: $spacer-sm;
+              }
 						}
 						img {
 							height: 30vw;
 							width: auto;
 							margin-bottom: $spacer;
 							border-radius: 3px;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm;
+                height: auto;
+                width: 100%;
+              }
 						}
 						.caption {
 							p {
 								@extend %nano;
 							}
+              span {
+                @include media-breakpoint-down(sm) {
+                  white-space: normal;
+                }
+              }
 						}
 					}
 				}
@@ -774,18 +1244,50 @@ body[data-template=about] {
 			.block-about-methodology {
 				margin-bottom: $spacer*24;
 				padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl*24;
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm*10;
+          padding: $spacer-sm;
+        }
 				.block-main-text {
 					margin-bottom: $spacer*3.5;
+          @include media-breakpoint-up(xl) {
+            margin-bottom: $spacer-xl*3.5;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-bottom: $spacer-sm;
+          }
 					p {
 						margin-bottom: calc(#{$spacer} / 2);
+            @include media-breakpoint-up(xl) {
+              margin-bottom: calc(#{$spacer-xl} / 2);
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: calc(#{$spacer-sm} / 2);
+            }
 					}
 				}
 				.block-about-methodology-list {
 					.nav-pills {
 						margin-bottom: $spacer*2;
+            @include media-breakpoint-up(xl) {
+              margin-bottom: $spacer-xl*2;
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: $spacer-sm;
+            }
 						.nav-item {
 							padding: 0px;
 							margin-right: $spacer*2;
+              @include media-breakpoint-up(xl) {
+                margin-right: $spacer-xl*2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-right: $spacer-sm;
+              }
 							&.active {
 								.nav-link {
 									color: $color-white;
@@ -811,6 +1313,12 @@ body[data-template=about] {
 						.tab-content-inner {
 							.methodology-title {
 								margin-bottom: $spacer*2;
+                @include media-breakpoint-up(xl) {
+                  margin-bottom: $spacer-xl*2;
+                }
+                @include media-breakpoint-down(sm) {
+                  margin-bottom: $spacer-sm*4;
+                }
 								span {
 									@extend %massive;
 									margin-bottom: 0px;
@@ -818,8 +1326,19 @@ body[data-template=about] {
 								}
 							}
 							.methodology-content {
+                .tab-pane {
+                  @include media-breakpoint-down(sm) {
+                    margin-bottom: $spacer-sm*2;
+                  }
+                }
 								.methodology-question {
 									margin-bottom: $spacer*2;
+                  @include media-breakpoint-up(xl) {
+                    margin-bottom: $spacer-xl*2;
+                  }
+                  @include media-breakpoint-down(sm) {
+                    margin-bottom: $spacer-sm;
+                  }
 									p {
 										margin-bottom: 0px;
 										@extend %ultrasmall;
@@ -828,6 +1347,12 @@ body[data-template=about] {
 								}
 								.methodology-answer {
 									margin-bottom: $spacer*2;
+                  @include media-breakpoint-up(xl) {
+                    margin-bottom: $spacer-xl*2;
+                  }
+                  @include media-breakpoint-down(sm) {
+                    margin-bottom: $spacer-sm*2;
+                  }
 									p {
 										@extend %small;
 										margin-bottom: 0px;
@@ -841,8 +1366,22 @@ body[data-template=about] {
 			.block-about-team {
 				margin-bottom: $spacer*24;
 				padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl*24;
+				  padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm*10;
+				  padding: $spacer-sm;
+        }
 				.block-main-text {
 					margin-bottom: $spacer*4;
+          @include media-breakpoint-up(xl) {
+            margin-bottom: $spacer-xl*4;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-bottom: $spacer-sm;
+          }
 				}
 				.block-about-team-list {
 					.block-team-group {
@@ -872,6 +1411,9 @@ body[data-template=about] {
 						}
 						.group-title {
 							cursor: pointer;
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm;
+              }
 							span {
 								@extend %massive;
 								text-transform: uppercase;
@@ -879,8 +1421,17 @@ body[data-template=about] {
 						}
 						.group-people {
 							margin-bottom: $spacer*2;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl*2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: 0px;
+              }
 							.single-person {
 								position: relative;
+                @include media-breakpoint-down(sm) {
+                  margin-bottom: $spacer-sm;
+                }
 								img {
 									border-radius: 3px;
 								}
@@ -892,12 +1443,28 @@ body[data-template=about] {
 									height: 100%;
 									z-index: 1;
 									padding: $spacer;
+                  @include media-breakpoint-up(xl) {
+                    padding: $spacer-xl;
+                  }
+                  @include media-breakpoint-down(sm) {
+                    padding: $spacer-sm;
+                  }
 									.person-name {
 										margin-bottom: calc(#{$spacer} / 2);
+                    @include media-breakpoint-up(xl) {
+                      margin-bottom: calc(#{$spacer-xl} / 2);
+                    }
+                    @include media-breakpoint-down(sm) {
+                      margin-bottom: calc(#{$spacer-sm} / 2);
+                    }
 										span {
 											@extend %small;
 											text-transform: uppercase;
 											margin-bottom: 0px;
+                      @include media-breakpoint-down(sm) {
+                        font-size: 46px;
+                        line-height: 40px;
+                      }
 										}
 									}
 									.person-role {
@@ -905,6 +1472,10 @@ body[data-template=about] {
 											@extend %ultrasmall;
 											text-transform: uppercase;
 											margin-bottom: 0px;
+                      @include media-breakpoint-down(sm) {
+                        font-size: 24px;
+                        line-height: 24px;
+                      }
 										}
 									}
 								}
@@ -916,14 +1487,41 @@ body[data-template=about] {
 			.block-about-network {
 				margin-bottom: $spacer*24;
 				padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl*24;
+				  padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm*10;
+				  padding: $spacer-sm;
+        }
 				.block-main-text {
 					p {
 						margin-bottom: calc(#{$spacer} / 2);
+            @include media-breakpoint-up(xl) {
+              margin-bottom: calc(#{$spacer-xl} / 2);
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: $spacer-sm;
+            }
 					}
 				}
 				.block-network-list {
 					margin-bottom: $spacer;
-					p { margin-bottom: calc(#{$spacer} / 4);
+          @include media-breakpoint-up(xl) {
+            margin-bottom: $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-bottom: $spacer-sm;
+          }
+					p { 
+            margin-bottom: calc(#{$spacer} / 4);
+            @include media-breakpoint-up(xl) {
+              margin-bottom: calc(#{$spacer-xl} / 4);
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: calc(#{$spacer-sm} / 4);
+            }
 						a {
 							@extend %extralarge;
 							text-transform: uppercase;
@@ -948,6 +1546,24 @@ body[data-template=about] {
 
 /* CASES */
 
+body[data-template=cases].active-class {
+  .section-about {
+    @include media-breakpoint-down(sm) {
+      right: 100vw;
+    }
+  }
+  .section-cases {
+    @include media-breakpoint-down(sm) {
+      right: 0vw;
+    }
+  }
+  .section-contact {
+    @include media-breakpoint-down(sm) {
+      right: -100vw;
+    }
+  }
+}
+
 body[data-template=cases] {
 	.section-home {
 		right: 0px;
@@ -963,12 +1579,26 @@ body[data-template=cases] {
 		.section-content {
 			padding-right: 5vw;
 			overflow-x: hidden;
+      @include media-breakpoint-down(sm) {
+        padding-right: 0px;
+      }
 			.cases-list {
 				padding: $spacer;
-				
+        @include media-breakpoint-up(xl) {
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: $spacer-sm;
+        }
 			}
 			.cases-view-all {
 				padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: $spacer-sm;
+        }
 			}
 		}
 	}
@@ -982,6 +1612,12 @@ body[data-template=cases] {
 .single-case {
   position: relative;
   margin-bottom: $spacer;
+  @include media-breakpoint-up(xl) {
+    margin-bottom: $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-bottom: $spacer-sm;
+  }
   &:hover {
     a {
       .case-image {
@@ -1009,12 +1645,28 @@ body[data-template=cases] {
       height: 100%;
       z-index: 1;
       padding: $spacer;
+      @include media-breakpoint-up(xl) {
+        padding: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        padding: $spacer-sm;
+      }
       .case-title {
         margin-bottom: calc(#{$spacer} / 2);
+        @include media-breakpoint-up(xl) {
+          margin-bottom: calc(#{$spacer-xl} / 2);
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: calc(#{$spacer-sm} / 2);
+        }
         p {
           @extend %medium;
           text-transform: uppercase;
           margin-bottom: 0px;
+          @include media-breakpoint-down(sm) {
+            font-size: 26.6vw;
+            font-variation-settings: 'wght' 700, 'wdth' 10;
+          }
         }
       }
       .case-subtitle {
@@ -1042,9 +1694,23 @@ body {
       align-items: flex-start;
       padding: calc(#{$spacer} / 2 * 3) $spacer;
       margin-bottom: calc(#{$spacer} * 4);
+      @include media-breakpoint-up(xl) {
+        padding: calc(#{$spacer-xl} / 2 * 3) $spacer-xl;
+        margin-bottom: calc(#{$spacer-xl} * 4);
+      }
+      @include media-breakpoint-down(sm) {
+        padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+        margin-bottom: calc(#{$spacer-sm} * 4);
+      }
       img {
         width: 55px;
         margin-right: #{$spacer};
+        @include media-breakpoint-up(xl) {
+          margin-right: #{$spacer-xl};
+        }
+        @include media-breakpoint-down(sm) {
+          margin-right: #{$spacer-sm};
+        }
       }
       p {
         @extend %ultrasmall;
@@ -1053,8 +1719,17 @@ body {
     }
     .section-content {
       padding-right: 15vw;
+      @include media-breakpoint-down(sm) {
+        padding-right: 0px;
+      }
       .case-title {
         padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: $spacer-sm;
+        }
         h1 {
           margin: 0px;
           @extend %ultralarge;
@@ -1063,6 +1738,12 @@ body {
       }
       .case-info {
         padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: $spacer-sm;
+        }
         p {
           @extend %micro;
         }
@@ -1078,6 +1759,12 @@ body {
       }
       .case-image {
         margin-bottom: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm;
+        }
         img {
         }
       }
@@ -1085,6 +1772,14 @@ body {
         .single-module {
           margin-bottom: $spacer * 2;
           padding: 0px $spacer;
+          @include media-breakpoint-up(xl) {
+            margin-bottom: $spacer-xl * 2;
+            padding: 0px $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-bottom: $spacer-sm * 2;
+            padding: 0px $spacer-sm;
+          }
         }
         .module-text-one-column {
           .column-title {
@@ -1096,13 +1791,31 @@ body {
             h3 {
               @extend %small;
               margin-bottom: $spacer * 2;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl * 2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm * 2;
+              }
             }
             p {
               @extend %ultrasmall;
               margin-bottom: $spacer * 2;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl * 2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm * 2;
+              }
             }
             ol {
               margin-bottom: $spacer*2;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl * 2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm * 2;
+              }
               li {
                 display: flex;
                 &::before {
@@ -1122,13 +1835,31 @@ body {
         .module-text-two-columns {
           .single-column {
             padding: 0px $spacer;
+            @include media-breakpoint-up(xl) {
+              padding: 0px $spacer-xl;
+            }
+            @include media-breakpoint-down(sm) {
+              padding: 0px $spacer-sm;
+            }
             h3 {
               @extend %small;
               margin-bottom: $spacer * 2;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl * 2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm * 2;
+              }
             }
             p {
               @extend %ultrasmall;
               margin-bottom: $spacer * 2;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl * 2;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm * 2;
+              }
             }
           }
         }
@@ -1140,11 +1871,23 @@ body {
           .single-image {
             flex: 0 0 auto;
             margin-right: $spacer;
+            @include media-breakpoint-up(xl) {
+              margin-right: $spacer-xl;
+            }
+            @include media-breakpoint-down(sm) {
+              margin-right: $spacer-sm;
+            }
             img {
               border-radius: 3px;
               width: auto;
               height: 30vw;
               margin-bottom: $spacer;
+              @include media-breakpoint-up(xl) {
+                margin-bottom: $spacer-xl;
+              }
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm;
+              }
             }
             .caption {
               p {
@@ -1156,6 +1899,12 @@ body {
         .module-image {
           img {
             margin-bottom: $spacer;
+            @include media-breakpoint-up(xl) {
+              margin-bottom: $spacer-xl;
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: $spacer-sm;
+            }
           }
           .caption {
             p {
@@ -1166,6 +1915,12 @@ body {
         .module-double-image {
           img {
             margin-bottom: $spacer;
+            @include media-breakpoint-up(xl) {
+              margin-bottom: $spacer-xl;
+            }
+            @include media-breakpoint-down(sm) {
+              margin-bottom: $spacer-sm;
+            }
           }
           .caption {
             p {
@@ -1176,16 +1931,36 @@ body {
         .module-spacer {
           width: 100%;
           height: $spacer * 24;
+          @include media-breakpoint-up(xl) {
+            height: $spacer-xl * 24;
+          }
+          @include media-breakpoint-down(sm) {
+            height: $spacer-sm * 24;
+          }
         }
       }
     }
     .section-related {
       margin-bottom: $spacer * 24;
       padding: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 24;
+        padding: $spacer-sm;
+      }
       .block-related-cases-list {
         display: flex;
         .single-case {
           margin-right: $spacer;
+          @include media-breakpoint-up(xl) {
+            margin-right: $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-right: $spacer-sm;
+          }
           img {
             width: auto;
             height: 30vw;
@@ -1242,14 +2017,38 @@ body[data-template='contact'] {
     .block-address {
       margin-bottom: $spacer * 4;
       padding: 0px $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 4;
+        padding: 0px $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 4;
+        padding: 0px $spacer-sm;
+      }
     }
     .block-email {
       margin-bottom: $spacer * 4;
       padding: 0px $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 4;
+        padding: 0px $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 4;
+        padding: 0px $spacer-sm;
+      }
     }
     .block-social {
       margin-bottom: $spacer * 4;
       padding: 0px $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 4;
+        padding: 0px $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 4;
+        padding: 0px $spacer-sm;
+      }
       .block-content {
         br {
           display: none;
@@ -1263,17 +2062,47 @@ body[data-template='contact'] {
 
 .site-footer {
   padding: $spacer;
+  @include media-breakpoint-up(xl) {
+    padding: $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: $spacer-sm;
+  }
   .top-footer {
     margin-bottom: $spacer * 8;
+    @include media-breakpoint-up(xl) {
+      margin-bottom: $spacer-xl * 8;
+    }
+    @include media-breakpoint-down(sm) {
+      margin-bottom: $spacer-sm * 8;
+    }
     .footer-logo {
       margin-bottom: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm;
+      }
       img {
         width: 55px;
         margin-right: #{$spacer};
+        @include media-breakpoint-up(xl) {
+          margin-right: #{$spacer-xl};
+        }
+        @include media-breakpoint-down(sm) {
+          margin-right: #{$spacer-sm};
+        }
       }
     }
     .footer-menu {
       margin-bottom: $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm;
+      }
       a {
         text-transform: uppercase;
         display: block;
@@ -1298,6 +2127,23 @@ body[data-template='contact'] {
     }
   }
   .bottom-footer {
+    &.bottom-footer-desktop {
+      display: block;
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+    }
+    &.bottom-footer-mobile {
+      display: none;
+      @include media-breakpoint-down(sm) {
+        display: block;
+      }
+    }
+    .bottom-footer-row {
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm;
+      }
+    }
     p {
       @extend %ultrasmall;
       margin-bottom: 0px;
