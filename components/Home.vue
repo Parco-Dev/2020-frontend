@@ -159,9 +159,10 @@ const latestcases = computed(() =>
               :key="outcomes.id"
               class="single-outcome"
             >
-              <a :href="outcomes.homeoutcomeslinkslink" target="_blank">{{
+              <!--<a :href="outcomes.homeoutcomeslinkslink" target="_blank">{{
                 outcomes.homeoutcomeslinkstext
-              }}</a>
+              }}</a>-->
+              <p>{{ outcomes.homeoutcomeslinkstext }}</p>
             </div>
           </div>
           <NuxtLink :to="`${page?.homeoutcomeslink}`" class="cta">{{
@@ -200,9 +201,9 @@ const latestcases = computed(() =>
               </div>
             </div>
           </div>
-          <NuxtLink :to="`${page?.homeclientslink}`" class="cta">{{
+          <!--<NuxtLink :to="`${page?.homeclientslink}`" class="cta">{{
             page?.homeclientslinktext
-          }}</NuxtLink>
+          }}</NuxtLink>-->
         </div>
 
         <div class="block-team">

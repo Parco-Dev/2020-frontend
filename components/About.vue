@@ -53,6 +53,27 @@ const closeMenu = () => {
   }
 };
 
+
+
+// Create a reactive array to track the active state for each person
+const isActiveBio = ref<boolean[]>([]);
+
+// Ensure the isActiveBio array has the same length as team.aboutteamgrouppeople
+const team = {
+  aboutteamgrouppeople: [
+    /* Array of team person objects */
+  ]
+};
+
+team.aboutteamgrouppeople.forEach(() => {
+  isActiveBio.value.push(false);
+});
+
+// Toggle the active state for a specific person by index
+const toggleBio = (index: number) => {
+  isActiveBio.value[index] = !isActiveBio.value[index];
+};
+
 </script>
 
 <template>
@@ -144,16 +165,13 @@ const closeMenu = () => {
                   <span v-html="methodology.methodologyname"></span>
                 </div>
                 <div class="methodology-content">
-                  <div v-for="methodologycontent in methodology.methodologysections" :key="methodologycontent.id"
-                    class="tab-pane">
+                  <div v-for="methodologycontent in methodology.methodologysections" :key="methodologycontent.id" class="tab-pane">
                     <div class="row">
                       <div class="col-lg-3 col-12 methodology-question">
-                        <span v-html="methodologycontent.methodologysectionslefttext
-                          "></span>
+                        <span v-html="methodologycontent.methodologysectionslefttext"></span>
                       </div>
                       <div class="col-lg-9 col-12 methodology-answer">
-                        <span v-html="methodologycontent.methodologysectionsrighttext
-                          "></span>
+                        <span v-html="methodologycontent.methodologysectionsrighttext"></span>
                       </div>
                     </div>
                   </div>
@@ -172,24 +190,34 @@ const closeMenu = () => {
             </div>
           </div>
           <div class="block-about-team-list">
-            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }"
-              class="block-team-group">
+            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group">
               <div class="group-title" :class="{ 'button-active': activeIndexTeam === index }"
                 @click="setActiveTeam(index)">
                 <span v-html="team.aboutteamgroupname"></span>
               </div>
-              <div v-show="activeIndexTeam === index" class="group-people"
-                :class="{ 'tab-active': activeIndexTeam === index }">
+              <div v-show="activeIndexTeam === index" class="group-people" :class="{ 'tab-active': activeIndexTeam === index }">
                 <div class="row">
-                  <div v-for="teamperson in team.aboutteamgrouppeople" :key="teamperson.id"
-                    class="col-lg-4 col-12 single-person">
-                    <img :src="teamperson.aboutteamgrouppeopleimage?.url" />
-                    <div class="person-info">
-                      <div class="person-name">
-                        <span v-html="teamperson.aboutteamgrouppeoplename"></span>
+                  <div v-for="(teamperson, index) in team.aboutteamgrouppeople" :key="teamperson.id" class="col-lg-4 col-12 single-person" :class="{ active: isActiveBio[index] }" @click="toggleBio(index)">
+                    <div class="single-person-inner">
+                      <img :src="teamperson.aboutteamgrouppeopleimage?.url" />
+                      <div class="person-info">
+                        <div class="person-name">
+                          <span v-html="teamperson.aboutteamgrouppeoplename"></span>
+                        </div>
+                        <div class="person-role">
+                          <span v-html="teamperson.aboutteamgrouppeoplerole"></span>
+                        </div>
                       </div>
-                      <div class="person-role">
-                        <span v-html="teamperson.aboutteamgrouppeoplerole"></span>
+                      <div class="person-biography">
+                        <div class="person-name">
+                          <span v-html="teamperson.aboutteamgrouppeoplename"></span>
+                        </div>
+                        <div class="person-role">
+                          <span v-html="teamperson.aboutteamgrouppeoplerole"></span>
+                        </div>
+                        <div class="person-bio">
+                          <span v-html="teamperson.aboutteamgrouppeoplebio"></span>
+                        </div>
                       </div>
                     </div>
                   </div>

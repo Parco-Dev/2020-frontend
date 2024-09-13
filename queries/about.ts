@@ -60,6 +60,7 @@ export const aboutQuery: KirbyQuerySchema = {
             },
             aboutteamgrouppeoplename: true,
             aboutteamgrouppeoplerole: true,
+            aboutteamgrouppeoplebio: true,
           },
         },
       },

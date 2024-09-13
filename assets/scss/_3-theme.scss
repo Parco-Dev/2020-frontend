@@ -495,6 +495,11 @@ body.active-class {
   @include media-breakpoint-down(sm) {
     width: 100vw;
   }
+  &.open {
+    &:hover {
+      transform: translateX(0vw);
+    }
+  }
   &:hover {
     transform: translateX(-1vw);
     @include media-breakpoint-down(sm) {
@@ -508,6 +513,11 @@ body.active-class {
   @include media-breakpoint-down(sm) {
     width: 100vw;
   }
+  &.open {
+    &:hover {
+      transform: translateX(0vw);
+    }
+  }
   &:hover {
     transform: translateX(-1vw);
     @include media-breakpoint-down(sm) {
@@ -520,6 +530,11 @@ body.active-class {
   transition: transform 0.2s linear, right 0.3s ease-in;
   @include media-breakpoint-down(sm) {
     width: 100vw;
+  }
+  &.open {
+    &:hover {
+      transform: translateX(0vw);
+    }
   }
   &:hover {
     transform: translateX(-1vw);
@@ -702,7 +717,7 @@ body.active-class {
           margin-bottom: $spacer-sm * 6;
         }
         .experience-word {
-          background-color: $color-black;
+          // background-color: $color-black;
           padding-bottom: calc(#{$spacer} * 2);
           display: inline-block;
           @include media-breakpoint-up(xl) {
@@ -714,14 +729,18 @@ body.active-class {
           p {
             @extend %extralarge;
             margin-bottom: 0px;
+            paint-order: stroke fill;
+            -webkit-text-stroke: 10px $color-black;
           }
         }
         .experience-text {
-          background-color: $color-black;
+          // background-color: $color-black;
           display: inline-block;
           p {
             @extend %small;
             margin-bottom: 0px;
+            paint-order: stroke fill;
+            -webkit-text-stroke: 10px $color-black;
           }
         }
       }
@@ -837,13 +856,13 @@ body.active-class {
           @include media-breakpoint-down(sm) {
             margin-bottom: calc(#{$spacer-sm} * 2);
           }
-          a {
+          a, p {
             @extend %extralarge;
             margin-bottom: 0px;
             font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 1;
             transition: font-variation-settings 0.1s ease-in;
             &:hover {
-              font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
+              // font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
             }
           }
         }
@@ -1157,7 +1176,7 @@ body[data-template=about] {
 				padding: $spacer 0px;
         @include media-breakpoint-up(xl) {
           margin-bottom: $spacer-xl * 24;
-          padding: $spacer-xl;
+          padding: $spacer-xl 0px;
         }
         @include media-breakpoint-down(sm) {
           margin-bottom: $spacer-sm * 10;
@@ -1429,56 +1448,140 @@ body[data-template=about] {
               }
 							.single-person {
 								position: relative;
+                cursor: pointer;
                 @include media-breakpoint-down(sm) {
                   margin-bottom: $spacer-sm;
                 }
 								img {
 									border-radius: 3px;
 								}
-								.person-info {
-									position: absolute;
-									top: 0px;
-									left: 0px;
-									width: 100%;
-									height: 100%;
-									z-index: 1;
-									padding: $spacer;
-                  @include media-breakpoint-up(xl) {
-                    padding: $spacer-xl;
+                &.active {
+                  .single-person-inner {
+                    .person-biography {
+                      display: block;
+                    }
                   }
-                  @include media-breakpoint-down(sm) {
-                    padding: $spacer-sm;
-                  }
-									.person-name {
-										margin-bottom: calc(#{$spacer} / 2);
+                }
+                .single-person-inner {
+                  position: relative;
+                  height: 100%;
+                  width: 100%;
+                  .person-info {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                    padding: $spacer;
                     @include media-breakpoint-up(xl) {
-                      margin-bottom: calc(#{$spacer-xl} / 2);
+                      padding: $spacer-xl;
                     }
                     @include media-breakpoint-down(sm) {
-                      margin-bottom: calc(#{$spacer-sm} / 2);
+                      padding: $spacer-sm;
                     }
-										span {
-											@extend %small;
-											text-transform: uppercase;
-											margin-bottom: 0px;
-                      @include media-breakpoint-down(sm) {
-                        font-size: 46px;
-                        line-height: 40px;
+                    .person-name {
+                      margin-bottom: calc(#{$spacer} / 2);
+                      @include media-breakpoint-up(xl) {
+                        margin-bottom: calc(#{$spacer-xl} / 2);
                       }
-										}
-									}
-									.person-role {
-										span {
-											@extend %ultrasmall;
-											text-transform: uppercase;
-											margin-bottom: 0px;
                       @include media-breakpoint-down(sm) {
-                        font-size: 24px;
-                        line-height: 24px;
+                        margin-bottom: calc(#{$spacer-sm} / 2);
                       }
-										}
-									}
-								}
+                      span {
+                        @extend %small;
+                        text-transform: uppercase;
+                        margin-bottom: 0px;
+                        @include media-breakpoint-down(sm) {
+                          font-size: 46px;
+                          line-height: 40px;
+                        }
+                      }
+                    }
+                    .person-role {
+                      span {
+                        @extend %ultrasmall;
+                        text-transform: uppercase;
+                        margin-bottom: 0px;
+                        @include media-breakpoint-down(sm) {
+                          font-size: 24px;
+                          line-height: 24px;
+                        }
+                      }
+                    }
+                  }
+                  .person-biography {
+                    display: none;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                    background-color: $color-white;
+                    padding: $spacer;
+                    @include media-breakpoint-up(xl) {
+                      padding: $spacer-xl;
+                    }
+                    @include media-breakpoint-down(sm) {
+                      padding: $spacer-sm;
+                    }
+                    .person-name {
+                      margin-bottom: calc(#{$spacer} / 2);
+                      @include media-breakpoint-up(xl) {
+                        margin-bottom: calc(#{$spacer-xl} / 2);
+                      }
+                      @include media-breakpoint-down(sm) {
+                        margin-bottom: calc(#{$spacer-sm} / 2);
+                      }
+                      span {
+                        @extend %small;
+                        text-transform: uppercase;
+                        margin-bottom: 0px;
+                        color: $color-black;
+                        @include media-breakpoint-down(sm) {
+                          font-size: 46px;
+                          line-height: 40px;
+                        }
+                      }
+                    }
+                    .person-role {
+                      span {
+                        @extend %ultrasmall;
+                        text-transform: uppercase;
+                        margin-bottom: 0px;
+                        color: $color-black;
+                        @include media-breakpoint-down(sm) {
+                          font-size: 24px;
+                          line-height: 24px;
+                        }
+                      }
+                    }
+                    .person-bio {
+                      position: absolute;
+                      bottom: 0px;
+                      left: 0px;
+                      z-index: 1;
+                      width: 100%;
+                      padding: $spacer;
+                      @include media-breakpoint-up(xl) {
+                        padding: $spacer-xl;
+                      }
+                      @include media-breakpoint-down(sm) {
+                        padding: $spacer-sm;
+                      }
+                      span {
+                        @extend %micro;
+                        margin-bottom: 0px;
+                        color: $color-black;
+                        @include media-breakpoint-down(sm) {
+                          font-size: 16px;
+                          line-height: 16px;
+                        }
+                      }
+                    }
+                  }
+                }
 							}
 						}
 					}
@@ -1997,6 +2100,7 @@ body[data-template='contact'] {
     .block-title {
       p {
         margin-bottom: 0px;
+        text-transform: uppercase;
       }
     }
     .block-content {
