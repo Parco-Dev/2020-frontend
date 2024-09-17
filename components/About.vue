@@ -2,74 +2,52 @@
 import { aboutQuery } from '~/queries'
 
 const { queryApi, queryParams } = useQueryParams(aboutQuery)
-// TODO: type any
+
 const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
 const page = computed(() => data.value?.result)
 defineProps<{
   open?: boolean
 }>()
 
-// Assuming you have a `page` object available in your component
-const activeIndexFocusAreas = ref(0) // Track the active focus area index
-
-// Function to set the active focus area index
+/* Focus areas */
+const activeIndexFocusAreas = ref(0)
 const setActiveFocusAreas = (index: number) => {
   activeIndexFocusAreas.value = index
 }
-
-// Get the focus areas from the page object
 const focusAreas = computed(() => page.value?.aboutfocusareas || [])
 
-// Assuming you have a `page` object available in your component
-const activeIndexMethodology = ref(0) // Track the active focus area index
-
-// Function to set the active focus area index
+/* Methodology */
+const activeIndexMethodology = ref(0) 
 const setActiveMethodology = (index: number) => {
   activeIndexMethodology.value = index
 }
-
-// Get the focus areas from the page object
 const methodologySections = computed(() => page.value?.aboutmethodology || [])
 
-// Assuming you have a `page` object available in your component
-const activeIndexTeam = ref(0) // Track the active focus area index
-
-// Function to set the active focus area index
+/* Team */
+const activeIndexTeam = ref(0)
 const setActiveTeam = (index: number) => {
   activeIndexTeam.value = index
 }
-
-// Get the focus areas from the page object
 const teamGroups = computed(() => page.value?.aboutteamgroups || [])
 
-
-// Inject the closeMenuMobile method provided by the parent component
+/* Close mobile navigation */
 const closeMenuMobile = inject<() => void>('closeMenuMobile');
-
-// Define a function to call closeMenuMobile when the button is clicked
 const closeMenu = () => {
   if (closeMenuMobile) {
     closeMenuMobile();
   }
 };
 
-
-
-// Create a reactive array to track the active state for each person
+/* Team person biographies */
 const isActiveBio = ref<boolean[]>([]);
-
-// Ensure the isActiveBio array has the same length as team.aboutteamgrouppeople
 const team = {
   aboutteamgrouppeople: [
-    /* Array of team person objects */
+    
   ]
 };
-
 team.aboutteamgrouppeople.forEach(() => {
   isActiveBio.value.push(false);
 });
-
-// Toggle the active state for a specific person by index
 const toggleBio = (index: number) => {
   isActiveBio.value[index] = !isActiveBio.value[index];
 };
@@ -103,8 +81,8 @@ const toggleBio = (index: number) => {
             </ul>
 
             <div class="tab-content">
-              <div v-for="(focusarea, index) in focusAreas" v-show="activeIndexFocusAreas === index" :key="index"
-                class="tab-pane active" :class="{ 'tab-active': activeIndexFocusAreas === index }">
+              <!-- v-show="activeIndexFocusAreas === index" -->
+              <div v-for="(focusarea, index) in focusAreas" :key="index" class="tab-pane active" :class="{ 'tab-active': activeIndexFocusAreas === index }">
                 <div class="focus-title">
                   <span v-html="focusarea.focusareabigtext"></span>
                 </div>
@@ -158,8 +136,7 @@ const toggleBio = (index: number) => {
               </li>
             </ul>
             <div class="tab-content">
-              <div v-for="(methodology, index) in methodologySections" v-show="activeIndexMethodology === index"
-                :key="index" class="tab-content-inner active"
+              <div v-for="(methodology, index) in methodologySections" :key="index" class="tab-content-inner active"
                 :class="{ 'tab-active': activeIndexMethodology === index }">
                 <div class="methodology-title">
                   <span v-html="methodology.methodologyname"></span>
@@ -242,9 +219,7 @@ const toggleBio = (index: number) => {
                 }}</a>
             </p>
           </div>
-          <NuxtLink :to="`${page?.aboutnetworklink}`" class="cta">{{
-            page?.aboutnetworklinktext
-            }}</NuxtLink>
+          <div class="all">All</div>
         </div>
         <AppFooter />
       </div>

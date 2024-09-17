@@ -1010,18 +1010,31 @@ body.active-class {
 }
 .section-case {
 }
-.section-about {
-  right: calc(-95vw + 15vw);
-}
-.section-cases {
-  right: calc(-40vw + 5vw);
-}
-.section-contact {
-  right: calc(-40vw + 5vw);
+
+body {
+  .section-about {
+    right: calc(-95vw + 15vw);
+    @include media-breakpoint-down(sm) {
+      right: -100vw;
+    }
+  }
+  .section-cases {
+    right: calc(-40vw + 5vw);
+    @include media-breakpoint-down(sm) {
+      right: -100vw;
+    }
+  }
+  .section-contact {
+    right: calc(-40vw + 5vw);
+    @include media-breakpoint-down(sm) {
+      right: -100vw;
+    }
+  }
 }
 
 /* ABOUT */
 
+/*
 body[data-template=about].active-class {
   .section-about {
     @include media-breakpoint-down(sm) {
@@ -1039,6 +1052,7 @@ body[data-template=about].active-class {
     }
   }
 }
+*/
 
 body[data-template=about] {
 	.section-home {
@@ -1123,7 +1137,19 @@ body[data-template=about] {
 						}
 					}
 					.tab-content {
+            position: relative;
 						.tab-pane {
+              &:first-child {
+                position: relative;
+              }
+              position: absolute;
+              top: 0px;
+              left: -100vw;
+              width: 100%;
+              transition: left 0.2s linear;
+              &.tab-active {
+                left: 0px;
+              }
 							.focus-title {
 								margin-bottom: $spacer*2;
                 @include media-breakpoint-up(xl) {
@@ -1329,7 +1355,19 @@ body[data-template=about] {
 						}
 					}
 					.tab-content {
+            position: relative;
 						.tab-content-inner {
+              position: absolute;
+              top: 0px;
+              left: -100vw;
+              width: 100%;
+              transition: left 0.2s linear;
+              &:first-child {
+                position: relative;
+              }
+              &.tab-active {
+                left: 0px;
+              }
 							.methodology-title {
 								margin-bottom: $spacer*2;
                 @include media-breakpoint-up(xl) {
@@ -1639,16 +1677,19 @@ body[data-template=about] {
 			}
 		}
 	}
+  /*
 	.section-cases {
 		right: calc(-40vw + 5vw);
 	}
 	.section-contact {
 		right: calc(-40vw + 5vw);
 	}
+  */
 }
 
 /* CASES */
 
+/*
 body[data-template=cases].active-class {
   .section-about {
     @include media-breakpoint-down(sm) {
@@ -1666,6 +1707,7 @@ body[data-template=cases].active-class {
     }
   }
 }
+*/
 
 body[data-template=cases] {
 	.section-home {
@@ -1705,9 +1747,11 @@ body[data-template=cases] {
 			}
 		}
 	}
+  /*
 	.section-contact {
 		right: calc(-40vw + 5vw);
 	}
+    */
 }
 
 /* CASE TILE */
@@ -2072,6 +2116,7 @@ body {
       }
     }
   }
+  /*
   .section-about {
     right: calc(-95vw + 15vw);
   }
@@ -2081,11 +2126,12 @@ body {
   .section-contact {
     right: calc(-40vw + 5vw);
   }
+  */
 }
 
 /* CONTACT */
 
-body[data-template='contact'] {
+body[data-template=contact] {
   .section-home {
     right: 0px;
   }
