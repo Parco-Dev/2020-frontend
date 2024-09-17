@@ -29,7 +29,7 @@ const closeMenu = () => {
       <div class="section-title">
         <p>Contacts</p>
       </div>
-      <div v-if="open" class="section-content">
+      <div class="section-content">
         <div class="block-address">
           <div class="block-title">
             <p>Los Angeles</p>

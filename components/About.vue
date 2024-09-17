@@ -61,7 +61,7 @@ const toggleBio = (index: number) => {
       <div class="section-title">
         <p>About</p>
       </div>
-      <div v-if="open" class="section-content">
+      <div class="section-content">
         <div class="block-about-main-text">
           <span v-html="page?.aboutmaintext"></span>
         </div>

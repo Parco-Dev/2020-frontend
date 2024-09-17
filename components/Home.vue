@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CasesQuery, homeQuery, siteQuery } from '~/queries'
+import { homeQuery, siteQuery } from '~/queries'
 
 defineProps<{ open: boolean }>()
 

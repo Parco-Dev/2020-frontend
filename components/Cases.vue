@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const page = usePage().value
+import { casesQuery } from '~/queries'
+
+const { queryApi, queryParams } = useQueryParams(casesQuery)
+
+const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
+const page = computed(() => data.value?.result)
+
 const props = defineProps<{
   open: boolean
 }>()
@@ -23,7 +29,7 @@ const closeMenu = () => {
       <div class="section-title">
         <p>Case studies</p>
       </div>
-      <div v-if="open" class="section-content">
+      <div class="section-content">
         <div class="cases-list">
           <div
             v-for="{ id, title, casethumbnail, casesubtitle } of page?.children"

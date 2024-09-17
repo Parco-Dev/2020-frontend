@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { homeQuery } from '~/queries'
-import { CasesQuery } from '~/queries'
+import { casesQuery } from '~/queries'
 import { BASE_DELAY } from '~/data/constants'
 
 const { isMobile } = useDevice()
-const { queryApi, queryParams } = useQueryParams(CasesQuery())
+const { queryApi, queryParams } = useQueryParams(casesQuery)
 const { data } = await useFetch(queryApi, queryParams)
 const page = (data?.value as any)?.result
 const hoveredProject = ref(-1)
