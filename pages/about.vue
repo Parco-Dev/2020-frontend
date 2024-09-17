@@ -7,7 +7,7 @@ const page = (data?.value as any)?.result
 const site = useSite()
 
 setPage(page)
-console.log(page)
+// console.log(page)
 </script>
 
 <template>
