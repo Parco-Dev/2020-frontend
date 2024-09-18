@@ -56,10 +56,10 @@ watchEffect(() => console.log(page.value))
             <div v-if="block.type === 'textblock'" class="module-text-one-column">
               <div class="row">
                 <div class="col-lg-3 col-12 column-title">
-                  <span v-html="block.content.blocktitle"></span>
+                  <span v-html="block.blocktitle"></span>
                 </div>
                 <div class="col-lg-9 col-12 column-content">
-                  <span v-html="block.content.paragraph" />
+                  <span v-html="block.paragraph" />
                 </div>
               </div>
             </div>
@@ -67,11 +67,10 @@ watchEffect(() => console.log(page.value))
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
-                  <img :src="page?.casecontentblocksimage.find(b => b.id === block.id).image.url" alt="Image" />
-                  <!-- <img :src="page?.casecontentblocksimage?.id"> -->
-                  <!-- {{ JSON.stringify(page?.casecontentblocksimage, null, 2) }} -->
+                  <!-- <img :src="page?.casecontentblocksimage.find(b => b.id === block.id).image.url" alt="Image" /> -->
+                  <img :src="block.image.url" alt="Image">
                   <div class="caption">
-                    <span v-html="block.content.caption"></span>
+                    <span v-html="block.caption"></span>
                   </div>
                 </div>
               </div>
@@ -82,10 +81,10 @@ watchEffect(() => console.log(page.value))
                 <div class="col-lg-9 col-12">
                   <div class="row">
                     <div class="col-lg-6 col-12 single-column">
-                      <span v-html="block.content.paragraphleft"></span>
+                      <span v-html="block.paragraphleft"></span>
                     </div>
                     <div class="col-lg-6 col-12 single-column">
-                      <span v-html="block.content.paragraphright"></span>
+                      <span v-html="block.paragraphright"></span>
                     </div>
                   </div>
                 </div>
@@ -97,15 +96,15 @@ watchEffect(() => console.log(page.value))
                 <div class="col-lg-9 col-12">
                   <div class="row">
                     <div class="col-lg-6 col-12">
-                      <img :src="block.content.imageleft.url" />
+                      <img :src="block.imageleft?.url" />
                       <div class="caption">
-                        <span v-html="block.content.captionleft"></span>
+                        <span v-html="block.captionleft"></span>
                       </div>
                     </div>
                     <div class="col-lg-6 col-12">
-                      <img :src="block.content.imageright.url" />
+                      <img :src="block.imageright?.url" />
                       <div class="caption">
-                        <span v-html="block.content.captionright"></span>
+                        <span v-html="block.captionright"></span>
                       </div>
                     </div>
                   </div>
@@ -113,13 +112,12 @@ watchEffect(() => console.log(page.value))
               </div>
             </div>
             <div v-else-if="block.type === 'imagesblock'" class="module-images">
-              <div v-for="blockimages in block.content.imagesblockimages" :key="blockimages.id" class="single-image">
-                <!-- <img :src="blockimages.image.url" alt="Image" /> -->
-                <!-- <img :src="blockimage.imagesblockimagesimage" /> -->
-                <!-- {{ block.content.imagesblockimages.imagesblockimagesimage.url }} -->
-                <!-- <div class="caption">
-                  <span v-html="blockimage.imagesblockimagescaption"></p>
-                </div> -->
+              <div v-for="blockimage in block.imagesblockimages" :key="blockimage.id" class="single-image">
+                <img :src="blockimage.imagesblockimagesimage.url" alt="Image" />
+                <div class="caption">
+                  <span v-html="blockimage.imagesblockimagescaption"></span>
+                </div>
+                {{  }}
               </div>
             </div>
             <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>

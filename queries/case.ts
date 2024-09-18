@@ -22,29 +22,31 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
         query: 'page.casemainimage.toFiles.first',
         select: imageQuery,
       },
-      casecontentblocks: { query: 'page.casecontentblocks.toBlocks' },
-      casecontentblocksimage: {
-        query: "page.casecontentblocks.toBlocks.filterBy('type','imageblock')",
+      casecontentblocks: {
+        query: 'page.casecontentblocks.toBlocks',
         select: {
           id: true,
+          type: true,
+          blocktitle: 'block.content.blocktitle',
+          paragraph: 'block.content.paragraph',
+          paragraphleft: 'block.content.paragraphleft',
+          paragraphright: 'block.content.paragraphright',
           image: {
             query: 'block.content.image.toFiles.first',
+            select: imageQuery,
           },
-        },
-      },
-      casecontentblocksimages: {
-        query: "page.casecontentblocks.toBlocks.filterBy('type','imagesblock')",
-        select: {
-          id: true,
-          images: {
-            query: 'block.content.imagesblockimages.toObject.toArray',
+          caption: 'block.content.caption',
+          imagesblockimages:{
+            query:  'block.content.imagesblockimages.toStructure',
             select: {
+              imagesblockimagescaption: true,
               imagesblockimagesimage: {
-                query: 'list.imagesblockimagesimage',
+                query: 'structureItem.imagesblockimagesimage.toFiles.first',
+                select: imageQuery,
               },
-            },
+            }
           },
-        },
+        }
       },
     },
   }
