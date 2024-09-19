@@ -23,12 +23,59 @@ const setActiveMethodology = (index: number) => {
 }
 const methodologySections = computed(() => page.value?.aboutmethodology || [])
 
-/* Team */
+/* Team 
 const activeIndexTeam = ref(0)
 const setActiveTeam = (index: number) => {
   activeIndexTeam.value = index
 }
+const teamGroups = computed(() => page.value?.aboutteamgroups || [])*/
+
+const activeIndexTeam = ref(0)
 const teamGroups = computed(() => page.value?.aboutteamgroups || [])
+
+onMounted(() => {
+  // Apply classes only to the first element during the initial render
+  const firstElement = document.querySelector('.block-team-group')
+  if (firstElement) {
+    firstElement.classList.add('content-space', 'content-fade')
+  }
+})
+
+const setActiveTeam = (index: number) => {
+  activeIndexTeam.value = index
+
+  // Get all the team elements
+  const allTeamElements = document.querySelectorAll('.block-team-group')
+  const clickedTeamElement = document.querySelector(`.block-team-group:nth-child(${index + 1})`)
+
+  // 1. Remove .content-fade from all .block-team-group elements after 1 second
+  setTimeout(() => {
+    console.log("remove fade everywhere");
+    allTeamElements.forEach(el => el.classList.remove('content-fade'))
+  }, 1000)
+
+  // 2. Remove .content-space from all .block-team-group elements after 3 seconds
+  setTimeout(() => {
+    console.log("remove space everywhere");
+    allTeamElements.forEach(el => el.classList.remove('content-space'))
+  }, 2000)
+
+  // 3. Add .content-space to the clicked .block-team-group after 5 seconds
+  setTimeout(() => {
+    if (clickedTeamElement) {
+      console.log("add space to element");
+      clickedTeamElement.classList.add('content-space')
+    }
+  }, 2000)
+
+  // 4. Add .content-fade to the clicked .block-team-group after 7 seconds
+  setTimeout(() => {
+    if (clickedTeamElement) {
+      console.log("add fade to element");
+      clickedTeamElement.classList.add('content-fade')
+    }
+  }, 3000)
+}
 
 /* Close mobile navigation */
 const closeMenuMobile = inject<() => void>('closeMenuMobile');
@@ -38,7 +85,7 @@ const closeMenu = () => {
   }
 };
 
-/* Team person biographies */
+/* Team person biographies toggle */
 const isActiveBio = ref<boolean[]>([]);
 const team = {
   aboutteamgrouppeople: [
@@ -51,6 +98,14 @@ team.aboutteamgrouppeople.forEach(() => {
 const toggleBio = (index: number) => {
   isActiveBio.value[index] = !isActiveBio.value[index];
 };
+
+/* Networks */
+const firstThreeNetworks = computed(() => page.value?.aboutnetworklist.slice(0, 3) || [])
+const remainingNetworks = computed(() => page.value?.aboutnetworklist.slice(3) || [])
+const showAllNetworks = ref(false)
+const toggleNetworksVisibility = () => {
+  showAllNetworks.value = !showAllNetworks.value
+}
 
 </script>
 
@@ -167,12 +222,13 @@ const toggleBio = (index: number) => {
             </div>
           </div>
           <div class="block-about-team-list">
-            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group">
+            <!-- <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group"> -->
+            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index}" class="block-team-group">
               <div class="group-title" :class="{ 'button-active': activeIndexTeam === index }"
                 @click="setActiveTeam(index)">
                 <span v-html="team.aboutteamgroupname"></span>
               </div>
-              <div v-show="activeIndexTeam === index" class="group-people" :class="{ 'tab-active': activeIndexTeam === index }">
+              <div class="group-people" :class="{ 'tab-active': activeIndexTeam === index }"> <!-- v-show="activeIndexTeam === index" -->
                 <div class="row">
                   <div v-for="(teamperson, index) in team.aboutteamgrouppeople" :key="teamperson.id" class="col-lg-4 col-12 single-person" :class="{ active: isActiveBio[index] }" @click="toggleBio(index)">
                     <div class="single-person-inner">
@@ -213,13 +269,35 @@ const toggleBio = (index: number) => {
             </div>
           </div>
           <div class="block-network-list">
-            <p v-for="network in page?.aboutnetworklist" :key="network.id" class="">
+
+            <!--<p v-for="network in page?.aboutnetworklist" :key="network.id" class="">
               <a :href="network.aboutnetworklistlink">{{
                 network.aboutnetworklistlinktext
                 }}</a>
+            </p>-->
+
+            <p v-for="(network, index) in firstThreeNetworks" :key="network.id" class="">
+              <a :href="network.aboutnetworklistlink">
+                {{ network.aboutnetworklistlinktext }}
+              </a>
+            </p>
+
+            <!-- Wrap the remaining items in a hidden div -->
+            <div :class="['networks-hidden', { visible: showAllNetworks }]">
+              <p v-for="network in remainingNetworks" :key="network.id" class="">
+                <a :href="network.aboutnetworklistlink">
+                  {{ network.aboutnetworklistlinktext }}
+                </a>
+              </p>
+            </div>
+            
+          </div>
+          <div :class="['show-all-networks', { visible: showAllNetworks }]" @click="toggleNetworksVisibility">
+            <p>
+              <span class="opened">Less</span>
+              <span class="closed">More</span>
             </p>
           </div>
-          <div class="all">All</div>
         </div>
         <AppFooter />
       </div>

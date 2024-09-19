@@ -46,6 +46,16 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
               },
             }
           },
+          imageleft: {
+            query: 'block.content.imageleft.toFiles.first',
+            select: imageQuery,
+          },
+          captionleft: 'block.content.captionleft',
+          imageright: {
+            query: 'block.content.imageright.toFiles.first',
+            select: imageQuery,
+          },
+          captionright: 'block.content.captionright',
         }
       },
     },
