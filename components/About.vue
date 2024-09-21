@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { aboutQuery } from '~/queries'
 
 const { queryApi, queryParams } = useQueryParams(aboutQuery)
@@ -30,15 +32,41 @@ const setActiveTeam = (index: number) => {
 }
 const teamGroups = computed(() => page.value?.aboutteamgroups || [])*/
 
+const groupPeopleRefs = ref<(HTMLElement | null)[]>([]);
+
+const calculateHeights = async () => {
+  await nextTick(); // Wait for DOM updates
+  groupPeopleRefs.value.forEach((groupPeopleEl) => {
+    if (groupPeopleEl) {
+      const calculatedHeight = groupPeopleEl.scrollHeight;
+      groupPeopleEl.style.maxHeight = `${calculatedHeight}px`;
+      console.log(calculatedHeight);
+    }
+  });
+};
+
+onMounted(async () => {
+  await calculateHeights(); // Initial calculation on mount
+});
+
+// Watch for route changes
+watch(useRoute(), async () => {
+  await calculateHeights(); // Recalculate heights on route change
+});
+
+
+/* First team group */
 const activeIndexTeam = ref(0)
 const teamGroups = computed(() => page.value?.aboutteamgroups || [])
 
 onMounted(() => {
+
   // Apply classes only to the first element during the initial render
   const firstElement = document.querySelector('.block-team-group')
   if (firstElement) {
     firstElement.classList.add('content-space', 'content-fade')
   }
+
 })
 
 const setActiveTeam = (index: number) => {
@@ -52,13 +80,13 @@ const setActiveTeam = (index: number) => {
   setTimeout(() => {
     console.log("remove fade everywhere");
     allTeamElements.forEach(el => el.classList.remove('content-fade'))
-  }, 1000)
+  }, 500)
 
   // 2. Remove .content-space from all .block-team-group elements after 3 seconds
   setTimeout(() => {
     console.log("remove space everywhere");
     allTeamElements.forEach(el => el.classList.remove('content-space'))
-  }, 2000)
+  }, 1000)
 
   // 3. Add .content-space to the clicked .block-team-group after 5 seconds
   setTimeout(() => {
@@ -66,7 +94,7 @@ const setActiveTeam = (index: number) => {
       console.log("add space to element");
       clickedTeamElement.classList.add('content-space')
     }
-  }, 2000)
+  }, 1000)
 
   // 4. Add .content-fade to the clicked .block-team-group after 7 seconds
   setTimeout(() => {
@@ -74,7 +102,7 @@ const setActiveTeam = (index: number) => {
       console.log("add fade to element");
       clickedTeamElement.classList.add('content-fade')
     }
-  }, 3000)
+  }, 1500)
 }
 
 /* Close mobile navigation */
@@ -224,11 +252,10 @@ const toggleNetworksVisibility = () => {
           <div class="block-about-team-list">
             <!-- <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group"> -->
             <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index}" class="block-team-group">
-              <div class="group-title" :class="{ 'button-active': activeIndexTeam === index }"
-                @click="setActiveTeam(index)">
+              <div class="group-title" :class="{ 'button-active': activeIndexTeam === index }" @click="setActiveTeam(index)">
                 <span v-html="team.aboutteamgroupname"></span>
               </div>
-              <div class="group-people" :class="{ 'tab-active': activeIndexTeam === index }"> <!-- v-show="activeIndexTeam === index" -->
+              <div :ref="el => groupPeopleRefs[index] = el as HTMLElement" class="group-people" :class="{ 'tab-active': activeIndexTeam === index }"> <!-- v-show="activeIndexTeam === index" -->
                 <div class="row">
                   <div v-for="(teamperson, index) in team.aboutteamgrouppeople" :key="teamperson.id" class="col-lg-4 col-12 single-person" :class="{ active: isActiveBio[index] }" @click="toggleBio(index)">
                     <div class="single-person-inner">
@@ -276,7 +303,7 @@ const toggleNetworksVisibility = () => {
                 }}</a>
             </p>-->
 
-            <p v-for="(network, index) in firstThreeNetworks" :key="network.id" class="">
+            <p v-for="(network) in firstThreeNetworks" :key="network.id" class="">
               <a :href="network.aboutnetworklistlink">
                 {{ network.aboutnetworklistlinktext }}
               </a>
