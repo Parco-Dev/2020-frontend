@@ -39,7 +39,7 @@ const calculateHeights = async () => {
   groupPeopleRefs.value.forEach((groupPeopleEl) => {
     if (groupPeopleEl) {
       const calculatedHeight = groupPeopleEl.scrollHeight;
-      groupPeopleEl.style.maxHeight = `${calculatedHeight}px`;
+      groupPeopleEl.style.height = `${calculatedHeight}px`;
       console.log(calculatedHeight);
     }
   });
@@ -54,56 +54,112 @@ watch(useRoute(), async () => {
   await calculateHeights(); // Recalculate heights on route change
 });
 
-
 /* First team group */
-const activeIndexTeam = ref(0)
-const teamGroups = computed(() => page.value?.aboutteamgroups || [])
+const activeIndexTeam = ref(0);
+const teamGroups = computed(() => page.value?.aboutteamgroups || []);
 
 onMounted(() => {
-
   // Apply classes only to the first element during the initial render
-  const firstElement = document.querySelector('.block-team-group')
+  const firstElement = document.querySelector('.block-team-group');
+
   if (firstElement) {
-    firstElement.classList.add('content-space', 'content-fade')
+    // Add classes to the first element
+    firstElement.classList.add('content-space', 'content-fade');
+
+    // Get the .group-people div inside the first .block-team-group
+    const groupPeopleDiv = firstElement.querySelector('.group-people') as HTMLElement;
+
+    if (groupPeopleDiv) {
+      // Calculate the height of the .group-people div
+      const calculatedHeight = groupPeopleDiv.scrollHeight;
+
+      // Set the max-height inline style
+      groupPeopleDiv.style.maxHeight = `${calculatedHeight}px`;
+
+      console.log(`Calculated max-height for the first .group-people: ${calculatedHeight}px`);
+    }
   }
+});
 
-})
+watch(useRoute(), async () => {
+  const firstElement = document.querySelector('.block-team-group');
 
+  if (firstElement) {
+    // Add classes to the first element
+    firstElement.classList.add('content-space', 'content-fade');
+
+    // Get the .group-people div inside the first .block-team-group
+    const groupPeopleDiv = firstElement.querySelector('.group-people') as HTMLElement;
+
+    if (groupPeopleDiv) {
+      // Calculate the height of the .group-people div
+      const calculatedHeight = groupPeopleDiv.scrollHeight;
+
+      // Set the max-height inline style
+      groupPeopleDiv.style.maxHeight = `${calculatedHeight}px`;
+
+      console.log(`Calculated max-height for the first .group-people: ${calculatedHeight}px`);
+    }
+  }
+});
+
+/* Open people groups */
 const setActiveTeam = (index: number) => {
-  activeIndexTeam.value = index
+  activeIndexTeam.value = index;
 
   // Get all the team elements
-  const allTeamElements = document.querySelectorAll('.block-team-group')
-  const clickedTeamElement = document.querySelector(`.block-team-group:nth-child(${index + 1})`)
+  const allTeamElements = document.querySelectorAll('.block-team-group');
+  const clickedTeamElement = document.querySelector(`.block-team-group:nth-child(${index + 1})`);
+
+  // Get all .group-people elements
+  const allGroupPeopleElements = document.querySelectorAll('.group-people');
+
+  // Set max-height to 0px for all .group-people elements before setting the clicked one
+  allGroupPeopleElements.forEach(groupPeople => {
+    (groupPeople as HTMLElement).style.maxHeight = '0px';
+  });
+
+  // Get the corresponding .group-people div for the clicked element
+  const groupPeopleDiv = clickedTeamElement?.querySelector('.group-people') as HTMLElement;
+
+  if (groupPeopleDiv) {
+    // Calculate the height of the .group-people div
+    const calculatedHeight = groupPeopleDiv.scrollHeight;
+
+    // Set the inline style for max-height
+    groupPeopleDiv.style.maxHeight = `${calculatedHeight}px`;
+
+    console.log(`Calculated height: ${calculatedHeight}px`);
+  }
 
   // 1. Remove .content-fade from all .block-team-group elements after 1 second
   setTimeout(() => {
     console.log("remove fade everywhere");
-    allTeamElements.forEach(el => el.classList.remove('content-fade'))
-  }, 500)
+    allTeamElements.forEach(el => el.classList.remove('content-fade'));
+  }, 500);
 
   // 2. Remove .content-space from all .block-team-group elements after 3 seconds
   setTimeout(() => {
     console.log("remove space everywhere");
-    allTeamElements.forEach(el => el.classList.remove('content-space'))
-  }, 1000)
+    allTeamElements.forEach(el => el.classList.remove('content-space'));
+  }, 1000);
 
   // 3. Add .content-space to the clicked .block-team-group after 5 seconds
   setTimeout(() => {
     if (clickedTeamElement) {
       console.log("add space to element");
-      clickedTeamElement.classList.add('content-space')
+      clickedTeamElement.classList.add('content-space');
     }
-  }, 1000)
+  }, 1000);
 
   // 4. Add .content-fade to the clicked .block-team-group after 7 seconds
   setTimeout(() => {
     if (clickedTeamElement) {
       console.log("add fade to element");
-      clickedTeamElement.classList.add('content-fade')
+      clickedTeamElement.classList.add('content-fade');
     }
-  }, 1500)
-}
+  }, 1500);
+};
 
 /* Close mobile navigation */
 const closeMenuMobile = inject<() => void>('closeMenuMobile');

@@ -1540,8 +1540,9 @@ body.about {
             }
           }
           .group-people {
-            transition: height 0.5s ease-in;
+            transition: max-height 0.5s ease-in, height 0.5s ease-in;
             height: 0px;
+            max-height: 0px;
             pointer-events: none;
             // display: none;
             margin-bottom: $spacer*2;
