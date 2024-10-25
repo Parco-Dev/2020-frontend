@@ -23,10 +23,7 @@ const { data: site } = await useFetch<{ result: any }>(
     <div class="site-heading">
       <NuxtLink to="/" class="mobile-home-link">
         <img :src="site?.result.sitelogo?.url" />
-        <p>
-          Our studio is an experiential strategy company based between
-          Melbourne, Los Angeles and London.
-        </p>
+        <p v-html="site?.result.shortbio"></p>
       </NuxtLink>
     </div>
     <div class="menu-toggle" @click="toggleBodyClass">

@@ -360,7 +360,7 @@ const toggleNetworksVisibility = () => {
             </p>-->
 
             <p v-for="(network) in firstThreeNetworks" :key="network.id" class="">
-              <a :href="network.aboutnetworklistlink">
+              <a :href="network.aboutnetworklistlink" target="_blank">
                 {{ network.aboutnetworklistlinktext }}
               </a>
             </p>
@@ -368,7 +368,7 @@ const toggleNetworksVisibility = () => {
             <!-- Wrap the remaining items in a hidden div -->
             <div :class="['networks-hidden', { visible: showAllNetworks }]">
               <p v-for="network in remainingNetworks" :key="network.id" class="">
-                <a :href="network.aboutnetworklistlink">
+                <a :href="network.aboutnetworklistlink" target="_blank">
                   {{ network.aboutnetworklistlinktext }}
                 </a>
               </p>

@@ -10,5 +10,17 @@ export const siteQuery: KirbyQuerySchema = {
       select: ['url', 'alt'],
     },
     shortbio: true,
+    social: {
+      query: 'site.social.toStructure',
+      select: {
+        url: true,
+        name: true,
+      },
+    },
+    copyright: true,
+    sitetitle: true,
+    address: true,
+    footeremail: true,
+    privacycookies: true,
   },
 }
