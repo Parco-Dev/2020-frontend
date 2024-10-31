@@ -25,141 +25,7 @@ const setActiveMethodology = (index: number) => {
 }
 const methodologySections = computed(() => page.value?.aboutmethodology || [])
 
-/* Team 
-const activeIndexTeam = ref(0)
-const setActiveTeam = (index: number) => {
-  activeIndexTeam.value = index
-}
-const teamGroups = computed(() => page.value?.aboutteamgroups || [])*/
 
-const groupPeopleRefs = ref<(HTMLElement | null)[]>([]);
-
-const calculateHeights = async () => {
-  await nextTick(); // Wait for DOM updates
-  groupPeopleRefs.value.forEach((groupPeopleEl) => {
-    if (groupPeopleEl) {
-      const calculatedHeight = groupPeopleEl.scrollHeight;
-      groupPeopleEl.style.height = `${calculatedHeight}px`;
-      console.log(calculatedHeight);
-    }
-  });
-};
-
-onMounted(async () => {
-  await calculateHeights(); // Initial calculation on mount
-});
-
-// Watch for route changes
-watch(useRoute(), async () => {
-  await calculateHeights(); // Recalculate heights on route change
-});
-
-/* First team group */
-const activeIndexTeam = ref(0);
-const teamGroups = computed(() => page.value?.aboutteamgroups || []);
-
-onMounted(() => {
-  // Apply classes only to the first element during the initial render
-  const firstElement = document.querySelector('.block-team-group');
-
-  if (firstElement) {
-    // Add classes to the first element
-    firstElement.classList.add('content-space', 'content-fade');
-
-    // Get the .group-people div inside the first .block-team-group
-    const groupPeopleDiv = firstElement.querySelector('.group-people') as HTMLElement;
-
-    if (groupPeopleDiv) {
-      // Calculate the height of the .group-people div
-      const calculatedHeight = groupPeopleDiv.scrollHeight;
-
-      // Set the max-height inline style
-      groupPeopleDiv.style.maxHeight = `${calculatedHeight}px`;
-
-      console.log(`Calculated max-height for the first .group-people: ${calculatedHeight}px`);
-    }
-  }
-});
-
-watch(useRoute(), async () => {
-  const firstElement = document.querySelector('.block-team-group');
-
-  if (firstElement) {
-    // Add classes to the first element
-    firstElement.classList.add('content-space', 'content-fade');
-
-    // Get the .group-people div inside the first .block-team-group
-    const groupPeopleDiv = firstElement.querySelector('.group-people') as HTMLElement;
-
-    if (groupPeopleDiv) {
-      // Calculate the height of the .group-people div
-      const calculatedHeight = groupPeopleDiv.scrollHeight;
-
-      // Set the max-height inline style
-      groupPeopleDiv.style.maxHeight = `${calculatedHeight}px`;
-
-      console.log(`Calculated max-height for the first .group-people: ${calculatedHeight}px`);
-    }
-  }
-});
-
-/* Open people groups */
-const setActiveTeam = (index: number) => {
-  activeIndexTeam.value = index;
-
-  // Get all the team elements
-  const allTeamElements = document.querySelectorAll('.block-team-group');
-  const clickedTeamElement = document.querySelector(`.block-team-group:nth-child(${index + 1})`);
-
-  // Get all .group-people elements
-  const allGroupPeopleElements = document.querySelectorAll('.group-people');
-
-  // Set max-height to 0px for all .group-people elements before setting the clicked one
-  allGroupPeopleElements.forEach(groupPeople => {
-    (groupPeople as HTMLElement).style.maxHeight = '0px';
-  });
-
-  // Get the corresponding .group-people div for the clicked element
-  const groupPeopleDiv = clickedTeamElement?.querySelector('.group-people') as HTMLElement;
-
-  if (groupPeopleDiv) {
-    // Calculate the height of the .group-people div
-    const calculatedHeight = groupPeopleDiv.scrollHeight;
-
-    // Set the inline style for max-height
-    groupPeopleDiv.style.maxHeight = `${calculatedHeight}px`;
-
-    console.log(`Calculated height: ${calculatedHeight}px`);
-  }
-
-  // 1. Remove .content-fade from all .block-team-group elements after 1 second
-  setTimeout(() => {
-    console.log("remove fade everywhere");
-    allTeamElements.forEach(el => el.classList.remove('content-fade'));
-  }, 500);
-
-  // 2. Remove .content-space from all .block-team-group elements after 3 seconds
-  setTimeout(() => {
-    console.log("remove space everywhere");
-    allTeamElements.forEach(el => el.classList.remove('content-space'));
-  }, 1000);
-
-  // 3. Add .content-space to the clicked .block-team-group after 5 seconds
-  setTimeout(() => {
-    if (clickedTeamElement) {
-      console.log("add space to element");
-      clickedTeamElement.classList.add('content-space');
-    }
-  }, 1000);
-
-  // 4. Add .content-fade to the clicked .block-team-group after 7 seconds
-  setTimeout(() => {
-    if (clickedTeamElement) {
-      console.log("add fade to element");
-      clickedTeamElement.classList.add('content-fade');
-    }
-  }, 1500);
-};
 
 /* Close mobile navigation */
 const closeMenuMobile = inject<() => void>('closeMenuMobile');
@@ -190,6 +56,38 @@ const showAllNetworks = ref(false)
 const toggleNetworksVisibility = () => {
   showAllNetworks.value = !showAllNetworks.value
 }
+
+/* TEAM */
+
+const teamGroups = computed(() => page.value?.aboutteamgroups || []);
+const activeIndexTeam = ref<number | null>(0); // Initially set to 0 or `null` if no group is initially visible
+const groupPeopleRefs = ref<HTMLElement[]>([]);
+
+function setActiveTeam(index: number) {
+  if (activeIndexTeam.value === index) {
+    // If the clicked group is already visible, remove the `visible` class
+    groupPeopleRefs.value[activeIndexTeam.value]?.classList.remove('visible');
+    activeIndexTeam.value = null; // Reset active index
+  } else {
+    // Remove 'visible' class from previously active group, if any
+    if (activeIndexTeam.value !== null && groupPeopleRefs.value[activeIndexTeam.value]) {
+      groupPeopleRefs.value[activeIndexTeam.value].classList.remove('visible');
+    }
+
+    // Update the active index to the clicked group
+    activeIndexTeam.value = index;
+
+    // Add 'visible' class to the new active group
+    groupPeopleRefs.value[activeIndexTeam.value]?.classList.add('visible');
+  }
+}
+
+// Ensure the initial group is visible on mount if `activeIndexTeam` is set
+onMounted(() => {
+  if (activeIndexTeam.value !== null && groupPeopleRefs.value[activeIndexTeam.value]) {
+    groupPeopleRefs.value[activeIndexTeam.value].classList.add('visible');
+  }
+});
 
 </script>
 
@@ -306,14 +204,13 @@ const toggleNetworksVisibility = () => {
             </div>
           </div>
           <div class="block-about-team-list">
-            <!-- <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group"> -->
-            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index}" class="block-team-group">
+            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group">
               <div class="group-title" :class="{ 'button-active': activeIndexTeam === index }" @click="setActiveTeam(index)">
                 <span v-html="team.aboutteamgroupname"></span>
               </div>
-              <div :ref="el => groupPeopleRefs[index] = el as HTMLElement" class="group-people" :class="{ 'tab-active': activeIndexTeam === index }"> <!-- v-show="activeIndexTeam === index" -->
-                <div class="row">
-                  <div v-for="(teamperson, index) in team.aboutteamgrouppeople" :key="teamperson.id" class="col-lg-4 col-12 single-person" :class="{ active: isActiveBio[index] }" @click="toggleBio(index)">
+              <div :ref="el => groupPeopleRefs[index] = el as HTMLElement" class="group-people" :class="{ 'tab-active': activeIndexTeam === index }">
+                <div class="horizontal-scroll">
+                  <div v-for="(teamperson, index) in team.aboutteamgrouppeople" :key="teamperson.id" class="single-person" :class="{ active: isActiveBio[index] }" @click="toggleBio(index)">
                     <div class="single-person-inner">
                       <img :src="teamperson.aboutteamgrouppeopleimage?.url" />
                       <div class="person-info">
