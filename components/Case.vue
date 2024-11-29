@@ -31,21 +31,21 @@ watchEffect(() => console.log(page.value))
               <span v-html="page?.casesubtitle"></span>
             </div>
             <div class="col-lg-2 col-12">
-              <div class="meta-location">
+              <div class="meta-location single-meta">
                 <p class="case-meta-label">Location</p>
                 <span v-html="page?.caselocation"></span>
               </div>
-              <div class="meta-year">
+              <div class="meta-year single-meta">
                 <p class="case-meta-label">Year</p>
                 <span v-html="page?.caseyear"></span>
               </div>
             </div>
             <div class="col-lg-2 col-12">
-              <div class="meta-client">
+              <div class="meta-client single-meta">
                 <p class="case-meta-label">Client</p>
                 <span v-html="page?.caseclient"></span>
               </div>
-              <div class="meta-collaborators">
+              <div class="meta-collaborators single-meta">
                 <p class="case-meta-label">Collaborators</p>
                 <span v-html="page?.casecollaborators"></span>
               </div>

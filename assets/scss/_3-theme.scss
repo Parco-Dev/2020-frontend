@@ -298,6 +298,7 @@ a {
 
 img {
   width: 100%;
+  border-radius: 3px;
 }
 
 .button {
@@ -558,7 +559,7 @@ body {
 }
 .section-cases {
   width: 35vw;
-  transition: transform 0.2s linear, right 0.3s ease-in;
+  transition: transform 0.2s linear, right 0.3s ease-in, width 0.3s ease-in;
   @include media-breakpoint-down(sm) {
     width: 100vw;
   }
@@ -636,8 +637,9 @@ body {
       margin-bottom: calc(#{$spacer-sm} / 1);
     }
     br {
-      display: block; /* Ensure it's treated as a block element */
-      margin-bottom: 20px;
+      display: block; /* Treat <br> as a block-level element */
+      height: 4px;    /* Set its vertical height */
+      content: "";    /* Ensures it behaves consistently across browsers */
     }
   }
 }
@@ -914,6 +916,10 @@ body {
           }
         }
         .single-outcome {
+          margin-bottom: $spacer;
+          @include media-breakpoint-up(xl) {
+            margin-bottom: $spacer-xl;
+          }
           @include media-breakpoint-down(sm) {
             margin-bottom: calc(#{$spacer-sm} * 2);
           }
@@ -1134,6 +1140,9 @@ body[data-template=about] {
 	}
 	.section-about {
 		right: 0px;
+    .section-header {
+      pointer-events: none;
+    }
 	}
   /*
 	.section-cases {
@@ -1884,6 +1893,46 @@ body[data-template=cases].active-class {
 */
 
 body[data-template=cases] {
+  &.expand-cases-active {
+    .section-about {
+      right: 0px;
+    }
+    .section-cases {
+      right: 0px;
+      width: 90vw;
+      .cases-list {
+        display: flex;
+        flex: wrap;
+        margin: 0px calc(-#{$spacer} / 4);
+        @include media-breakpoint-up(xl) {
+          margin: 0px calc(-#{$spacer-xl} / 4);
+        }
+        @include media-breakpoint-down(sm) {
+          margin: 0px calc(-#{$spacer-sm} / 4);
+        }
+        .single-case {
+          width: 33.333%;
+          padding: 0px calc($spacer / 4);
+          @include media-breakpoint-up(xl) {
+            padding: 0px calc($spacer-xl / 4);
+          }
+          @include media-breakpoint-down(sm) {
+            padding: 0px calc($spacer-sm / 4);
+          }
+        }
+      }
+      .cases-view-all {
+        .cta {
+          .view-all {
+            display: none;
+          }
+          .view-less {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
 	.section-home {
 		right: 0px;
 	}
@@ -1895,6 +1944,9 @@ body[data-template=cases] {
 	}
 	.section-cases {
 		right: 0px;
+    .section-header {
+      pointer-events: none;
+    }
 	}
   /*
 	.section-contact {
@@ -1931,12 +1983,25 @@ body.cases {
       }
     }
     .cases-view-all {
+      margin-bottom: $spacer*2;
       padding: $spacer;
       @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl*2;
         padding: $spacer-xl;
       }
       @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm*2;
         padding: $spacer-sm;
+      }
+      .cta {
+        display: inline;
+        cursor: pointer;
+        .view-all {
+          display: inline;
+        }
+        .view-less {
+          display: none;
+        }
       }
     }
   }
@@ -2083,13 +2148,22 @@ body {
         @include media-breakpoint-down(sm) {
           padding: $spacer-sm;
         }
-        p {
+        p, span {
           @extend %micro;
         }
         .case-subtitle {
           p {
             @extend %small;
             text-transform: uppercase;
+          }
+        }
+        .single-meta {
+          margin-right: $spacer;
+          @include media-breakpoint-up(xl) {
+            margin-right: $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            margin-right: $spacer-sm;
           }
         }
         .case-meta-label {
@@ -2302,12 +2376,12 @@ body {
         }
         .module-image {
           img {
-            margin-bottom: $spacer;
+            margin-bottom: $spacer/2;
             @include media-breakpoint-up(xl) {
-              margin-bottom: $spacer-xl;
+              margin-bottom: $spacer-xl/2;
             }
             @include media-breakpoint-down(sm) {
-              margin-bottom: $spacer-sm;
+              margin-bottom: $spacer-sm/2;
             }
           }
           .caption {
@@ -2318,12 +2392,12 @@ body {
         }
         .module-double-image {
           img {
-            margin-bottom: $spacer;
+            margin-bottom: $spacer/2;
             @include media-breakpoint-up(xl) {
-              margin-bottom: $spacer-xl;
+              margin-bottom: $spacer-xl/2;
             }
             @include media-breakpoint-down(sm) {
-              margin-bottom: $spacer-sm;
+              margin-bottom: $spacer-sm/2;
             }
           }
           .caption {
@@ -2444,6 +2518,9 @@ body[data-template=contact] {
   }
   .section-contact {
     right: 0px;
+    .section-header {
+      pointer-events: none;
+    }
   }
 }
 
