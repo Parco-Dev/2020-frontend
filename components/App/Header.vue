@@ -16,6 +16,8 @@ const { data: site } = await useFetch<{ result: any }>(
   siteQueryData.queryParams
 )
 
+const shortbio = computed(() => site.value?.result?.shortbio || '');
+
 </script>
 
 <template>
@@ -23,7 +25,9 @@ const { data: site } = await useFetch<{ result: any }>(
     <div class="site-heading">
       <NuxtLink to="/" class="mobile-home-link">
         <img :src="site?.result.sitelogo?.url" />
-        <p v-html="site?.result.shortbio"></p>
+        <client-only>
+          <p v-if="shortbio" v-html="shortbio"></p>
+        </client-only>
       </NuxtLink>
     </div>
     <div class="menu-toggle" @click="toggleBodyClass">

@@ -64,6 +64,7 @@ const closeMenu = () => {
             <p v-html="page?.contactsocial"></p>
           </div>
         </div>
+        <AppFooter />
       </div>
     </div>
   </section>

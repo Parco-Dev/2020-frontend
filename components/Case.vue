@@ -30,7 +30,7 @@ watchEffect(() => console.log(page.value))
             <div class="col-lg-6 col-12 case-subtitle">
               <span v-html="page?.casesubtitle"></span>
             </div>
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-2 col-6">
               <div class="meta-location single-meta">
                 <p class="case-meta-label">Location</p>
                 <span v-html="page?.caselocation"></span>
@@ -40,7 +40,7 @@ watchEffect(() => console.log(page.value))
                 <span v-html="page?.caseyear"></span>
               </div>
             </div>
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-2 col-6">
               <div class="meta-client single-meta">
                 <p class="case-meta-label">Client</p>
                 <span v-html="page?.caseclient"></span>
@@ -50,7 +50,7 @@ watchEffect(() => console.log(page.value))
                 <span v-html="page?.casecollaborators"></span>
               </div>
             </div>
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-2 col-6">
               <p class="case-meta-label">Services</p>
               <span v-html="page?.caseservices"></span>
             </div>
@@ -60,7 +60,7 @@ watchEffect(() => console.log(page.value))
           <img :src="page?.casemainimage?.url" />
         </div>
         <div class="case-content">
-          <div v-for="block in page?.casecontentblocks" :key="block.id" class="single-module">
+          <div v-for="block in page?.casecontentblocks" :key="block.id" class="single-module" :class="block.type">
             <div v-if="block.type === 'textblock'" class="module-text-one-column">
               <div class="row">
                 <div class="col-lg-3 col-12 column-title">
@@ -187,7 +187,7 @@ watchEffect(() => console.log(page.value))
             </NuxtLink>
           </div>
         </div>
-        <a href="#" class="button">View all</a>
+        <NuxtLink to="/cases" class="button">View all</NuxtLink>
       </div>
 
       <AppFooter />

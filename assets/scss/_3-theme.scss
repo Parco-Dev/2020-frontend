@@ -189,6 +189,9 @@
   &:hover {
     font-variation-settings: 'wght' 600, 'wdth' 25, 'ital' 12;
   }
+  @include media-breakpoint-down(sm) {
+    font-size: 22px;
+  }
 }
 
 /* GRID */
@@ -306,6 +309,19 @@ img {
 }
 
 /* MOBILE HEADER */
+
+body.active-class {
+  .single-section {
+    @include media-breakpoint-down(sm) {
+      box-shadow: 0px 0px 15px 5px $color-black;
+    }
+  }
+  .section-about {
+    @include media-breakpoint-down(sm) {
+      border-left: 0px solid transparent;
+    }
+  }
+}
 
 body.contact:not(.active-class) {
   .section-contact {
@@ -493,7 +509,7 @@ body.active-class {
         padding: calc(#{$spacer-xl} / 2 * 3) $spacer-xl;
       }
       @include media-breakpoint-down(sm) {
-        padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+        padding: $spacer-sm $spacer-sm;
       }
       p {
         text-transform: uppercase;
@@ -749,6 +765,11 @@ body {
       }
       @include media-breakpoint-down(sm) {
         margin-bottom: $spacer-sm * 10;
+      }
+      .block-main-text {
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm*3;
+        }
       }
       .experience-circle {
         position: absolute;
@@ -1186,6 +1207,9 @@ body.about {
       p {
         @extend %extralarge;
         text-transform: uppercase;
+        @include media-breakpoint-down(sm) {
+          font-size: 18.5vw;
+        }
       }
     }
     .block-about-focus-areas {
@@ -1233,6 +1257,9 @@ body.about {
               letter-spacing: -0.1vw;
               font-variation-settings: "wght" 700, "wdth" 25;
               color: $color-dark-grey;
+              @include media-breakpoint-down(sm) {
+                font-size: 24px;
+              }
               &:hover {
                 color: $color-white;
               }
@@ -2016,7 +2043,7 @@ body.cases {
     margin-bottom: $spacer-xl;
   }
   @include media-breakpoint-down(sm) {
-    margin-bottom: $spacer-sm;
+    margin-bottom: $spacer-sm/2;
   }
   &:hover {
     a {
@@ -2186,7 +2213,7 @@ body {
           margin-bottom: $spacer-xl*1.5;
         }
         @include media-breakpoint-down(sm) {
-          margin-bottom: $spacer-sm*1.5;
+          margin-bottom: $spacer-sm*3;
         }
         img {
         }
@@ -2203,9 +2230,22 @@ body {
             margin-bottom: $spacer-sm * 2;
             padding: 0px $spacer-sm;
           }
+          &.textblock {
+            @include media-breakpoint-down(sm) {
+              margin-bottom: 0px;
+            }
+          }
+          &.imagesblock {
+            @include media-breakpoint-down(sm) {
+              margin-bottom: 0px;
+            }
+          }
         }
         .module-text-one-column {
           .column-title {
+            @include media-breakpoint-down(sm) {
+              margin-bottom: $spacer-sm/2;
+            }
             span {
               text-transform: uppercase;
             }
@@ -2228,7 +2268,7 @@ body {
                 margin-bottom: $spacer-xl * 2;
               }
               @include media-breakpoint-down(sm) {
-                margin-bottom: $spacer-sm * 2;
+                margin-bottom: $spacer-sm * 1.5;
               }
             }
             ol {
@@ -2316,7 +2356,7 @@ body {
                 margin-bottom: $spacer-xl;
               }
               @include media-breakpoint-down(sm) {
-                margin-bottom: $spacer-sm;
+                margin-bottom: $spacer-sm/2;
               }
             }
             p {
@@ -2335,7 +2375,7 @@ body {
                 margin-bottom: $spacer-xl;
               }
               @include media-breakpoint-down(sm) {
-                margin-bottom: $spacer-sm;
+                margin-bottom: $spacer-sm/2;
               }
             }
           }
@@ -2413,7 +2453,7 @@ body {
             height: $spacer-xl * 20;
           }
           @include media-breakpoint-down(sm) {
-            height: $spacer-sm * 20;
+            height: $spacer-sm * 10;
           }
         }
       }

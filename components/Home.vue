@@ -23,6 +23,9 @@ const latestcases = computed(() =>
     }
   })
 )
+
+const shortbio = computed(() => site.value?.result?.shortbio || '');
+
 </script>
 
 <template>
@@ -32,10 +35,9 @@ const latestcases = computed(() =>
       <div class="site-header">
         <div class="site-header-heading">
           <img :src="site?.result.sitelogo?.url" />
-          <p>
-            Our studio is an experiential strategy company based between
-            Melbourne, Los Angeles and London.
-          </p>
+          <client-only>
+            <p v-if="shortbio" v-html="shortbio"></p>
+          </client-only>
         </div>
         <div class="site-header-mobile">
           <div class="line"></div>
