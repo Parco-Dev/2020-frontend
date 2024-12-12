@@ -187,7 +187,9 @@
   font-variation-settings: 'wght' 600, 'wdth' 25, 'ital' 1;
   transition: font-variation-settings 0.1s ease-in;
   &:hover {
-    font-variation-settings: 'wght' 600, 'wdth' 25, 'ital' 12;
+    font-variation-settings: 'wght' 600, 'wdth' 25, 'ital' 1;
+    color: $color-dark-grey;
+    border-bottom: 2px solid $color-dark-grey;
   }
   @include media-breakpoint-down(sm) {
     font-size: 22px;
@@ -780,6 +782,10 @@ body {
         height: 45vw;
         border-radius: 100vw;
         border: 4px solid $color-white;
+        @include media-breakpoint-down(xl) {
+          width: 60vw;
+          height: 60vw;
+        }
         @include media-breakpoint-down(sm) {
           display: none;
         }
@@ -1325,6 +1331,23 @@ body.about {
             }
           }
         }
+        .focus-areas-footer {
+          display: none;
+          margin-top: $spacer;
+          @include media-breakpoint-down(sm) {
+            display: flex;
+          }
+          .circle {
+            width: $spacer/3*2;
+            height: $spacer/3*2;
+            border-radius: 100vw;
+            background-color: $color-white;
+            margin-right: $spacer/3*2;
+            &.active-circle {
+              background-color: $color-dark-grey;
+            }
+          }
+        }
       }
     }
     .block-about-strengths {
@@ -1486,6 +1509,7 @@ body.about {
         }
         .tab-content {
           position: relative;
+          height: 80vw;
           .tab-content-inner {
             position: absolute;
             top: 0px;
@@ -1548,6 +1572,23 @@ body.about {
                   margin-bottom: 0px;
                 }
               }
+            }
+          }
+        }
+        .methodology-footer {
+          display: none;
+          margin-top: $spacer;
+          @include media-breakpoint-down(sm) {
+            display: flex;
+          }
+          .circle {
+            width: $spacer/3*2;
+            height: $spacer/3*2;
+            border-radius: 100vw;
+            background-color: $color-white;
+            margin-right: $spacer/3*2;
+            &.active-circle {
+              background-color: $color-dark-grey;
             }
           }
         }
@@ -1630,6 +1671,17 @@ body.about {
             pointer-events: none;
             // display: none;
             margin-bottom: $spacer*2;
+            
+            // position: fixed;
+            // top: 0px;
+            // left: 0px;
+            // z-index: 9999;
+            // height: 100vh;
+            // width: 100vw;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+            // max-height: 100vh;
             @include media-breakpoint-up(xl) {
               margin-bottom: $spacer-xl*2;
             }
@@ -1939,6 +1991,7 @@ body[data-template=cases] {
         }
         .single-case {
           width: 33.333%;
+          margin-bottom: 0px;
           padding: 0px calc($spacer / 4);
           @include media-breakpoint-up(xl) {
             padding: 0px calc($spacer-xl / 4);
@@ -1946,6 +1999,40 @@ body[data-template=cases] {
           @include media-breakpoint-down(sm) {
             padding: 0px calc($spacer-sm / 4);
           }
+          a {
+            height: 100%;
+            .case-image {
+              height: 100%;
+            }
+          }
+        }
+        &.grid {
+          display: flex;
+          flex-wrap: wrap; /* Backup if JS fails */
+          padding: 10px;
+        }
+        .grid-item {
+          overflow: hidden;
+        }
+        .grid-item.vertical {
+          width: calc(33.333% - 10px); /* Adjust for 3 columns */
+          height: calc(40vw - 10px)!important;
+          margin-bottom: 5px;
+        }
+        .grid-item.horizontal-small {
+          width: calc(33.333% - 10px);
+          height: calc(20vw - 7.5px)!important;
+          margin-bottom: 5px;
+        }
+        .grid-item.horizontal-large {
+          width: calc(66.666% - 20px); /* Span 2 columns */
+          height: calc(40vw - 10px)!important;
+          margin-bottom: 10px;
+        }
+        .grid-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
       .cases-view-all {
@@ -2164,7 +2251,7 @@ body {
           margin: 0px;
           @extend %ultralarge;
           text-transform: uppercase;
-          letter-spacing: -0.1vw;
+          letter-spacing: -0.7vw;
         }
       }
       .case-info {
@@ -2182,6 +2269,7 @@ body {
           p {
             @extend %small;
             text-transform: uppercase;
+            font-variation-settings: "wght" 700, "wdth" 15;
           }
         }
         .single-meta {
@@ -2322,17 +2410,17 @@ body {
                   justify-content: center;
                   @extend %micro;
                   margin-right: $spacer*3;
-                  width: $spacer*2.2;
-                  padding: $spacer/4;
+                  width: $spacer*2;
+                  padding: $spacer/6;
                   @include media-breakpoint-up(xl) {
                     margin-right: $spacer-xl*3;
-                    width: $spacer-xl*2.2;
-                    padding: $spacer-xl/4;
+                    width: $spacer-xl*2;
+                    padding: $spacer-xl/6;
                   }
                   @include media-breakpoint-down(sm) {
                     margin-right: $spacer-sm*3;
-                    width: $spacer-sm*2.2;
-                    padding: $spacer-sm/4;
+                    width: $spacer-sm*2;
+                    padding: $spacer-sm/6;
                   }
                 }
               }
@@ -2384,9 +2472,11 @@ body {
           display: flex;
           overflow-x: auto;
           overflow-y: hidden;
-          white-space: nowrap;
+          // white-space: nowrap;
           .single-image {
             flex: 0 0 auto;
+            // display: table;
+            display: inline-block;
             margin-right: $spacer/2;
             @include media-breakpoint-up(xl) {
               margin-right: $spacer-xl/2;
@@ -2408,6 +2498,10 @@ body {
               }
             }
             .caption {
+              // display: table-caption;
+              // caption-side: bottom;
+              width: 0;
+              min-width: 100%;
               p {
                 @extend %nano;
               }
@@ -2528,6 +2622,12 @@ body {
             }
           }
         }
+      }
+    }
+    .site-footer {
+      padding-right: 15vw;
+      @include media-breakpoint-down(sm) {
+        padding-right: 0px;
       }
     }
   }

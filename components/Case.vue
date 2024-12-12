@@ -37,7 +37,9 @@ watchEffect(() => console.log(page.value))
               </div>
               <div class="meta-year single-meta">
                 <p class="case-meta-label">Year</p>
-                <span v-html="page?.caseyear"></span>
+                <span>
+                  <p>{{ page?.caseyear }}</p>
+                </span>
               </div>
             </div>
             <div class="col-lg-2 col-6">
@@ -125,7 +127,6 @@ watchEffect(() => console.log(page.value))
                 <div class="caption">
                   <span v-html="blockimage.imagesblockimagescaption"></span>
                 </div>
-                {{  }}
               </div>
             </div>
             <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>
@@ -138,50 +139,22 @@ watchEffect(() => console.log(page.value))
           <p>RELATED CASE STUDIES</p>
         </div>
         <div class="block-related-cases-list">
-          <div class="single-case">
-            <NuxtLink to="/cases/jasmine-cover">
+          <div
+            v-for="(cases, index) in casesrelated"
+            :key="index"
+            :class="`single-case columns-${cases?.columns}`"
+          >
+            <p>CASE</p>
+            <NuxtLink :to="`/cases/${cases?.url}`">
               <div class="case-image">
-                <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg" />
+                <img :src="cases?.casethumbnail?.url" />
               </div>
               <div class="case-info">
                 <div class="case-title">
-                  <p>Jasmine Cove</p>
+                  <p>{{ cases?.title }}</p>
                 </div>
                 <div class="case-subtitle">
-                  <p>A peaceful hidden gem</p>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-          <div class="single-case">
-            <NuxtLink to="/cases">
-              <div class="case-image">
-                <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/90e8de4098-1703171960/gruppo-di-maschere-149.jpg" />
-              </div>
-              <div class="case-info">
-                <div class="case-title">
-                  <p>The new marina</p>
-                </div>
-                <div class="case-subtitle">
-                  <p>The land that lies in-between</p>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-          <div class="single-case">
-            <NuxtLink to="/cases">
-              <div class="case-image">
-                <img
-                  src="https://davideg29.sg-host.com/2020/media/pages/cases/jasmine-cove/ce7ebaa011-1703171913/gruppo-di-maschere-137.jpg" />
-              </div>
-              <div class="case-info">
-                <div class="case-title">
-                  <p>Split</p>
-                </div>
-                <div class="case-subtitle">
-                  <p>The land that lies in-between</p>
+                  <p v-html="cases?.casesubtitle"></p>
                 </div>
               </div>
             </NuxtLink>

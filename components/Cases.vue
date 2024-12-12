@@ -34,32 +34,118 @@ const toggleBodyClass = (className: string) => {
   }
 };
 
-// Ensure DOM is ready before toggling the class
+
+
+
+const masonryGrid = ref(null);
+const transitionContainer = ref(null);
+let isotopeInstance: any = null;
+
+// Initialize Isotope
+const initializeIsotope = () => {
+  if (masonryGrid.value && window.innerWidth >= 992) {
+    isotopeInstance = new Isotope(masonryGrid.value, {
+      itemSelector: '.grid-item',
+      layoutMode: 'masonry',
+      masonry: {
+        columnWidth: '.grid-item',
+      },
+    });
+    console.log('Isotope initialized');
+  }
+};
+
+// Destroy Isotope instance
+const destroyIsotope = () => {
+  if (isotopeInstance) {
+    isotopeInstance.destroy();
+    isotopeInstance = null;
+    console.log('Isotope destroyed');
+  }
+};
+
+// Check viewport width and toggle Isotope
+const checkViewportWidth = () => {
+  if (window.innerWidth < 992) {
+    destroyIsotope();
+  } else if (!isotopeInstance) {
+    initializeIsotope();
+  }
+};
+
+// Recalculate Isotope layout
+const relayoutIsotope = () => {
+  if (isotopeInstance) {
+    isotopeInstance.layout();
+    console.log('Isotope layout recalculated');
+  }
+};
+
+// Handle `transitionend` event
+const handleTransitionEnd = (event: TransitionEvent) => {
+  if (event.propertyName === 'width' && transitionContainer.value?.contains(event.target)) {
+    relayoutIsotope();
+    console.log('Transition ended, Isotope layout recalculated');
+  }
+};
+
+// Handle `expand-cases-active` class change
+const handleClassChange = () => {
+  if (document.body.classList.contains('expand-cases-active')) {
+    checkViewportWidth();
+  } else {
+    destroyIsotope();
+  }
+};
+
 onMounted(() => {
-  console.log('DOM is ready, body available:', !!document.body);
+  // Attach `transitionend` listener
+  if (transitionContainer.value) {
+    transitionContainer.value.addEventListener('transitionend', handleTransitionEnd);
+  }
+
+  // Initialize Isotope if the class is already present and screen is wide enough
+  if (document.body.classList.contains('expand-cases-active')) {
+    checkViewportWidth();
+  }
+
+  // Observe changes to the body's class attribute
+  const observer = new MutationObserver(() => {
+    handleClassChange();
+  });
+  observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+  // Attach `resize` event listener
+  window.addEventListener('resize', checkViewportWidth);
+
+  // Cleanup
+  onUnmounted(() => {
+    destroyIsotope();
+    observer.disconnect();
+    if (transitionContainer.value) {
+      transitionContainer.value.removeEventListener('transitionend', handleTransitionEnd);
+    }
+    window.removeEventListener('resize', checkViewportWidth);
+  });
 });
 
-// Attach the event to the button
-const handleButtonClick = () => {
-  toggleBodyClass('expand-cases-active');
-  console.log("click");
-};
 
 </script>
 
 <template>
-  <section :class="{ open }" class="single-section section-cases">
+  <section :class="{ open }" class="single-section section-cases" ref="transitionContainer">
     <div class="single-section-inner">
       <NuxtLink to="/cases" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
         <p>Case studies</p>
       </div>
       <div class="section-content">
-        <div class="cases-list">
+        <div class="cases-list grid" ref="masonryGrid">
           <div
-            v-for="{ id, title, casethumbnail, casesubtitle } of page?.children"
+            v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
             :key="id"
             class="single-case"
+            :class="`grid-item ${casethumbnailsize}`"
           >
             <NuxtLink :to="`/${id}`">
               <div class="case-image">

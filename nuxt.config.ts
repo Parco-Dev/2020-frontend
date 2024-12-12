@@ -14,6 +14,14 @@ export default defineNuxtConfig({
       name: 'page',
       mode: 'out-in',
     },
+    head: {
+      script: [
+        {
+          src: 'https://cdn.jsdelivr.net/npm/isotope-layout@3/dist/isotope.pkgd.min.js',
+          defer: true, // Ensures the script is loaded after the page is parsed
+        },
+      ],
+    },
   },
 
   css: [

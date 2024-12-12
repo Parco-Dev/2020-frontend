@@ -18,6 +18,7 @@ export const casesQuery: KirbyQuerySchema = {
           query: 'page.casethumbnail.toFiles.first',
           select: ['url', 'alt'],
         },
+        casethumbnailsize: true
       },
     },
   },

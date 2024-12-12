@@ -58,6 +58,26 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
           captionright: 'block.content.captionright',
         }
       },
+      casesrelated: {
+        query: 'page.casesrelated.toStructure',
+        select: {
+          columns: true,
+          case: {
+            query: 'structureItem.case.toPages',
+            select: {
+              id: true,
+              url: 'page.slug',
+              title: true,
+              excerpt: true,
+              casethumbnail: {
+                query: 'page.casethumbnail.toFiles.first',
+                select: ['url', 'alt'],
+              },
+              casesubtitle: true,
+            },
+          },
+        },
+      },
     },
   }
 }

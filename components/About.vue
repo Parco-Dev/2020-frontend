@@ -89,6 +89,7 @@ onMounted(() => {
   }
 });
 
+
 </script>
 
 <template>
@@ -116,7 +117,6 @@ onMounted(() => {
                 </button>
               </li>
             </ul>
-
             <div class="tab-content">
               <!-- v-show="activeIndexFocusAreas === index" -->
               <div v-for="(focusarea, index) in focusAreas" :key="index" class="tab-pane active" :class="{ 'tab-active': activeIndexFocusAreas === index }">
@@ -134,6 +134,17 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="focus-areas-footer">
+              <div v-for="(focusarea, index) in focusAreas" 
+              :key="index"
+              class="circle"
+              :class="{
+                circle: true,
+                'active-circle': activeIndexFocusAreas === index,
+                'inactive-circle': activeIndexFocusAreas !== index
+              }"
+              ></div>
             </div>
           </div>
         </div>
@@ -191,6 +202,17 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="methodology-footer">
+              <div v-for="(methodology, index) in methodologySections" 
+              :key="index"
+              class="circle"
+              :class="{
+                circle: true,
+                'active-circle': activeIndexMethodology === index,
+                'inactive-circle': activeIndexMethodology !== index
+              }"
+              ></div>
             </div>
           </div>
         </div>
