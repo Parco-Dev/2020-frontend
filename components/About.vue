@@ -35,6 +35,58 @@ const closeMenu = () => {
   }
 };
 
+/* Networks */
+const firstThreeNetworks = computed(() => page.value?.aboutnetworklist.slice(0, 3) || [])
+const remainingNetworks = computed(() => page.value?.aboutnetworklist.slice(3) || [])
+const showAllNetworks = ref(false)
+const toggleNetworksVisibility = () => {
+  showAllNetworks.value = !showAllNetworks.value
+}
+
+/* TEAM */
+
+const teamGroups = computed(() => page.value?.aboutteamgroups || []);
+
+// Reactive variables
+const activeIndexTeam = ref<number | null>(null);
+const groupPeopleRefs = ref<HTMLElement[]>([]);
+const activePersons = ref<Record<number, number | null>>({});
+
+// Function to set the active team
+function setActiveTeam(index: number) {
+  activeIndexTeam.value = activeIndexTeam.value === index ? null : index;
+}
+
+function handleTitleClick(index: number, event: MouseEvent) {
+  event.stopPropagation(); // Stop the event from reaching the document level
+  setActiveTeam(index);
+}
+
+// Function to handle clicks outside
+function handleClickOutside(event: MouseEvent) {
+  groupPeopleRefs.value.forEach((group, index) => {
+    const horizontalScroll = group.querySelector('.horizontal-scroll');
+    
+    if (horizontalScroll && !horizontalScroll.contains(event.target as Node)) {
+      if (group.classList.contains('tab-active')) {
+        group.classList.remove('tab-active');
+        if (activeIndexTeam.value === index) {
+          activeIndexTeam.value = null;
+        }
+      }
+    }
+  });
+}
+
+// Add event listener on mount and clean up on unmount
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
+
 /* Team person biographies toggle */
 const isActiveBio = ref<boolean[]>([]);
 const team = {
@@ -48,47 +100,6 @@ team.aboutteamgrouppeople.forEach(() => {
 const toggleBio = (index: number) => {
   isActiveBio.value[index] = !isActiveBio.value[index];
 };
-
-/* Networks */
-const firstThreeNetworks = computed(() => page.value?.aboutnetworklist.slice(0, 3) || [])
-const remainingNetworks = computed(() => page.value?.aboutnetworklist.slice(3) || [])
-const showAllNetworks = ref(false)
-const toggleNetworksVisibility = () => {
-  showAllNetworks.value = !showAllNetworks.value
-}
-
-/* TEAM */
-
-const teamGroups = computed(() => page.value?.aboutteamgroups || []);
-const activeIndexTeam = ref<number | null>(0); // Initially set to 0 or `null` if no group is initially visible
-const groupPeopleRefs = ref<HTMLElement[]>([]);
-
-function setActiveTeam(index: number) {
-  if (activeIndexTeam.value === index) {
-    // If the clicked group is already visible, remove the `visible` class
-    groupPeopleRefs.value[activeIndexTeam.value]?.classList.remove('visible');
-    activeIndexTeam.value = null; // Reset active index
-  } else {
-    // Remove 'visible' class from previously active group, if any
-    if (activeIndexTeam.value !== null && groupPeopleRefs.value[activeIndexTeam.value]) {
-      groupPeopleRefs.value[activeIndexTeam.value].classList.remove('visible');
-    }
-
-    // Update the active index to the clicked group
-    activeIndexTeam.value = index;
-
-    // Add 'visible' class to the new active group
-    groupPeopleRefs.value[activeIndexTeam.value]?.classList.add('visible');
-  }
-}
-
-// Ensure the initial group is visible on mount if `activeIndexTeam` is set
-onMounted(() => {
-  if (activeIndexTeam.value !== null && groupPeopleRefs.value[activeIndexTeam.value]) {
-    groupPeopleRefs.value[activeIndexTeam.value].classList.add('visible');
-  }
-});
-
 
 </script>
 
@@ -225,14 +236,37 @@ onMounted(() => {
               <div class="col-lg-6 col-12"></div>
             </div>
           </div>
+          
           <div class="block-about-team-list">
-            <div v-for="(team, index) in teamGroups" :key="team.id" :class="{ active: activeIndexTeam === index }" class="block-team-group">
-              <div class="group-title" :class="{ 'button-active': activeIndexTeam === index }" @click="setActiveTeam(index)">
+            <div
+              v-for="(team, index) in teamGroups"
+              :key="team.id"
+              :class="{ active: activeIndexTeam === index }"
+              class="block-team-group"
+            >
+              <!-- Group title -->
+              <div
+                class="group-title"
+                :class="{ 'button-active': activeIndexTeam === index }"
+                @click="handleTitleClick(index, $event)"
+              >
                 <span v-html="team.aboutteamgroupname"></span>
               </div>
-              <div :ref="el => groupPeopleRefs[index] = el as HTMLElement" class="group-people" :class="{ 'tab-active': activeIndexTeam === index }">
+
+              <!-- Group people -->
+              <div
+                :ref="el => groupPeopleRefs[index] = el as HTMLElement"
+                class="group-people"
+                :class="{ 'tab-active': activeIndexTeam === index }"
+              >
                 <div class="horizontal-scroll">
-                  <div v-for="(teamperson, index) in team.aboutteamgrouppeople" :key="teamperson.id" class="single-person" :class="{ active: isActiveBio[index] }" @click="toggleBio(index)">
+                  <div
+                    v-for="(teamperson, personIndex) in team.aboutteamgrouppeople"
+                    :key="teamperson.id"
+                    class="single-person"
+                    :class="{ active: isActiveBio[personIndex] }"
+                    @click="toggleBio(personIndex)"
+                  >
                     <div class="single-person-inner">
                       <img :src="teamperson.aboutteamgrouppeopleimage?.url" />
                       <div class="person-info">
@@ -260,6 +294,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
+
         </div>
         <div class="block-about-network">
           <div class="block-main-text">

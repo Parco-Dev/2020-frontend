@@ -71,7 +71,7 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
               excerpt: true,
               casethumbnail: {
                 query: 'page.casethumbnail.toFiles.first',
-                select: ['url', 'alt'],
+                select: imageQuery,
               },
               casesubtitle: true,
             },

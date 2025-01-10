@@ -140,21 +140,20 @@ watchEffect(() => console.log(page.value))
         </div>
         <div class="block-related-cases-list">
           <div
-            v-for="(cases, index) in casesrelated"
+            v-for="(cases, index) in page?.casesrelated"
             :key="index"
             :class="`single-case columns-${cases?.columns}`"
           >
-            <p>CASE</p>
-            <NuxtLink :to="`/cases/${cases?.url}`">
+            <NuxtLink :to="`/cases/${cases?.case[0]?.url}`">
               <div class="case-image">
-                <img :src="cases?.casethumbnail?.url" />
+                <img :src="cases?.case[0]?.casethumbnail?.url" />
               </div>
               <div class="case-info">
                 <div class="case-title">
-                  <p>{{ cases?.title }}</p>
+                  <p>{{ cases?.case[0]?.title }}</p>
                 </div>
                 <div class="case-subtitle">
-                  <p v-html="cases?.casesubtitle"></p>
+                  <p v-html="cases?.case[0]?.casesubtitle"></p>
                 </div>
               </div>
             </NuxtLink>

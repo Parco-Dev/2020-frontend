@@ -34,8 +34,9 @@ const toggleBodyClass = (className: string) => {
   }
 };
 
-
-
+const handleButtonClick = () => {
+  toggleBodyClass('expand-cases-active');
+};
 
 const masonryGrid = ref(null);
 const transitionContainer = ref(null);
@@ -128,7 +129,6 @@ onMounted(() => {
     window.removeEventListener('resize', checkViewportWidth);
   });
 });
-
 
 </script>
 
