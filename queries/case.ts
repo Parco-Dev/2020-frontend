@@ -28,7 +28,7 @@ export function getCaseQuery(pageId: string): KirbyQuerySchema {
           id: true,
           type: true,
           blocktitle: 'block.content.blocktitle',
-          paragraph: 'block.content.paragraph',
+          paragraph: 'block.content.paragraph.kirbytext',
           paragraphleft: 'block.content.paragraphleft',
           paragraphright: 'block.content.paragraphright',
           image: {

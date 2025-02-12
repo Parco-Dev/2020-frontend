@@ -25,9 +25,10 @@
   <Html lang="en">
     <Head>
       <Link rel="icon" href="/favicon.jpg" type="image/jpeg" />
+      <link rel="preload" href="/fonts/Baikal-VF.ttf" as="font" type="font/ttf" crossorigin="anonymous">
     </Head>
 
-    <Body>
+    <Body class="expand-cases-active">
       <div class="page">
         <AppHeader />
         <NuxtPage />

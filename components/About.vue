@@ -65,7 +65,7 @@ function handleTitleClick(index: number, event: MouseEvent) {
 // Function to handle clicks outside
 function handleClickOutside(event: MouseEvent) {
   groupPeopleRefs.value.forEach((group, index) => {
-    const horizontalScroll = group.querySelector('.horizontal-scroll');
+    const horizontalScroll = group.querySelector('.horizontal-scroll .single-person');
     
     if (horizontalScroll && !horizontalScroll.contains(event.target as Node)) {
       if (group.classList.contains('tab-active')) {
@@ -78,13 +78,30 @@ function handleClickOutside(event: MouseEvent) {
   });
 }
 
+// Function to handle ESC key press
+function handleEscapeKey(event: KeyboardEvent) {
+  if (event.key === 'Escape') {
+    groupPeopleRefs.value.forEach((group, index) => {
+      if (group.classList.contains('tab-active')) {
+        group.classList.remove('tab-active');
+        if (activeIndexTeam.value === index) {
+          activeIndexTeam.value = null;
+        }
+      }
+    });
+  }
+}
+
 // Add event listener on mount and clean up on unmount
 onMounted(() => {
   document.addEventListener('click', handleClickOutside);
+  document.addEventListener('keydown', handleEscapeKey);
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside);
+  document.removeEventListener('click', handleClickOutside);
+  document.removeEventListener('keydown', handleEscapeKey);
 });
 
 /* Team person biographies toggle */

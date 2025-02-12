@@ -62,11 +62,11 @@ export default defineNuxtConfig({
   // },
 
   // ENABLED: PRERENDER INDEX PAGE
+
   nitro: {
-    prerender: {
-      // Prerender the index page
-      routes: ['/'],
-    },
+    routeRules: {
+      '/': { ssr: true },  // Ensure the home page is dynamically SSR'd
+    }
   },
 
   // DISABLED: TYPESCRIPT CHECK AND COMPILE ACTIONS

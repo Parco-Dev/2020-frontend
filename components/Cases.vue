@@ -100,6 +100,11 @@ const handleClassChange = () => {
 };
 
 onMounted(() => {
+
+  destroyIsotope();
+  initializeIsotope();
+  window.removeEventListener("resize", initializeIsotope);
+
   // Attach `transitionend` listener
   if (transitionContainer.value) {
     transitionContainer.value.addEventListener('transitionend', handleTransitionEnd);

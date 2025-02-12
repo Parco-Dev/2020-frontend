@@ -16,6 +16,7 @@
   font-family: 'baikal';
   src: url('../fonts/Baikal-VF.ttf') format('truetype-variations');
   font-weight: 1 999;
+  font-display: swap;
 }
 
 /* TYPOGRAPHY */
@@ -2083,6 +2084,7 @@ body[data-template=cases] {
         }
       }
       .cases-view-all {
+        display: none;
         @include media-breakpoint-down(sm) {
           display: none;
         }
@@ -2134,6 +2136,7 @@ body.cases {
     opacity: 0;
     padding-right: 5vw;
     overflow-x: hidden;
+    // overflow-y: hidden;
     @include media-breakpoint-down(sm) {
       padding-right: 0px;
     }
@@ -2411,6 +2414,7 @@ body {
               }
             }
             ol {
+              counter-reset: item;
               margin-bottom: $spacer*2;
               @include media-breakpoint-up(xl) {
                 margin-bottom: $spacer-xl * 2;
@@ -2420,12 +2424,41 @@ body {
               }
               li {
                 display: flex;
+                margin-bottom: $spacer/4;
+                @include media-breakpoint-up(xl) {
+                  margin-bottom: $spacer-xl/4;
+                }
+                @include media-breakpoint-down(sm) {
+                  margin-bottom: $spacer-sm/4;
+                }
                 &::before {
                   display: inline-block;
-                  content: counter(item) ') ';
+                  content: counter(item) ' ';
                   counter-increment: item;
                   width: 2em;
                   margin-left: -2em;
+                  display: inline-block;
+                  border: 1px solid $color-white;
+                  background-color: $color-white;
+                  color: $color-black;
+                  border-radius: 100vw;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  @extend %micro;
+                  margin-right: $spacer*3;
+                  width: $spacer*2;
+                  padding: $spacer/6;
+                  @include media-breakpoint-up(xl) {
+                    margin-right: $spacer-xl*3;
+                    width: $spacer-xl*2;
+                    padding: $spacer-xl/6;
+                  }
+                  @include media-breakpoint-down(sm) {
+                    margin-right: $spacer-sm*3;
+                    width: $spacer-sm*2;
+                    padding: $spacer-sm/6;
+                  }
                 }
                 p {
                   margin-bottom: 0px;
@@ -2741,7 +2774,8 @@ body.contact {
   .block-content {
     p,
     a {
-      @extend %medium;
+      @extend %small;
+      font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 1;
       margin-bottom: 0px;
       display: block;
     }
