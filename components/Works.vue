@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { casesQuery } from '~/queries'
+import { worksQuery } from '~/queries'
 
-const { queryApi, queryParams } = useQueryParams(casesQuery)
+const { queryApi, queryParams } = useQueryParams(worksQuery)
 
 const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
 const page = computed(() => data.value?.result)
@@ -32,10 +32,6 @@ const toggleBodyClass = (className: string) => {
   } else {
     console.warn('Body element is not available');
   }
-};
-
-const handleButtonClick = () => {
-  toggleBodyClass('expand-cases-active');
 };
 
 const masonryGrid = ref(null);
@@ -90,14 +86,7 @@ const handleTransitionEnd = (event: TransitionEvent) => {
   }
 };
 
-// Handle `expand-cases-active` class change
-const handleClassChange = () => {
-  if (document.body.classList.contains('expand-cases-active')) {
-    checkViewportWidth();
-  } else {
-    destroyIsotope();
-  }
-};
+
 
 onMounted(() => {
 
@@ -110,10 +99,7 @@ onMounted(() => {
     transitionContainer.value.addEventListener('transitionend', handleTransitionEnd);
   }
 
-  // Initialize Isotope if the class is already present and screen is wide enough
-  if (document.body.classList.contains('expand-cases-active')) {
-    checkViewportWidth();
-  }
+ 
 
   // Observe changes to the body's class attribute
   const observer = new MutationObserver(() => {
@@ -138,11 +124,42 @@ onMounted(() => {
 </script>
 
 <template>
-  <section :class="{ open }" class="single-section section-cases" ref="transitionContainer">
+  <section :class="{ open }" class="single-section section-works" ref="transitionContainer">
     <div class="single-section-inner">
-      <NuxtLink to="/cases" class="section-header" @click="closeMenu"></NuxtLink>
+      <NuxtLink to="/works" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
-        <p>Case studies</p>
+        <p>Works</p>
+      </div>
+      <div class="section-content">
+        <div class="works-list grid" ref="masonryGrid">
+          <div
+            v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
+            :key="id"
+            class="single-work"
+            :class="`grid-item ${casethumbnailsize}`"
+          >
+            <NuxtLink :to="`/${id}`">
+              <div class="work-image">
+                <img :src="casethumbnail?.url" />
+              </div>
+              <div class="work-info">
+                <div class="work-title">
+                  <p>{{ title }}</p>
+                </div>
+                <div class="work-subtitle">
+                  <p v-html="casesubtitle"></p>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 
+    <div class="single-section-inner">
+      <NuxtLink to="/works" class="section-header" @click="closeMenu"></NuxtLink>
+      <div class="section-title">
+        <p>Work</p>
       </div>
       <div class="section-content">
         <div class="cases-list grid" ref="masonryGrid">
@@ -175,5 +192,6 @@ onMounted(() => {
         </div>
       </div>
     </div>
+    -->
   </section>
 </template>

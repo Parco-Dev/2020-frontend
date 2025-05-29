@@ -9,71 +9,35 @@ export const aboutQuery: KirbyQuerySchema = {
     isListed: true,
     intendedTemplate: true,
     aboutmaintext: true,
-    aboutfocusareastext: true,
-    aboutfocusareas: {
-      query: 'page.aboutfocusareas.toStructure',
+    abouttext: true,
+    aboutapproachtitle: true,
+    aboutapproachtext: true,
+    aboutapproach: {
+      query: 'page.aboutapproach.toStructure',
       select: {
-        focusareaname: true,
-        focusareabigtext: true,
-        focusarealefttext: true,
-        focusarearighttext: true,
-      },
-    },
-    aboutstrengthstext: true,
-    aboutstrengthsbigtext: true,
-    aboutstrengthsslider: {
-      query: 'page.aboutstrengthsslider.toStructure',
-      select: {
-        aboutstrengthsslidercaption: true,
-        aboutstrengthssliderimage: {
-          query: 'structureItem.aboutstrengthssliderimage.toFiles.first',
+        aboutapproachword: true,
+        aboutapproachtexttop: true,
+        aboutapproachicon: {
+          query: 'structureItem.aboutapproachicon.toFiles.first',
           select: ['url', 'alt'],
         },
+        aboutapproachtextbottom: true,
       },
     },
-    aboutmethodologytext: true,
-    aboutmethodology: {
-      query: 'page.aboutmethodology.toStructure',
-      select: {
-        methodologyname: true,
-        methodologybigtext: true,
-        methodologysections: {
-          query: 'structureItem.methodologysections.toStructure',
-          select: {
-            methodologysectionslefttext: true,
-            methodologysectionsrighttext: true,
-          },
-        },
-      },
-    },
+    aboutteamtitle: true,
     aboutteamtext: true,
-    aboutteamgroups: {
-      query: 'page.aboutteamgroups.toStructure',
+    aboutteampeople: {
+      query: 'page.aboutteampeople.toStructure',
       select: {
-        aboutteamgroupname: true,
-        aboutteamgrouppeople: {
-          query: 'structureItem.aboutteamgrouppeople.toStructure',
-          select: {
-            aboutteamgrouppeopleimage: {
-              query: 'structureItem.aboutteamgrouppeopleimage.toFiles.first',
-              select: ['url', 'alt'],
-            },
-            aboutteamgrouppeoplename: true,
-            aboutteamgrouppeoplerole: true,
-            aboutteamgrouppeoplebio: true,
-          },
+        aboutteampeopleimage: {
+          query: 'structureItem.aboutteampeopleimage.toFiles.first',
+          select: ['url', 'alt'],
         },
+        aboutteampeoplename: true,
+        aboutteampeoplerole: true,
+        aboutteampeoplecontact: true,
+        aboutteampeoplebio: true,
       },
     },
-    aboutnetworktext: true,
-    aboutnetworklist: {
-      query: 'page.aboutnetworklist.toStructure',
-      select: {
-        aboutnetworklistlink: true,
-        aboutnetworklistlinktext: true,
-      },
-    },
-    aboutnetworklink: true,
-    aboutnetworklinktext: true,
   },
 }

@@ -11,8 +11,9 @@ const site = useSite()
         />
       </div>
       <div class="footer-menu">
+        <NuxtLink to="/works">Work</NuxtLink>
+        <NuxtLink to="/clients">Clients</NuxtLink>
         <NuxtLink to="/about">About</NuxtLink>
-        <NuxtLink to="/cases">Case studies</NuxtLink>
         <NuxtLink to="/contact">Contact</NuxtLink>
       </div>
       <div class="footer-social">

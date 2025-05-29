@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { contactQuery } from '~/queries'
+import { clientsQuery } from '~/queries'
 
-const { queryApi, queryParams } = useQueryParams(contactQuery)
+const { queryApi, queryParams } = useQueryParams(clientsQuery)
 // TODO: type any
 const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
 const page = computed(() => data.value?.result)
@@ -20,68 +20,39 @@ const closeMenu = () => {
   }
 };
 
-
 </script>
 
 <template>
-  <section :class="{ open }" class="single-section section-contact">
+  <section :class="{ open }" class="single-section section-clients">
     <div class="single-section-inner">
-      <NuxtLink to="/contact" class="section-header" @click="closeMenu"></NuxtLink>
+      <NuxtLink to="/clients" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
-        <p>Contact</p>
+        <p>Clients</p>
       </div>
       <div class="section-content">
-        <div class="block-contacts">
-          <client-only>
-            <p v-html="page?.contactgeneral"></p>
-          </client-only>
+        <div class="block-clients-text">
+          <p v-html="page?.clientstext"></p>
         </div>
-        <div class="block-address">
-          <div class="block-address-text">
-            <div class="block-address-text-title">
-              <p>Los Angeles</p>
-            </div>
-            <div class="block-address-text-content">
-              <client-only>
-                <p v-html="page?.contactlosangeles"></p>
-              </client-only>
-            </div>
+        <div class="clients-logos">
+          <div
+            v-for="client in page?.clients"
+            :key="client.id"
+            class="single-client"
+          >
+            <a :href="client.clientslink">
+              <img :src="client.clientslogo?.url" />
+            </a>
           </div>
-          <div class="block-address-clock"></div>
-        </div>
-        <div class="block-address">
-          <div class="block-address-text">
-            <div class="block-address-text-title">
-              <p>Dubai</p>
-            </div>
-            <div class="block-address-text-content">
-              <client-only>
-                <p v-html="page?.contactdubai"></p>
-              </client-only>
-            </div>
-          </div>
-          <div class="block-address-clock"></div>
-        </div>
-        <div class="block-address">
-          <div class="block-address-text">
-            <div class="block-address-text-title">
-              <p>Sydney</p>
-            </div>
-            <div class="block-address-text-content">
-              <client-only>
-                <p v-html="page?.contactsydney"></p>
-              </client-only>
-            </div>
-          </div>
-          <div class="block-address-clock"></div>
         </div>
       </div>
+      
     </div>
+
     <!--
     <div class="single-section-inner">
       <NuxtLink to="/contact" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
-        <p>Contacts</p>
+        <p>Clients</p>
       </div>
       <div class="section-content">
         <div class="block-address">

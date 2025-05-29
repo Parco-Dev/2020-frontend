@@ -16,8 +16,9 @@ setPage(page)
 <template>
   <div class="page-home">
     <Home :open="true" />
+    <Works :open="false" />
+    <Clients :open="false" />
     <About :open="false" />
-    <Cases :open="false" />
     <Contact :open="false" />
   </div>
 </template>

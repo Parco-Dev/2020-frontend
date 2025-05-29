@@ -1,7 +1,7 @@
 import type { KirbyQuerySchema } from 'kirby-fest'
 
-export const casesQuery: KirbyQuerySchema = {
-  query: `page('cases')`,
+export const worksQuery: KirbyQuerySchema = {
+  query: `page('works')`,
   select: {
     url: true,
     id: true,

@@ -82,7 +82,7 @@ function usePageState() {
 }
 
 export function useProject() {
-  return useState('app.case', () => {})
+  return useState('app.work', () => {})
 }
 
 export function setProject(page?: any) {

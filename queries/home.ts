@@ -9,72 +9,34 @@ export const homeQuery: KirbyQuerySchema = {
     isListed: true,
     intendedTemplate: true,
     homeabouttext: 'page.homeabouttext',
-    homeaboutimage: {
-      query: 'page.homeaboutimage.toFiles.first',
+    homevideoimage: {
+      query: 'page.homevideoimage.toFiles.first',
       select: ['url', 'alt'],
     },
-    homeexperience: true,
-    homeculturetitle: true,
-    homeculturetext: true,
-    homeplacetitle: true,
-    homeplacetext: true,
-    hometechnologytitle: true,
-    hometechnologytext: true,
-    homelatestcasestitle: true,
-    homelatestcases: {
-      query: 'page.homelatestcases.toStructure',
-      select: {
-        columns: true,
-        case: {
-          query: 'structureItem.case.toPages',
-          select: {
-            id: true,
-            url: 'page.slug',
-            title: true,
-            excerpt: true,
-            casethumbnail: {
-              query: 'page.casethumbnail.toFiles.first',
-              select: ['url', 'alt'],
-            },
-            casesubtitle: true,
-          },
-        },
-      },
+    homevideotext: 'page.homevideotext',
+    homevideobutton: true,
+    homevideo: {
+      query: 'page.homevideo.toFiles.first',
+      select: ['url', 'alt'],
     },
-    homelatestcaseslink: true,
-    homelatestcaseslinktext: true,
-    homeoutcomes: true,
-    homeoutcomeslinks: {
-      query: 'page.homeoutcomeslinks.toStructure',
+    homephilosophytitle: true,
+    homephilosophytext: true,
+    homephilosophysubtitle: true,
+    homefocusareastitle: true,
+    homefocusareas: {
+      query: 'page.homefocusareas.toStructure',
       select: {
-        homeoutcomeslinkslink: true,
-        homeoutcomeslinkstext: true,
-      },
-    },
-    homeoutcomeslink: true,
-    homeoutcomeslinktext: true,
-    homeclientstitle: true,
-    homeclientstext: true,
-    homeclients: {
-      query: 'page.homeclients.toStructure',
-      select: {
-        homeclientslogo: {
-          query: 'structureItem.homeclientslogo.toFiles.first',
+        homefocusareastitletitle: true,
+        homefocusareassubtitle: true,
+        homefocusareastext: true,
+        homefocusareasimage: {
+          query: 'structureItem.homefocusareasimage.toFiles.first',
           select: ['url', 'alt'],
-        },
-        homeclientsname: true,
-        homeclientsdescription: true,
-      },
+        }
+      }
     },
-    homeclientslink: true,
-    homeclientslinktext: true,
-    hometeamtext: true,
-    hometeamimage: {
-      query: 'page.hometeamimage.toFiles.first',
-      select: ['url', 'alt'],
-    },
-    hometeamlink: true,
-    hometeamlinktext: true,
-    homenewsletter: true,
+    homefocusareasbutton: true,
+    hometext: true,
+    // homenewsletter: true
   },
 }

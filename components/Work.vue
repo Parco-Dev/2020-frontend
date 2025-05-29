@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { getCaseQuery } from '~/queries'
+import { getWorkQuery } from '~/queries'
 
 defineProps<{
   open: boolean
 }>()
 
 const route = useRoute()
-const { queryApi, queryParams } = useQueryParams(getCaseQuery(route.path))
+const { queryApi, queryParams } = useQueryParams(getWorkQuery(route.path))
 // TODO: type any
 const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
 const page = computed(() => data.value?.result)
@@ -14,12 +14,88 @@ watchEffect(() => console.log(page.value))
 </script>
 
 <template>
-  <section :class="{ open }" class="single-section section-case">
+  <section :class="{ open }" class="single-section section-work">
     <div class="single-section-inner">
       <NuxtLink to="/" class="section-header"></NuxtLink>
       <div class="site-header">
         <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" />
-        <p>Case study</p>
+        <p>Work</p>
+      </div>
+      <div class="section-content">
+        <div class="work-title">
+          <h1>{{ page?.title }}</h1>
+        </div>
+        <div class="work-info">
+          <div class="row">
+            <div class="col-lg-6 col-12 work-subtitle">
+              <span v-html="page?.worksubtitle"></span>
+            </div>
+            <div class="col-lg-2 col-6">
+              <div class="meta-location single-meta">
+                <p class="work-meta-label">Location</p>
+                <span v-html="page?.worklocation"></span>
+              </div>
+              <div class="meta-year single-meta">
+                <p class="work-meta-label">Year</p>
+                <span>
+                  <p>{{ page?.workyear }}</p>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-2 col-6">
+              <div class="meta-client single-meta">
+                <p class="work-meta-label">Client</p>
+                <span v-html="page?.workclient"></span>
+              </div>
+              <div class="meta-collaborators single-meta">
+                <p class="work-meta-label">Collaborators</p>
+                <span v-html="page?.workcollaborators"></span>
+              </div>
+            </div>
+            <div class="col-lg-2 col-6">
+              <p class="work-meta-label">Services</p>
+              <span v-html="page?.workservices"></span>
+            </div>
+          </div>
+        </div>
+        <div class="work-image">
+          <img :src="page?.workmainimage?.url" />
+        </div>
+        <div class="work-content">
+          <div v-for="block in page?.workcontentblocks" :key="block.id" class="single-module" :class="block.type">
+            <div v-if="block.type === 'textblock'" class="module-text-one-column">
+              <div class="row">
+                <div class="col-lg-3 col-12 column-title">
+                  <span v-html="block.blocktitle"></span>
+                </div>
+                <div class="col-lg-9 col-12 column-content">
+                  <span v-html="block.paragraph"></span>
+                </div>
+              </div>
+            </div>
+            <div v-else-if="block.type === 'imageblock'" class="module-image">
+              <div class="row">
+                <div class="col-lg-3 col-12"></div>
+                <div class="col-lg-9 col-12">
+                  <img :src="block.image.url" alt="Image">
+                  <div class="caption">
+                    <span v-html="block.caption"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>
+          </div>
+        </div>
+      </div>
+      <AppFooter />
+    </div>
+    <!--
+    <div class="single-section-inner">
+      <NuxtLink to="/" class="section-header"></NuxtLink>
+      <div class="site-header">
+        <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" />
+        <p>Work</p>
       </div>
       <div class="section-content">
         <div class="case-title">
@@ -77,7 +153,6 @@ watchEffect(() => console.log(page.value))
               <div class="row">
                 <div class="col-lg-3 col-12"></div>
                 <div class="col-lg-9 col-12">
-                  <!-- <img :src="page?.casecontentblocksimage.find(b => b.id === block.id).image.url" alt="Image" /> -->
                   <img :src="block.image.url" alt="Image">
                   <div class="caption">
                     <span v-html="block.caption"></span>
@@ -144,7 +219,7 @@ watchEffect(() => console.log(page.value))
             :key="index"
             :class="`single-case columns-${cases?.columns}`"
           >
-            <NuxtLink :to="`/cases/${cases?.case[0]?.url}`">
+            <NuxtLink :to="`/works/${cases?.case[0]?.url}`">
               <div class="case-image">
                 <img :src="cases?.case[0]?.casethumbnail?.url" />
               </div>
@@ -159,10 +234,11 @@ watchEffect(() => console.log(page.value))
             </NuxtLink>
           </div>
         </div>
-        <NuxtLink to="/cases" class="button">View all</NuxtLink>
+        <NuxtLink to="/works" class="button">View all</NuxtLink>
       </div>
 
       <AppFooter />
     </div>
+    -->
   </section>
 </template>

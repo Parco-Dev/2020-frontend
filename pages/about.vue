@@ -12,9 +12,10 @@ setPage(page)
 
 <template>
   <div class="page-about">
-    <Home :open="true" />
+    <Home :open="false" />
+    <Works :open="false" />
+    <Clients :open="false" />
     <About :open="true" />
-    <Cases :open="false" />
     <Contact :open="false" />
   </div>
 </template>

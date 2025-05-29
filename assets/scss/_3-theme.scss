@@ -342,8 +342,8 @@ body.about:not(.active-class) {
   }
 }
 
-body.cases:not(.active-class) {
-  .section-cases {
+body.works:not(.active-class) {
+  .section-works {
     @include media-breakpoint-down(sm) {
       border-left: 1px solid transparent;
     }
@@ -448,7 +448,7 @@ body.active-class {
         right: 0px;
       }
     }
-    &.section-cases {
+    &.section-works {
       @include media-breakpoint-down(sm) {
         right: -33.333vw;
       }
@@ -485,6 +485,19 @@ body.active-class {
       right: 0vw;
     }
     .single-section-inner {
+      .section-title {
+        p {
+          text-transform: uppercase;
+          transform: rotate(0deg) translateX(0px);
+          transform-origin: left;
+          position: relative;
+          top: 0px;
+          left: 0.25vw;
+          text-align: left;
+          height: auto;
+          width: auto;
+        }
+      }
       .section-content {
         .section-content-body {
           // opacity: 1;
@@ -516,6 +529,14 @@ body.active-class {
       }
       p {
         text-transform: uppercase;
+        transform: rotate(-90deg) translateX(-83px);
+        transform-origin: left;
+        position: relative;
+        top: 0.5vw;
+        left: 1.8vw;
+        text-align: right;
+        height: auto;
+        width: 7vw;
       }
     }
     .section-content {
@@ -541,7 +562,7 @@ body {
       }
     }
   }
-  .section-case {
+  .section-work {
     .single-section-inner {
       .section-content {
         opacity: 1;
@@ -554,12 +575,27 @@ body {
   width: 100vw;
   transition: right 0.3s ease-in;
 }
-.section-case {
+.section-work {
   width: 100vw;
   transition: right 0.3s ease-in;
 }
+.section-clients {
+  width: 90vw;
+  transition: transform 0.2s linear, right 0.3s ease-in;
+  &.open {
+    &:hover {
+      transform: translateX(0vw);
+    }
+  }
+  &:hover {
+    transform: translateX(-1vw);
+    @include media-breakpoint-down(sm) {
+      transform: translateX(0vw);
+    }
+  }
+}
 .section-about {
-  width: 95vw;
+  width: 85vw;
   transition: transform 0.2s linear, right 0.3s ease-in;
   @include media-breakpoint-down(sm) {
     width: 100vw;
@@ -576,8 +612,9 @@ body {
     }
   }
 }
-.section-cases {
-  width: 35vw;
+
+.section-works {
+  width: 95vw;
   transition: transform 0.2s linear, right 0.3s ease-in, width 0.3s ease-in;
   @include media-breakpoint-down(sm) {
     width: 100vw;
@@ -594,8 +631,9 @@ body {
     }
   }
 }
+
 .section-contact {
-  width: 40vw;
+  width: 60vw;
   transition: transform 0.2s linear, right 0.3s ease-in;
   @include media-breakpoint-down(sm) {
     width: 100vw;
@@ -694,8 +732,9 @@ body {
       }
       p {
         @extend %micro;
-        width: 245px;
+        width: 175px;
         margin-bottom: 0px;
+        text-transform: uppercase;
       }
     }
     .site-header-mobile {
@@ -725,14 +764,12 @@ body {
       padding-right: 0vw;
     }
     .block-about {
-      margin-bottom: $spacer * 8;
+      margin-bottom: $spacer * 24;
       @include media-breakpoint-up(xl) {
-        margin-bottom: $spacer-xl * 8;
+        margin-bottom: $spacer-xl * 24;
       }
       @include media-breakpoint-down(sm) {
-        margin-bottom: $spacer-sm* 8;
-        display: flex;
-        flex-direction: column-reverse;
+        margin-bottom: $spacer-sm * 10;
       }
       .about-text {
         margin-bottom: $spacer * 2.5;
@@ -746,7 +783,7 @@ body {
           padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
         }
         p {
-          @extend %medium;
+          @extend %extralarge;
           text-transform: uppercase;
         }
         a {
@@ -756,6 +793,303 @@ body {
         @include media-breakpoint-down(sm) {
           object-fit: cover;
           height: 80vw;
+        }
+      }
+    }
+    .block-video {
+      position: relative;
+      width: calc(100% - 5vw);
+      aspect-ratio: 16/9;
+      margin-bottom: $spacer * 24;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+      }
+      .video-container {
+        cursor: pointer;
+        width: 100%;
+        opacity: 1;
+        pointer-events: all;
+        transition: opacity 0.2s linear;
+        &.hidden {
+          opacity: 0;
+          pointer-events: none;
+        }
+        .video-container-image {
+          width: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .video-container-text {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          z-index: 1;
+          height: 100%;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          p {
+            @extend %medium;
+            margin-bottom: $spacer;
+            text-transform: uppercase;
+          }
+          .video-container-text-button {
+            padding: $spacer $spacer*2;
+            border-radius: 100vw;
+            border: 1px solid $color-white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p {
+              @extend %extrasmall;
+              text-transform: uppercase;
+              margin-bottom: 0px;
+            }
+          }
+        }
+      }
+      .video-container-video {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    .block-philosophy {
+      margin-bottom: $spacer * 24;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+      }
+      .block-philosophy-title {
+        p {
+          margin-bottom: $spacer;
+          text-align: center;
+          text-transform: uppercase;
+          @extend %extrasmall;
+        }
+      }
+      .block-philosophy-text {
+        p {
+          margin-bottom: $spacer/2;
+          text-align: center;
+          text-transform: uppercase;
+          @extend %extralarge;
+        }
+      }
+      .block-philosophy-subtitle {
+        padding: 0px 20%;
+        @include media-breakpoint-down(sm) {
+          padding: 0px;
+        }
+        p {
+          margin-bottom: 0px;
+          text-align: center;
+          @extend %small;
+        }
+      }
+    }
+    .block-focus-areas {
+      padding: $spacer 0px;
+      margin-bottom: $spacer * 24;
+      @include media-breakpoint-up(xl) {
+        padding: $spacer-xl 0px;
+        margin-bottom: $spacer-xl * 24;
+      }
+      @include media-breakpoint-down(sm) {
+        padding: $spacer-sm 0px;
+        margin-bottom: $spacer-sm * 10;
+      }
+      .collapse-enter-active,
+      .collapse-leave-active {
+        transition: max-height 0.4s ease;
+        overflow: hidden;
+      }
+      .collapse-enter-from,
+      .collapse-leave-to {
+        max-height: 0;
+      }
+      .collapse-enter-to,
+      .collapse-leave-from {
+        max-height: 1000px;
+      }
+      .block-title {
+        padding: 0px $spacer;
+        @include media-breakpoint-up(xl) {
+          padding: 0px $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: 0px $spacer-sm;
+        }
+        p {
+          margin-bottom: 0px;
+          text-transform: uppercase;
+        }
+      }
+      .single-focus-area {
+        min-height: 16vw;
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid $color-white;
+        .focus-area-button {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          z-index: 1;
+          padding: $spacer;
+          @include media-breakpoint-up(xl) {
+            padding: $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            padding: $spacer-sm;
+          }
+          .focus-area-button-title {
+            padding-top: $spacer/2;
+            margin-bottom: $spacer;
+            @include media-breakpoint-up(xl) {
+              padding-top: $spacer-xl/2;
+              margin-bottom: $spacer-xl;
+            }
+            @include media-breakpoint-down(sm) {
+              padding-top: $spacer-sm/2;
+              margin-bottom: $spacer-sm;
+            }
+            p {
+              margin-bottom: 0px;
+              @extend %extralarge;
+              text-transform: uppercase;
+            }
+          }
+          .focus-area-button-subtitle {
+            padding-right: 40%;
+            @include media-breakpoint-down(sm) {
+              padding-right: 0px;
+            }
+            p {
+              margin-bottom: 0px;
+              @extend %small;
+            }
+          }
+        }
+        .focus-area-content {
+          position: relative;
+          display: flex;
+          padding: $spacer;
+          padding-right: calc(5vw + #{$spacer});
+          @include media-breakpoint-up(xl) {
+            padding: $spacer-xl;
+            padding-right: calc(5vw + #{$spacer-xl});
+          }
+          @include media-breakpoint-down(sm) {
+            padding: $spacer-sm;
+            padding-right: calc(5vw + #{$spacer-sm});
+          }
+          .gradient-overlay-top {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 25vw;
+            z-index: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
+          }
+          .gradient-overlay-bottom {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 25vw;
+            z-index: 0;
+            background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+          }
+          .focus-area-content-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: -1;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .focus-area-content-info {
+            width: 100%;
+            position: absolute;
+            bottom: $spacer;
+            left: $spacer;
+            z-index: 1;
+            padding-right: 50%;
+            @include media-breakpoint-down(sm) {
+              padding-right: 0px;
+            }
+            p {
+              margin-bottom: 0px;
+              @extend %extrasmall;
+            }
+          }
+        }
+      }
+      .focus-areas-button {
+        padding: 0px $spacer;
+        @include media-breakpoint-up(xl) {
+          padding: 0px $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: 0px $spacer-sm;
+        }
+        a {
+
+        }
+      }
+    }
+    .block-big-text {
+      margin-bottom: $spacer * 24;
+      padding-right: calc(5vw + #{$spacer});
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding-right: calc(5vw + #{$spacer-xl});
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+        padding-right: calc(5vw + #{$spacer-sm});
+      }
+      .big-text {
+        margin-bottom: $spacer * 2.5;
+        padding: $spacer;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl * 2.5;
+          padding: $spacer-xl;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm * 2.5;
+          padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+        }
+        p {
+          @extend %extralarge;
+          text-transform: uppercase;
+        }
+        a {
+
         }
       }
     }
@@ -828,7 +1162,7 @@ body {
         }
       }
     }
-    .block-latest-cases {
+    .block-latest-works {
       margin-bottom: $spacer * 24;
       padding: $spacer;
       @include media-breakpoint-up(xl) {
@@ -851,7 +1185,7 @@ body {
           }
         }
       }
-      .block-latest-cases-list {
+      .block-latest-works-list {
         display: flex;
         @include media-breakpoint-down(sm) {
           flex-wrap: wrap;
@@ -1113,24 +1447,30 @@ body {
     }
   }
 }
-.section-case {
+.section-work {
 }
 
 body {
-  .section-about {
-    right: calc(-95vw + 15vw);
+  .section-works {
+    right: -75vw;
     @include media-breakpoint-down(sm) {
       right: -100vw;
     }
   }
-  .section-cases {
-    right: calc(-40vw + 15vw);
+  .section-clients {
+    right: -75vw;
+    @include media-breakpoint-down(sm) {
+      right: -100vw;
+    }
+  }
+  .section-about {
+    right: -75vw;
     @include media-breakpoint-down(sm) {
       right: -100vw;
     }
   }
   .section-contact {
-    right: calc(-40vw + 5vw);
+    right: -55vw;
     @include media-breakpoint-down(sm) {
       right: -100vw;
     }
@@ -1146,7 +1486,7 @@ body[data-template=about].active-class {
       right: 0px;
     }
   }
-  .section-cases {
+  .section-works {
     @include media-breakpoint-down(sm) {
       right: -100vw;
     }
@@ -1159,11 +1499,110 @@ body[data-template=about].active-class {
 }
 */
 
+/* CLIENTS */
+
+body.clients {
+  .section-clients {
+    .section-content {
+      opacity: 1;
+    }
+  }
+}
+
+body[data-template=clients] {
+	.section-home {
+		right: 0px;
+	}
+	.section-work {
+		
+	}
+  .section-clients {
+		right: 0px;
+    &:hover {
+      transform: none;
+    }
+    .section-header {
+      pointer-events: none;
+    }
+	}
+	.section-works {
+		right: 0px;
+	}
+  /*
+	.section-works {
+		right: calc(-40vw + 5vw);
+	}
+	.section-contact {
+		right: calc(-40vw + 5vw);
+	}
+  */
+}
+
+.section-clients {
+  .section-content {
+    transition: opacity 0.5s linear;
+    transition-delay: 1s;
+    opacity: 0;
+    padding-right: 10vw;
+    overflow-x: hidden;
+    @include media-breakpoint-down(sm) {
+      padding-right: 0px;
+    }
+    .block-clients-text {
+      padding: $spacer;
+      @extend %extralarge;
+      text-transform: uppercase;
+    }
+    .clients-logos {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0px -#{$spacer/4};
+      @include media-breakpoint-up(xl) {
+        margin: 0px -#{$spacer-xl/4};
+      }
+      @include media-breakpoint-down(sm) {
+        margin: 0px -#{$spacer-sm/4};
+      }
+      .single-client {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+        padding: 0px $spacer/4;
+        @include media-breakpoint-up(xl) {
+          padding: 0px $spacer-xl/4;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: 0px $spacer-sm/4;
+          width: 100%;
+        }
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 80%;
+            filter: grayscale(1);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ABOUT */
+
 body[data-template=about] {
 	.section-home {
 		right: 0px;
 	}
-	.section-case {
+  .section-works {
+		right: 0px;
+	}
+  .section-clients {
+		right: 0px;
+	}
+	.section-work {
 		// display: none;
 	}
 	.section-about {
@@ -1176,7 +1615,7 @@ body[data-template=about] {
     }
 	}
   /*
-	.section-cases {
+	.section-works {
 		right: calc(-40vw + 5vw);
 	}
 	.section-contact {
@@ -1198,12 +1637,35 @@ body.about {
     transition: opacity 0.5s linear;
     transition-delay: 1s;
     opacity: 0;
-    padding-right: 10vw;
+    padding-right: 5vw;
     overflow-x: hidden;
     @include media-breakpoint-down(sm) {
       padding-right: 0px;
     }
-    .block-about-main-text {
+    .block-about-text {
+      margin-bottom: $spacer*24;
+      padding: 0px $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl * 24;
+        padding: 0px $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm * 10;
+        padding: 0px $spacer-sm;
+      }
+      .about-text-main {
+        margin-bottom: $spacer;
+        p {
+          @extend %small;
+        }
+      }
+      .about-text {
+        p {
+          @extend %extrasmall;
+        }
+      }
+    }
+    .block-approach {
       margin-bottom: $spacer*24;
       padding: $spacer;
       @include media-breakpoint-up(xl) {
@@ -1214,11 +1676,69 @@ body.about {
         margin-bottom: $spacer-sm * 10;
         padding: $spacer-sm;
       }
-      p {
-        @extend %extralarge;
-        text-transform: uppercase;
-        @include media-breakpoint-down(sm) {
-          font-size: 18.5vw;
+      .block-approach-title {
+        p {
+          margin-bottom: 0px;
+          text-transform: uppercase;
+        }
+      }
+      .block-approach-text {
+        width: 33.333%;
+        p {
+          @extend %micro;
+        }
+      }
+      .block-approach-inner {
+        .collapses-container {
+          display: flex;
+          .single-collapse {
+            border-left: 1px solid $color-white;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            height: 40vw;
+            width: 25%;
+            transition: width 0.2s ease;
+            &.opencollapse {
+              width: 80%;
+            }
+            .collapse-link {
+              width: 7vw;
+              a {
+                display: block;
+                font-weight: bold;
+                cursor: pointer;
+                @extend %large;
+                transform: rotate(90deg);
+                transform-origin: 45% 50%;
+                text-transform: uppercase;
+              }
+            }
+            .collapse-content {
+              max-width: 0;
+              overflow: hidden;
+              transition: max-width 0.4s ease;
+              white-space: nowrap;
+              &.open {
+                max-width: 28vw;
+              }
+              .approach-text {
+                margin-bottom: $spacer;
+                p {
+                  @extend %extrasmall;
+                  text-transform: uppercase;
+                  margin-bottom: 0px;
+                  white-space: wrap;
+                }
+              }
+              .approach-icon {
+                margin-bottom: $spacer;
+                img {
+                  width: $spacer*6;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -1593,6 +2113,206 @@ body.about {
             margin-right: $spacer/3*2;
             &.active-circle {
               background-color: $color-dark-grey;
+            }
+          }
+        }
+      }
+    }
+    .block-team {
+      margin-bottom: $spacer*24;
+      padding: 0px $spacer;
+      @include media-breakpoint-up(xl) {
+        margin-bottom: $spacer-xl*24;
+        padding: 0px $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: $spacer-sm*10;
+        padding: 0px $spacer-sm;
+      }
+      .block-team-title {
+        p {
+          text-transform: uppercase;
+          @extend %medium;
+        }
+      }
+      .block-team-text {
+        p {
+          @extend %micro;
+        }
+      }
+      .block-team-inner {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0px -#{$spacer/2};
+        @include media-breakpoint-up(xl) {
+          margin: 0px -#{$spacer-xl/2};
+        }
+        @include media-breakpoint-down(sm) {
+          margin: 0px -#{$spacer-sm/2};
+        }
+        .single-person {
+          padding: 0px $spacer/2;
+          flex: 0 0 auto;
+          width: 33.333%;
+          transition: opacity 0.5s linear;
+          opacity: 1;
+          position: relative;
+          cursor: pointer;
+          margin-bottom: $spacer;
+          @include media-breakpoint-up(xl) {
+            padding: 0px $spacer-xl/2;
+            margin-bottom: $spacer-xl;
+          }
+          @include media-breakpoint-down(sm) {
+            padding: 0px $spacer-sm/2;
+            margin-bottom: $spacer-sm;
+            width: 80vw;
+          }
+          img {
+            border-radius: 3px;
+          }
+          &.active {
+            .single-person-inner {
+              .person-biography {
+                display: block;
+              }
+            }
+          }
+          .single-person-inner {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            .person-info {
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              width: 100%;
+              height: 100%;
+              z-index: 1;
+              padding: $spacer;
+              @include media-breakpoint-up(xl) {
+                padding: $spacer-xl;
+              }
+              @include media-breakpoint-down(sm) {
+                padding: $spacer-sm;
+              }
+              .person-name {
+                margin-bottom: calc(#{$spacer} / 2);
+                @include media-breakpoint-up(xl) {
+                  margin-bottom: calc(#{$spacer-xl} / 2);
+                }
+                @include media-breakpoint-down(sm) {
+                  margin-bottom: calc(#{$spacer-sm} / 2);
+                }
+                p {
+                  @extend %small;
+                  text-transform: uppercase;
+                  margin-bottom: 0px;
+                  white-space: normal;
+                  @include media-breakpoint-down(sm) {
+                    font-size: 46px;
+                    line-height: 40px;
+                  }
+                }
+              }
+              .person-role {
+                p {
+                  @extend %ultrasmall;
+                  text-transform: uppercase;
+                  margin-bottom: 0px;
+                  @include media-breakpoint-down(sm) {
+                    font-size: 24px;
+                    line-height: 24px;
+                  }
+                }
+              }
+            }
+            .person-biography {
+              display: none;
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              width: 100%;
+              height: 100%;
+              z-index: 1;
+              border-radius: 3px;
+              background-color: $color-white;
+              padding: $spacer;
+              @include media-breakpoint-up(xl) {
+                padding: $spacer-xl;
+              }
+              @include media-breakpoint-down(sm) {
+                padding: $spacer-sm;
+              }
+              p{
+                white-space: normal;
+              }
+              .person-name {
+                margin-bottom: calc(#{$spacer} / 2);
+                @include media-breakpoint-up(xl) {
+                  margin-bottom: calc(#{$spacer-xl} / 2);
+                }
+                @include media-breakpoint-down(sm) {
+                  margin-bottom: calc(#{$spacer-sm} / 2);
+                }
+                p {
+                  @extend %small;
+                  text-transform: uppercase;
+                  margin-bottom: 0px;
+                  color: $color-black;
+                  @include media-breakpoint-down(sm) {
+                    font-size: 46px;
+                    line-height: 40px;
+                  }
+                }
+              }
+              .person-role {
+                p {
+                  @extend %ultrasmall;
+                  text-transform: uppercase;
+                  margin-bottom: 0px;
+                  color: $color-black;
+                  @include media-breakpoint-down(sm) {
+                    font-size: 24px;
+                    line-height: 24px;
+                  }
+                }
+              }
+              .person-contact {
+                p {
+                  @extend %ultrasmall;
+                  text-transform: uppercase;
+                  margin-bottom: 0px;
+                  color: $color-black;
+                  @include media-breakpoint-down(sm) {
+                    font-size: 24px;
+                    line-height: 24px;
+                  }
+                }
+              }
+              .person-bio {
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                z-index: 1;
+                width: 100%;
+                padding: $spacer;
+                @include media-breakpoint-up(xl) {
+                  padding: $spacer-xl;
+                }
+                @include media-breakpoint-down(sm) {
+                  padding: $spacer-sm;
+                }
+                p {
+                  @extend %micro;
+                  margin-bottom: 0px;
+                  color: $color-black;
+                  @include media-breakpoint-down(sm) {
+                    font-size: 16px;
+                    line-height: 16px;
+                  }
+                }
+              }
             }
           }
         }
@@ -1979,13 +2699,13 @@ body.about {
 /* CASES */
 
 /*
-body[data-template=cases].active-class {
+body[data-template=works].active-class {
   .section-about {
     @include media-breakpoint-down(sm) {
       right: 100vw;
     }
   }
-  .section-cases {
+  .section-works {
     @include media-breakpoint-down(sm) {
       right: 0vw;
     }
@@ -1998,117 +2718,103 @@ body[data-template=cases].active-class {
 }
 */
 
-body[data-template=cases] {
-  &.expand-cases-active {
+body[data-template=works] {
+  .section-works {
+    right: 0px;
+    width: 95vw;
+    @include media-breakpoint-down(sm) {
+      width: 100vw;
+    }
+    .works-list {
+      display: flex;
+      flex: wrap;
+      margin: 0px calc(-#{$spacer} / 4);
+      @include media-breakpoint-up(xl) {
+        margin: 0px calc(-#{$spacer-xl} / 4);
+      }
+      @include media-breakpoint-down(sm) {
+        margin: 0px calc(-#{$spacer-sm} / 4);
+      }
+      .single-work {
+        width: 33.333%;
+        margin-bottom: 0px;
+        padding: 0px calc($spacer / 4);
+        @include media-breakpoint-up(xl) {
+          padding: 0px calc($spacer-xl / 4);
+        }
+        @include media-breakpoint-down(sm) {
+          padding: 0px calc($spacer-sm / 4);
+          width: 100%;
+        }
+        a {
+          height: 100%;
+          .work-image {
+            height: 100%;
+          }
+        }
+      }
+      &.grid {
+        display: flex;
+        flex-wrap: wrap; /* Backup if JS fails */
+        padding: 10px;
+      }
+      .grid-item {
+        overflow: hidden;
+        @include media-breakpoint-down(sm) {
+          margin-bottom: 10px;
+        }
+      }
+      .grid-item.vertical {
+        width: calc(33.333% - 10px); /* Adjust for 3 columns */
+        height: calc(40vw - 10px)!important;
+        margin-bottom: 5px;
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+          height: 40vh !important;
+          margin-bottom: 10px;
+        }
+      }
+      .grid-item.horizontal-small {
+        width: calc(33.333% - 10px);
+        height: calc(20vw - 7.5px)!important;
+        margin-bottom: 5px;
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+          height: 20vh !important;
+          margin-bottom: 10px;
+        }
+      }
+      .grid-item.horizontal-large {
+        width: calc(66.666% - 20px); /* Span 2 columns */
+        height: calc(40vw - 10px)!important;
+        margin-bottom: 10px;
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+          height: 60vh !important;
+        }
+      }
+      .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  &.expand-works-active {
     .section-about {
       right: 0px;
-    }
-    .section-cases {
-      right: 0px;
-      width: 90vw;
-      @include media-breakpoint-down(sm) {
-        width: 100vw;
-      }
-      .cases-list {
-        display: flex;
-        flex: wrap;
-        margin: 0px calc(-#{$spacer} / 4);
-        @include media-breakpoint-up(xl) {
-          margin: 0px calc(-#{$spacer-xl} / 4);
-        }
-        @include media-breakpoint-down(sm) {
-          margin: 0px calc(-#{$spacer-sm} / 4);
-        }
-        .single-case {
-          width: 33.333%;
-          margin-bottom: 0px;
-          padding: 0px calc($spacer / 4);
-          @include media-breakpoint-up(xl) {
-            padding: 0px calc($spacer-xl / 4);
-          }
-          @include media-breakpoint-down(sm) {
-            padding: 0px calc($spacer-sm / 4);
-            width: 100%;
-          }
-          a {
-            height: 100%;
-            .case-image {
-              height: 100%;
-            }
-          }
-        }
-        &.grid {
-          display: flex;
-          flex-wrap: wrap; /* Backup if JS fails */
-          padding: 10px;
-        }
-        .grid-item {
-          overflow: hidden;
-          @include media-breakpoint-down(sm) {
-            margin-bottom: 10px;
-          }
-        }
-        .grid-item.vertical {
-          width: calc(33.333% - 10px); /* Adjust for 3 columns */
-          height: calc(40vw - 10px)!important;
-          margin-bottom: 5px;
-          @include media-breakpoint-down(sm) {
-            width: 100%;
-            height: 40vh !important;
-            margin-bottom: 10px;
-          }
-        }
-        .grid-item.horizontal-small {
-          width: calc(33.333% - 10px);
-          height: calc(20vw - 7.5px)!important;
-          margin-bottom: 5px;
-          @include media-breakpoint-down(sm) {
-            width: 100%;
-            height: 20vh !important;
-            margin-bottom: 10px;
-          }
-        }
-        .grid-item.horizontal-large {
-          width: calc(66.666% - 20px); /* Span 2 columns */
-          height: calc(40vw - 10px)!important;
-          margin-bottom: 10px;
-          @include media-breakpoint-down(sm) {
-            width: 100%;
-            height: 60vh !important;
-          }
-        }
-        .grid-item img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-      .cases-view-all {
-        display: none;
-        @include media-breakpoint-down(sm) {
-          display: none;
-        }
-        .cta {
-          .view-all {
-            display: none;
-          }
-          .view-less {
-            display: inline;
-          }
-        }
-      }
     }
   }
 	.section-home {
 		right: 0px;
 	}
-	.section-case {
+	.section-work {
 		// display: none;
 	}
 	.section-about {
-		right: calc(-95vw + 40vw);
+		// right: 0px;
 	}
-	.section-cases {
+	.section-works {
 		right: 0px;
     .section-header {
       pointer-events: none;
@@ -2121,26 +2827,26 @@ body[data-template=cases] {
     */
 }
 
-body.cases {
-  .section-cases {
+body.works {
+  .section-works {
     .section-content {
       opacity: 1;
     }
 	}
 }
 
-.section-cases {
+.section-works {
   .section-content {
     transition: opacity 0.5s linear;
     transition-delay: 1s;
     opacity: 0;
-    padding-right: 5vw;
+    padding-right: calc(15vw + 0px);
     overflow-x: hidden;
     // overflow-y: hidden;
     @include media-breakpoint-down(sm) {
       padding-right: 0px;
     }
-    .cases-list {
+    .works-list {
       padding: $spacer;
       @include media-breakpoint-up(xl) {
         padding: $spacer-xl;
@@ -2149,7 +2855,7 @@ body.cases {
         padding: $spacer-sm;
       }
     }
-    .cases-view-all {
+    .works-view-all {
       margin-bottom: $spacer*2;
       padding: $spacer;
       @include media-breakpoint-up(xl) {
@@ -2177,7 +2883,7 @@ body.cases {
 
 /* CASE TILE */
 
-.single-case {
+.single-work {
   position: relative;
   margin-bottom: $spacer;
   @include media-breakpoint-up(xl) {
@@ -2188,7 +2894,7 @@ body.cases {
   }
   &:hover {
     a {
-      .case-image {
+      .work-image {
         img {
           filter: blur(0px);
         }
@@ -2197,7 +2903,7 @@ body.cases {
   }
   a {
     display: block;
-    .case-image {
+    .work-image {
       overflow: hidden;
       border-radius: 3px;
       img {
@@ -2208,7 +2914,7 @@ body.cases {
         }
       }
     }
-    .case-info {
+    .work-info {
       position: absolute;
       top: 0px;
       left: 0px;
@@ -2222,7 +2928,7 @@ body.cases {
       @include media-breakpoint-down(sm) {
         padding: $spacer-sm;
       }
-      .case-title {
+      .work-title {
         margin-bottom: calc(#{$spacer} / 2);
         @include media-breakpoint-up(xl) {
           margin-bottom: calc(#{$spacer-xl} / 2);
@@ -2240,7 +2946,7 @@ body.cases {
           }
         }
       }
-      .case-subtitle {
+      .work-subtitle {
         p {
           @extend %ultrasmall;
           text-transform: uppercase;
@@ -2257,7 +2963,7 @@ body {
   .section-home {
     // display: none;
   }
-  .section-case {
+  .section-work {
     right: 0px;
     border-left: 0px;
     .site-header {
@@ -2293,7 +2999,7 @@ body {
       @include media-breakpoint-down(sm) {
         padding-right: 0px;
       }
-      .case-title {
+      .work-title {
         padding: $spacer;
         @include media-breakpoint-up(xl) {
           padding: $spacer-xl;
@@ -2308,7 +3014,7 @@ body {
           letter-spacing: -0.7vw;
         }
       }
-      .case-info {
+      .work-info {
         padding: $spacer;
         @include media-breakpoint-up(xl) {
           padding: $spacer-xl;
@@ -2319,7 +3025,7 @@ body {
         p, span {
           @extend %micro;
         }
-        .case-subtitle {
+        .work-subtitle {
           p {
             @extend %small;
             text-transform: uppercase;
@@ -2335,7 +3041,7 @@ body {
             margin-right: $spacer-sm;
           }
         }
-        .case-meta-label {
+        .work-meta-label {
           text-transform: uppercase;
           margin-bottom: 0px;
         }
@@ -2349,7 +3055,7 @@ body {
           }
         }
       }
-      .case-image {
+      .work-image {
         margin-bottom: $spacer*1.5;
         @include media-breakpoint-up(xl) {
           margin-bottom: $spacer-xl*1.5;
@@ -2360,7 +3066,7 @@ body {
         img {
         }
       }
-      .case-content {
+      .work-content {
         .single-module {
           margin-bottom: $spacer * 2;
           padding: 0px $spacer;
@@ -2647,12 +3353,12 @@ body {
         margin-bottom: $spacer-sm * 24;
         padding: $spacer-sm;
       }
-      .block-related-cases-list {
+      .block-related-works-list {
         display: flex;
         @include media-breakpoint-down(sm) {
           flex-wrap: wrap;
         }
-        .single-case {
+        .single-work {
           width: auto;
           height: 30vw;
           margin-right: $spacer/2;
@@ -2693,7 +3399,7 @@ body {
           }
           a {
             height: 100%;
-            .case-image {
+            .work-image {
               height: 100%;
               img {
                 width: 100%;
@@ -2719,7 +3425,7 @@ body {
   .section-about {
     right: calc(-95vw + 15vw);
   }
-  .section-cases {
+  .section-works {
     right: calc(-40vw + 5vw);
   }
   .section-contact {
@@ -2735,10 +3441,13 @@ body[data-template=contact] {
     right: 0px;
   }
   .section-about {
-    right: calc(-95vw + 50vw);
+    right: 0px;
   }
-  .section-cases {
-    right: calc(-40vw + 50vw);
+  .section-clients {
+    right: 0px;
+  }
+  .section-works {
+    right: 0px;
   }
   .section-contact {
     right: 0px;
@@ -2787,7 +3496,7 @@ body.contact {
       }
     }
   }
-  .block-address {
+  .block-contacts {
     margin-bottom: $spacer * 4;
     padding: 0px $spacer;
     @include media-breakpoint-up(xl) {
@@ -2798,6 +3507,65 @@ body.contact {
       margin-bottom: $spacer-sm * 4;
       padding: 0px $spacer-sm;
     }
+    p {
+      @extend %micro;
+    }
+  }
+  .block-address {
+    display: flex;
+    margin: 0px calc(-#{$spacer} / 4);
+    margin-bottom: $spacer * 4;
+    padding: 0px $spacer;
+    @include media-breakpoint-up(xl) {
+      margin: 0px calc(-#{$spacer-xl} / 4);
+      margin-bottom: $spacer-xl * 4;
+      padding: 0px $spacer-xl;
+    }
+    @include media-breakpoint-down(sm) {
+      margin: 0px calc(-#{$spacer-sm} / 4);
+      margin-bottom: $spacer-sm * 4;
+      padding: 0px $spacer-sm;
+    }
+   .block-address-text {
+    width: 66.666%;
+    padding: 0px $spacer;
+    @include media-breakpoint-up(xl) {
+      padding: 0px $spacer-xl;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 0px $spacer-sm;
+    }
+    .block-address-text-title {
+      p {
+        text-transform: uppercase;
+        @extend %extrasmall;
+        margin-bottom: 0px;
+      }
+    }
+    .block-address-text-content {
+      p {
+        @extend %small;
+        text-transform: uppercase;
+        white-space: wrap;
+        a {
+          transition: font-variation-settings 0.2s ease-in, letter-spacing 0.2s ease-in;
+          &:hover {
+            font-variation-settings: 'wght' 700, 'wdth' 55, 'ital' 12;
+          }
+        }
+      }
+    }
+   }
+   .block-address-clock {
+    width: 33.333%;
+    padding: 0px $spacer;
+    @include media-breakpoint-up(xl) {
+      padding: 0px $spacer-xl;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 0px $spacer-sm;
+    }
+   }
   }
   .block-email {
     margin-bottom: $spacer * 4;

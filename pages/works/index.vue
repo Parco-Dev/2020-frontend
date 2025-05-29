@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { homeQuery } from '~/queries'
-import { casesQuery } from '~/queries'
+import { worksQuery } from '~/queries'
 import { BASE_DELAY } from '~/data/constants'
 
 const { isMobile } = useDevice()
-const { queryApi, queryParams } = useQueryParams(casesQuery)
+const { queryApi, queryParams } = useQueryParams(worksQuery)
 const { data } = await useFetch(queryApi, queryParams)
 const page = (data?.value as any)?.result
 const hoveredProject = ref(-1)
@@ -18,9 +18,10 @@ onUnmounted(() => {})
 
 <template>
   <div class="page-cases">
-    <Home :open="true" />
+    <Home :open="false" />
+    <Works :open="true" />
+    <Clients :open="false" />
     <About :open="false" />
-    <Cases :open="true" />
     <Contact :open="false" />
   </div>
 </template>

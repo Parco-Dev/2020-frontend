@@ -8,9 +8,9 @@ export const contactQuery: KirbyQuerySchema = {
     id: true,
     isListed: true,
     intendedTemplate: true,
-    contactlosangeles: true,
-    contactdubai: true,
-    contactemail: true,
-    contactsocial: 'page.contactsocial.kirbytext',
+    contactgeneral: 'page?.contactgeneral?.kirbytext',
+    contactlosangeles: 'page?.contactlosangeles?.kirbytext',
+    contactdubai: 'page?.contactdubai?.kirbytext',
+    contactsydney: 'page?.contactsydney?.kirbytext',
   },
 }
