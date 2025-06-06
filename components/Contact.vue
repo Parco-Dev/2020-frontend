@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { contactQuery } from '~/queries'
+import Clock from '~/components/Clock.vue'
 
 const { queryApi, queryParams } = useQueryParams(contactQuery)
 // TODO: type any
@@ -19,6 +20,7 @@ const closeMenu = () => {
     closeMenuMobile();
   }
 };
+
 
 
 </script>
@@ -47,7 +49,9 @@ const closeMenu = () => {
               </client-only>
             </div>
           </div>
-          <div class="block-address-clock"></div>
+          <div class="block-address-clock">
+            <Clock timezone="America/Los_Angeles" />
+          </div>
         </div>
         <div class="block-address">
           <div class="block-address-text">
@@ -60,7 +64,9 @@ const closeMenu = () => {
               </client-only>
             </div>
           </div>
-          <div class="block-address-clock"></div>
+          <div class="block-address-clock">
+            <Clock timezone="Asia/Dubai" />
+          </div>
         </div>
         <div class="block-address">
           <div class="block-address-text">
@@ -73,54 +79,12 @@ const closeMenu = () => {
               </client-only>
             </div>
           </div>
-          <div class="block-address-clock"></div>
+          <div class="block-address-clock">
+            <Clock timezone="Australia/Sydney" />
+          </div>
         </div>
+        <AppFooter/>
       </div>
     </div>
-    <!--
-    <div class="single-section-inner">
-      <NuxtLink to="/contact" class="section-header" @click="closeMenu"></NuxtLink>
-      <div class="section-title">
-        <p>Contacts</p>
-      </div>
-      <div class="section-content">
-        <div class="block-address">
-          <div class="block-title">
-            <p>Los Angeles</p>
-          </div>
-          <div class="block-content">
-            <p v-html="page?.contactlosangeles"></p>
-          </div>
-        </div>
-        <div class="block-address">
-          <div class="block-title">
-            <p>Dubai</p>
-          </div>
-          <div class="block-content">
-            <p v-html="page?.contactdubai"></p>
-          </div>
-        </div>
-        <div class="block-email">
-          <div class="block-title">
-            <p>Email</p>
-          </div>
-          <div class="block-content">
-            <a :href="`mailto:${page?.contactemail}`">{{
-              page?.contactemail
-              }}</a>
-          </div>
-        </div>
-        <div class="block-social">
-          <div class="block-title">
-            <p>Social</p>
-          </div>
-          <div class="block-content">
-            <span v-html="page?.contactsocial"></span>
-          </div>
-        </div>
-        <AppFooter />
-      </div>
-    </div>
-    -->
   </section>
 </template>

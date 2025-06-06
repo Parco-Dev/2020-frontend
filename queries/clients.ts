@@ -7,7 +7,7 @@ export const clientsQuery: KirbyQuerySchema = {
     title: true,
     id: true,
     intendedTemplate: true,
-    clientstext: true,
+    clientstext: 'page?.clientstext?.kirbytext',
     clients: {
       query: 'page.clients.toStructure',
       select: {

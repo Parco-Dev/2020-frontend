@@ -31,7 +31,9 @@ const closeMenu = () => {
       </div>
       <div class="section-content">
         <div class="block-clients-text">
-          <p v-html="page?.clientstext"></p>
+          <client-only>
+            <p v-html="page?.clientstext"></p>
+          </client-only>
         </div>
         <div class="clients-logos">
           <div
@@ -44,54 +46,9 @@ const closeMenu = () => {
             </a>
           </div>
         </div>
+        <AppFooter/>
       </div>
-      
     </div>
 
-    <!--
-    <div class="single-section-inner">
-      <NuxtLink to="/contact" class="section-header" @click="closeMenu"></NuxtLink>
-      <div class="section-title">
-        <p>Clients</p>
-      </div>
-      <div class="section-content">
-        <div class="block-address">
-          <div class="block-title">
-            <p>Los Angeles</p>
-          </div>
-          <div class="block-content">
-            <p v-html="page?.contactlosangeles"></p>
-          </div>
-        </div>
-        <div class="block-address">
-          <div class="block-title">
-            <p>Dubai</p>
-          </div>
-          <div class="block-content">
-            <p v-html="page?.contactdubai"></p>
-          </div>
-        </div>
-        <div class="block-email">
-          <div class="block-title">
-            <p>Email</p>
-          </div>
-          <div class="block-content">
-            <a :href="`mailto:${page?.contactemail}`">{{
-              page?.contactemail
-              }}</a>
-          </div>
-        </div>
-        <div class="block-social">
-          <div class="block-title">
-            <p>Social</p>
-          </div>
-          <div class="block-content">
-            <span v-html="page?.contactsocial"></span>
-          </div>
-        </div>
-        <AppFooter />
-      </div>
-    </div>
-    -->
   </section>
 </template>

@@ -334,6 +334,14 @@ body.contact:not(.active-class) {
   }
 }
 
+body.clients:not(.active-class) {
+  .section-clients {
+    @include media-breakpoint-down(sm) {
+      border-left: 1px solid transparent;
+    }
+  }
+}
+
 body.about:not(.active-class) {
   .section-about {
     @include media-breakpoint-down(sm) {
@@ -359,7 +367,7 @@ body.works:not(.active-class) {
   justify-content: space-between;
   background-color: $color-black;
   border-bottom: 1px solid $color-white;
-  z-index: 1;
+  z-index: 3;
   padding: calc(#{$spacer} / 2 * 3) $spacer;
   @include media-breakpoint-up(xl) {
     padding: calc(#{$spacer-xl} / 2 * 3) $spacer-xl;
@@ -383,21 +391,25 @@ body.works:not(.active-class) {
       }
       p {
         @extend %micro;
-        width: 245px;
+        width: 160px;
         margin-bottom: 0px;
+        text-transform: uppercase;
       }
     }
   }
   .menu-toggle {
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .line {
       transition: right 0.15s linear;
       position: relative;
       right: 0px;
       background-color: $color-white;
       width: $spacer*4;
-      height: 4px;
-      margin-bottom: 7px;
+      height: 3.5px;
+      margin: 3px 0px;
       @include media-breakpoint-up(xl) {
         width: $spacer-xl*4;
       }
@@ -408,7 +420,160 @@ body.works:not(.active-class) {
   }
 }
 
+.mobile-menu {
+  width: 100vw;
+  right: -100vw;
+  height: 100dvh;
+  background-color: $color-black;
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  transition: right 0.2s linear;
+  padding: $spacer/2;
+  padding-top: $spacer*9;
+  display: none;
+  @include media-breakpoint-up(xl) {
+    padding: $spacer-xl/2;
+    padding-top: $spacer-xl*9;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: $spacer-sm/2;
+    padding-top: $spacer-sm*9;
+    display: block;
+  }
+  .mobile-menu-links {
+    margin-bottom: $spacer;
+    @include media-breakpoint-up(xl) {
+      margin-bottom: $spacer-xl*2;
+    }
+    @include media-breakpoint-down(sm) {
+      margin-bottom: $spacer-sm*2;
+    }
+    a {
+      display: block;
+      @extend %massive;
+      text-transform: uppercase;
+      font-variation-settings: "wght" 700, "wdth" 25;
+      transition: font-variation-settings 0.2s ease-in, letter-spacing 0.2s ease-in;
+      &:hover {
+        font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
+      }
+    }
+  }
+  .mobile-menu-contact {
+    margin-bottom: $spacer;
+    @include media-breakpoint-up(xl) {
+      margin-bottom: $spacer-xl*2;
+    }
+    @include media-breakpoint-down(sm) {
+      margin-bottom: $spacer-sm*2;
+    }
+    p {
+      margin-bottom: 0px;
+      @extend %small;
+    }
+  }
+  .block-address {
+    display: flex;
+    margin: 0px calc(-#{$spacer} / 4);
+    margin-bottom: $spacer * 4;
+    padding: 0px $spacer/2;
+    @include media-breakpoint-up(xl) {
+      margin: 0px calc(-#{$spacer-xl} / 4);
+      margin-bottom: $spacer-xl * 4;
+      padding: 0px $spacer-xl/2;
+    }
+    @include media-breakpoint-down(sm) {
+      margin: 0px calc(-#{$spacer-sm} / 4);
+      margin-bottom: $spacer-sm * 4;
+      padding: 0px $spacer-sm/2;
+    }
+   .block-address-text {
+    width: 75%;
+    padding: 0px $spacer;
+    @include media-breakpoint-up(xl) {
+      padding: 0px $spacer-xl;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 0px $spacer-sm;
+    }
+    .block-address-text-title {
+      p {
+        text-transform: uppercase;
+        @extend %ultrasmall;
+        margin-bottom: 0px;
+        font-variation-settings: "wght" 600, "wdth" 55;
+      }
+    }
+    .block-address-text-content {
+      p {
+        @extend %small;
+        text-transform: uppercase;
+        white-space: wrap;
+        a {
+          font-variation-settings: "wght" 600, "wdth" 55;
+          transition: font-variation-settings 0.2s ease-in, letter-spacing 0.2s ease-in;
+          &:hover {
+            font-variation-settings: 'wght' 600, 'wdth' 55, 'ital' 12;
+          }
+        }
+      }
+    }
+   }
+   .block-address-clock {
+    width: 25%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0px $spacer;
+    @include media-breakpoint-up(xl) {
+      padding: 0px $spacer-xl;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 0px $spacer-sm;
+    }
+    svg {
+      height: auto;
+      width: 100%;
+      @include media-breakpoint-up(xl) {
+        height: auto;
+        width: 100%;
+      }
+      @include media-breakpoint-down(sm) {
+        height: auto;
+        width: 100%;
+      }
+    }
+   }
+  }
+} 
+
 body.active-class {
+  &[data-template=about] {
+    .single-section.section-about {
+      right: 0px;
+    }
+  }
+  &[data-template=clients] {
+    .single-section.section-clients {
+      right: 0px;
+    }
+  }
+  &[data-template=default] {
+    .single-section.section-work {
+      right: 0px;
+    }
+  }
+  &[data-template=works] {
+    .single-section.section-works {
+      right: 0px;
+    }
+  }
+  &[data-template=contact] {
+    .single-section.section-contact {
+      right: 0px;
+    }
+  }
   .mobile-navigation {
     .menu-toggle {
       cursor: pointer;
@@ -424,6 +589,9 @@ body.active-class {
         }
       }
     }
+  }
+  .mobile-menu {
+    right: 0px;
   }
   .single-section {
     @include media-breakpoint-down(sm) {
@@ -445,17 +613,29 @@ body.active-class {
     }
     &.section-about {
       @include media-breakpoint-down(sm) {
-        right: 0px;
+        right: -100vw;
+      }
+    }
+    &.section-work {
+      @include media-breakpoint-down(sm) {
+        right: -100vw;
+      }
+    }
+    &.section-clients {
+      @include media-breakpoint-down(sm) {
+        right: -100vw;
       }
     }
     &.section-works {
       @include media-breakpoint-down(sm) {
-        right: -33.333vw;
+        // right: -33.333vw;
+        right: -100vw;
       }
     }
     &.section-contact {
       @include media-breakpoint-down(sm) {
-        right: -66.666vw;
+        // right: -66.666vw;
+        right: -100vw;
       }
     }
   }
@@ -496,9 +676,14 @@ body.active-class {
           text-align: left;
           height: auto;
           width: auto;
+          display: inline-block;
+          @include media-breakpoint-down(sm) {
+            margin-bottom: 0px;
+          }
         }
       }
       .section-content {
+        opacity: 1;
         .section-content-body {
           // opacity: 1;
         }
@@ -532,11 +717,26 @@ body.active-class {
         transform: rotate(-90deg) translateX(-83px);
         transform-origin: left;
         position: relative;
-        top: 0.5vw;
+        top: -1.4vw;
         left: 1.8vw;
         text-align: right;
-        height: auto;
-        width: 7vw;
+        height: 5vw;
+        width: 9.8vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        @include media-breakpoint-down(sm) {
+          text-transform: uppercase;
+          transform: rotate(0deg) translateX(0px);
+          transform-origin: left;
+          position: relative;
+          top: 0px;
+          left: 0.25vw;
+          text-align: left;
+          height: auto;
+          width: auto;
+          display: inline-block;
+        }
       }
     }
     .section-content {
@@ -575,13 +775,13 @@ body {
   width: 100vw;
   transition: right 0.3s ease-in;
 }
-.section-work {
-  width: 100vw;
-  transition: right 0.3s ease-in;
-}
+
 .section-clients {
   width: 90vw;
   transition: transform 0.2s linear, right 0.3s ease-in;
+  @include media-breakpoint-down(sm) {
+   width: 100vw;
+  }
   &.open {
     &:hover {
       transform: translateX(0vw);
@@ -614,6 +814,25 @@ body {
 }
 
 .section-works {
+  width: 95vw;
+  transition: transform 0.2s linear, right 0.3s ease-in, width 0.3s ease-in;
+  @include media-breakpoint-down(sm) {
+    width: 100vw;
+  }
+  &.open {
+    &:hover {
+      transform: translateX(0vw);
+    }
+  }
+  &:hover {
+    transform: translateX(-1vw);
+    @include media-breakpoint-down(sm) {
+      transform: translateX(0vw);
+    }
+  }
+}
+
+.section-work {
   width: 95vw;
   transition: transform 0.2s linear, right 0.3s ease-in, width 0.3s ease-in;
   @include media-breakpoint-down(sm) {
@@ -764,12 +983,12 @@ body {
       padding-right: 0vw;
     }
     .block-about {
-      margin-bottom: $spacer * 24;
+      margin-bottom: $spacer * 4;
       @include media-breakpoint-up(xl) {
-        margin-bottom: $spacer-xl * 24;
+        margin-bottom: $spacer-xl * 4;
       }
       @include media-breakpoint-down(sm) {
-        margin-bottom: $spacer-sm * 10;
+        margin-bottom: $spacer-sm * 2;
       }
       .about-text {
         margin-bottom: $spacer * 2.5;
@@ -779,14 +998,25 @@ body {
           padding: $spacer-xl;
         }
         @include media-breakpoint-down(sm) {
-          margin-bottom: $spacer-sm * 2.5;
+          margin-bottom: $spacer-sm * 8;
           padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
+          padding-top: $spacer-sm*4;
         }
         p {
           @extend %extralarge;
           text-transform: uppercase;
+          sup {
+            font-size: 4vw;
+            top: -3.5vw;
+            @include media-breakpoint-down(sm) {
+              top: -5.5vw;
+            }
+          }
         }
         a {
+        }
+        strong {
+          font-variation-settings: 'wght' 700, 'wdth' 130, 'ital' 1;
         }
       }
       img {
@@ -799,26 +1029,36 @@ body {
     .block-video {
       position: relative;
       width: calc(100% - 5vw);
-      aspect-ratio: 16/9;
+      // aspect-ratio: 16/9;
       margin-bottom: $spacer * 24;
       @include media-breakpoint-up(xl) {
         margin-bottom: $spacer-xl * 24;
       }
       @include media-breakpoint-down(sm) {
         margin-bottom: $spacer-sm * 10;
+        width: 100vw;
+        height: 100vh;
       }
       .video-container {
+        position: relative;
+        z-index: 1;
         cursor: pointer;
         width: 100%;
         opacity: 1;
         pointer-events: all;
         transition: opacity 0.2s linear;
+        @include media-breakpoint-down(sm) {
+          height: 100vh;
+        }
         &.hidden {
           opacity: 0;
           pointer-events: none;
         }
         .video-container-image {
           width: 100%;
+          @include media-breakpoint-down(sm) {
+            height: 100vh;
+          }
           img {
             width: 100%;
             height: 100%;
@@ -841,6 +1081,13 @@ body {
             @extend %medium;
             margin-bottom: $spacer;
             text-transform: uppercase;
+            text-align: center;
+            @include media-breakpoint-down(sm) {
+              font-size: 20vw;
+            }
+            strong {
+              font-variation-settings: 'wght' 700, 'wdth' 130, 'ital' 1;
+            }
           }
           .video-container-text-button {
             padding: $spacer $spacer*2;
@@ -861,7 +1108,7 @@ body {
         position: absolute;
         top: 0px;
         left: 0px;
-        z-index: -1;
+        z-index: 0;
         width: 100%;
         height: 100%;
         video {
@@ -893,6 +1140,9 @@ body {
           text-align: center;
           text-transform: uppercase;
           @extend %extralarge;
+          @include media-breakpoint-down(sm) {
+            font-size: 18vw;
+          }
         }
       }
       .block-philosophy-subtitle {
@@ -945,10 +1195,13 @@ body {
         }
       }
       .single-focus-area {
-        min-height: 16vw;
+        min-height: calc(7.1145vw + 116px);
         position: relative;
         z-index: 1;
         border-top: 1px solid $color-white;
+        @include media-breakpoint-down(sm) {
+          min-height: 27vw;
+        }
         .focus-area-button {
           position: absolute;
           top: 0px;
@@ -987,6 +1240,12 @@ body {
             p {
               margin-bottom: 0px;
               @extend %small;
+              font-size: 3.5vw;
+              @include media-breakpoint-down(sm) {
+                font-size: 5vw;
+                line-height: 0.9;
+                width: 75%;
+              }
             }
           }
         }
@@ -995,13 +1254,17 @@ body {
           display: flex;
           padding: $spacer;
           padding-right: calc(5vw + #{$spacer});
+          padding-left: 0px;
           @include media-breakpoint-up(xl) {
             padding: $spacer-xl;
             padding-right: calc(5vw + #{$spacer-xl});
+            padding-left: 0px;
           }
           @include media-breakpoint-down(sm) {
             padding: $spacer-sm;
             padding-right: calc(5vw + #{$spacer-sm});
+            padding-left: 0px;
+            padding-right: 0px;
           }
           .gradient-overlay-top {
             position: absolute;
@@ -1020,12 +1283,18 @@ body {
             height: 25vw;
             z-index: 0;
             background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+            @include media-breakpoint-down(sm) {
+              height: 50vh;
+            }
           }
           .focus-area-content-image {
             width: 100%;
             height: 100%;
             position: relative;
             z-index: -1;
+            @include media-breakpoint-down(sm) {
+              height: 80vh;
+            }
             img {
               width: 100%;
               height: 100%;
@@ -1041,21 +1310,68 @@ body {
             padding-right: 50%;
             @include media-breakpoint-down(sm) {
               padding-right: 0px;
+              width: calc(100% - #{$spacer-sm*2});
             }
-            p {
-              margin-bottom: 0px;
-              @extend %extrasmall;
+            .focus-area-content-info-list {
+              margin-bottom: $spacer;
+              p {
+                margin-bottom: 0px;
+                @extend %extrasmall;
+              }
+              .list-item {
+                display: flex;
+                padding: $spacer/2 0px;
+                border-top: 1px solid $color-white;
+                &:last-child {
+                  border-bottom: 1px solid $color-white;
+                }
+                .list-number {
+                  border-radius: 100vw;
+                  background-color: $color-white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: $spacer*2.5;
+                  height: $spacer*2.5;
+                  margin-right: $spacer;
+                  p {
+                    color: $color-black;
+                    @extend %micro;
+                  }
+                }
+                .list-text {
+                  display: flex;
+                  align-items: center;
+                  p {
+                    font-variation-settings: 'wght' 600, 'wdth' 55;
+                  }
+                }
+              }
+            }
+            .focus-area-content-info-text {
+              @include media-breakpoint-down(sm) {
+                margin-bottom: $spacer-sm*4;
+              }
+              p {
+                margin-bottom: 0px;
+                @extend %extrasmall;
+                @include media-breakpoint-down(sm) {
+                  font-size: 25px;
+                  line-height: 25px;
+                }
+              }
             }
           }
         }
       }
       .focus-areas-button {
-        padding: 0px $spacer;
+        border-top: 1px solid $color-white;
+        padding: $spacer $spacer 0px $spacer;
         @include media-breakpoint-up(xl) {
-          padding: 0px $spacer-xl;
+          padding: $spacer-xl $spacer-xl 0px $spacer-xl;
         }
         @include media-breakpoint-down(sm) {
-          padding: 0px $spacer-sm;
+          padding: $spacer-sm $spacer-sm 0px $spacer-sm;
         }
         a {
 
@@ -1090,6 +1406,9 @@ body {
         }
         a {
 
+        }
+        strong {
+          font-variation-settings: 'wght' 700, 'wdth' 130, 'ital' 1;
         }
       }
     }
@@ -1552,6 +1871,9 @@ body[data-template=clients] {
       padding: $spacer;
       @extend %extralarge;
       text-transform: uppercase;
+      strong {
+        font-variation-settings: 'wght' 700, 'wdth' 130, 'ital' 1;
+      }
     }
     .clients-logos {
       display: flex;
@@ -1574,7 +1896,14 @@ body[data-template=clients] {
         }
         @include media-breakpoint-down(sm) {
           padding: 0px $spacer-sm/4;
-          width: 100%;
+          width: 50%;
+        }
+        &:hover {
+          a {
+            img {
+              filter: grayscale(0);
+            }
+          }
         }
         a {
           display: flex;
@@ -1582,6 +1911,7 @@ body[data-template=clients] {
           align-items: center;
           img {
             width: 80%;
+            transition: filter 0.2s linear;
             filter: grayscale(1);
           }
         }
@@ -1650,13 +1980,20 @@ body.about {
         padding: 0px $spacer-xl;
       }
       @include media-breakpoint-down(sm) {
-        margin-bottom: $spacer-sm * 10;
+        margin-bottom: $spacer-sm * 5;
         padding: 0px $spacer-sm;
       }
       .about-text-main {
         margin-bottom: $spacer;
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm;
+        }
         p {
           @extend %small;
+          @include media-breakpoint-down(sm) {
+            line-height: 0.9;
+            margin-bottom: 0px;
+          }
         }
       }
       .about-text {
@@ -1684,6 +2021,9 @@ body.about {
       }
       .block-approach-text {
         width: 33.333%;
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
         p {
           @extend %micro;
         }
@@ -1691,6 +2031,12 @@ body.about {
       .block-approach-inner {
         .collapses-container {
           display: flex;
+          @include media-breakpoint-down(sm) {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+          }
           .single-collapse {
             border-left: 1px solid $color-white;
             position: relative;
@@ -1699,19 +2045,44 @@ body.about {
             height: 40vw;
             width: 25%;
             transition: width 0.2s ease;
+            @include media-breakpoint-down(sm) {
+              flex: 0 0 auto;
+              width: 80vw;
+              height: 100vw;
+            }
             &.opencollapse {
               width: 80%;
+              @include media-breakpoint-down(sm) {
+                width: 80vw;
+              }
             }
             .collapse-link {
               width: 7vw;
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              @include media-breakpoint-down(sm) {
+                width: 20%;
+              }
               a {
-                display: block;
+                display: flex;
                 font-weight: bold;
                 cursor: pointer;
                 @extend %large;
-                transform: rotate(90deg);
-                transform-origin: 45% 50%;
+                transform: rotate(-90deg);
+                transform-origin: 50% 50%;
                 text-transform: uppercase;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: $spacer/2;
+                @include media-breakpoint-up(xl) {
+                  margin-top: $spacer-xl/2;
+                }
+                @include media-breakpoint-down(sm) {
+                  margin-top: $spacer-sm/2;
+                  margin-left: $spacer-sm;
+                  font-size: 18vw;
+                }
               }
             }
             .collapse-content {
@@ -1719,16 +2090,28 @@ body.about {
               overflow: hidden;
               transition: max-width 0.4s ease;
               white-space: nowrap;
+              @include media-breakpoint-down(sm) {
+                max-width: 100%;
+                width: 80%;
+                padding: 0px $spacer-sm;
+              }
               &.open {
-                max-width: 28vw;
+                min-width: 28vw;
+                @include media-breakpoint-down(sm) {
+                
+                }
               }
               .approach-text {
                 margin-bottom: $spacer;
                 p {
-                  @extend %extrasmall;
+                  @extend %small;
+                  font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 1;
                   text-transform: uppercase;
                   margin-bottom: 0px;
                   white-space: wrap;
+                  @include media-breakpoint-down(sm) {
+                    font-size: 30px;
+                  }
                 }
               }
               .approach-icon {
@@ -2166,7 +2549,7 @@ body.about {
           @include media-breakpoint-down(sm) {
             padding: 0px $spacer-sm/2;
             margin-bottom: $spacer-sm;
-            width: 80vw;
+            width: 100%;
           }
           img {
             border-radius: 3px;
@@ -2182,6 +2565,11 @@ body.about {
             position: relative;
             height: 100%;
             width: 100%;
+            border-radius: 3px;
+            overflow: hidden;
+            img {
+              transform: scale(1.02);
+            }
             .person-info {
               position: absolute;
               top: 0px;
@@ -2718,12 +3106,63 @@ body[data-template=works].active-class {
 }
 */
 
+body[data-template=default] {
+  .section-works {
+    right: 0px;
+    width: 95vw;
+    z-index: 0;
+    @include media-breakpoint-down(sm) {
+      width: 100vw;
+    }
+  }
+  .section-work {
+    border-left: 1px solid $color-white;
+    z-index:1;
+    @include media-breakpoint-down(sm) {
+      border-left: 0px;
+    }
+  }
+  .section-about {
+     z-index:1;
+  }
+  .section-clients {
+     z-index:1;
+  }
+  .section-contact {
+     z-index:1;
+  }
+}
+
 body[data-template=works] {
   .section-works {
     right: 0px;
     width: 95vw;
     @include media-breakpoint-down(sm) {
       width: 100vw;
+    }
+    .works-text-text {
+      height: auto !important;
+      padding: 0px $spacer;
+      @include media-breakpoint-up(xl) {
+        padding: 0px $spacer-xl;
+      }
+      @include media-breakpoint-down(sm) {
+        padding: 0px $spacer-sm;
+      }
+      p {
+        @extend %extralarge;
+        text-transform: uppercase;
+        sup {
+          font-size: 4vw;
+          top: -3.5vw;
+          @include media-breakpoint-down(sm) {
+            top: -5.5vw;
+          }
+        }
+      }
+      strong {
+        font-variation-settings: 'wght' 700, 'wdth' 130, 'ital' 1;
+      }
     }
     .works-list {
       display: flex;
@@ -2977,7 +3416,8 @@ body {
       }
       @include media-breakpoint-down(sm) {
         padding: calc(#{$spacer-sm} / 2 * 3) $spacer-sm;
-        margin-bottom: calc(#{$spacer-sm} * 4);
+        margin-bottom: 0px;
+        padding-bottom: 0px;
       }
       img {
         width: 55px;
@@ -2992,10 +3432,13 @@ body {
       p {
         @extend %ultrasmall;
         text-transform: uppercase;
+        @include media-breakpoint-down(sm) {
+          margin-bottom: 0px;
+        }
       }
     }
     .section-content {
-      padding-right: 15vw;
+      padding-right: 20vw;
       @include media-breakpoint-down(sm) {
         padding-right: 0px;
       }
@@ -3006,6 +3449,7 @@ body {
         }
         @include media-breakpoint-down(sm) {
           padding: $spacer-sm;
+          padding-bottom: 0px;
         }
         h1 {
           margin: 0px;
@@ -3026,10 +3470,18 @@ body {
           @extend %micro;
         }
         .work-subtitle {
+          @include media-breakpoint-down(sm) {
+            margin-bottom: $spacer-sm*2;
+          }
           p {
             @extend %small;
             text-transform: uppercase;
             font-variation-settings: "wght" 700, "wdth" 15;
+            @include media-breakpoint-down(sm) {
+              font-size: 25px;
+              font-variation-settings: "wght" 700, "wdth" 55;
+              line-height: 0.9;
+            }
           }
         }
         .single-meta {
@@ -3067,6 +3519,13 @@ body {
         }
       }
       .work-content {
+        margin-bottom: $spacer*24;
+        @include media-breakpoint-up(xl) {
+          margin-bottom: $spacer-xl*24;
+        }
+        @include media-breakpoint-down(sm) {
+          margin-bottom: $spacer-sm*24;
+        }
         .single-module {
           margin-bottom: $spacer * 2;
           padding: 0px $spacer;
@@ -3108,6 +3567,9 @@ body {
               @include media-breakpoint-down(sm) {
                 margin-bottom: $spacer-sm * 2;
               }
+            }
+            h1 {
+              line-height: 1;
             }
             p {
               @extend %ultrasmall;
@@ -3498,14 +3960,14 @@ body.contact {
   }
   .block-contacts {
     margin-bottom: $spacer * 4;
-    padding: 0px $spacer;
+    padding: 0px $spacer*1.5;
     @include media-breakpoint-up(xl) {
       margin-bottom: $spacer-xl * 4;
-      padding: 0px $spacer-xl;
+      padding: 0px $spacer-xl*1.5;
     }
     @include media-breakpoint-down(sm) {
       margin-bottom: $spacer-sm * 4;
-      padding: 0px $spacer-sm;
+      padding: 0px $spacer-sm*1.5;
     }
     p {
       @extend %micro;
@@ -3515,16 +3977,16 @@ body.contact {
     display: flex;
     margin: 0px calc(-#{$spacer} / 4);
     margin-bottom: $spacer * 4;
-    padding: 0px $spacer;
+    padding: 0px $spacer/2;
     @include media-breakpoint-up(xl) {
       margin: 0px calc(-#{$spacer-xl} / 4);
       margin-bottom: $spacer-xl * 4;
-      padding: 0px $spacer-xl;
+      padding: 0px $spacer-xl/2;
     }
     @include media-breakpoint-down(sm) {
       margin: 0px calc(-#{$spacer-sm} / 4);
       margin-bottom: $spacer-sm * 4;
-      padding: 0px $spacer-sm;
+      padding: 0px $spacer-sm/2;
     }
    .block-address-text {
     width: 66.666%;
@@ -3538,8 +4000,9 @@ body.contact {
     .block-address-text-title {
       p {
         text-transform: uppercase;
-        @extend %extrasmall;
+        @extend %ultrasmall;
         margin-bottom: 0px;
+        font-variation-settings: "wght" 600, "wdth" 55;
       }
     }
     .block-address-text-content {
@@ -3548,9 +4011,10 @@ body.contact {
         text-transform: uppercase;
         white-space: wrap;
         a {
+          font-variation-settings: "wght" 600, "wdth" 55;
           transition: font-variation-settings 0.2s ease-in, letter-spacing 0.2s ease-in;
           &:hover {
-            font-variation-settings: 'wght' 700, 'wdth' 55, 'ital' 12;
+            font-variation-settings: 'wght' 600, 'wdth' 55, 'ital' 12;
           }
         }
       }
@@ -3558,12 +4022,27 @@ body.contact {
    }
    .block-address-clock {
     width: 33.333%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     padding: 0px $spacer;
     @include media-breakpoint-up(xl) {
       padding: 0px $spacer-xl;
     }
     @include media-breakpoint-down(sm) {
       padding: 0px $spacer-sm;
+    }
+    svg {
+      height: $spacer*15;
+      width: $spacer*15;
+      @include media-breakpoint-up(xl) {
+        height: $spacer-xl*15;
+        width: $spacer-xl*15;
+      }
+      @include media-breakpoint-down(sm) {
+        height: $spacer-sm*15;
+        width: $spacer-sm*15;
+      }
     }
    }
   }
@@ -3602,11 +4081,14 @@ body.contact {
 
 .site-footer {
   padding: $spacer;
+  padding-top: $spacer*24;
   @include media-breakpoint-up(xl) {
     padding: $spacer-xl;
+    padding-top: $spacer-xl*24;
   }
   @include media-breakpoint-down(sm) {
     padding: $spacer-sm;
+    padding-top: $spacer-sm*24;
   }
   .top-footer {
     margin-bottom: $spacer * 8;
@@ -3641,7 +4123,7 @@ body.contact {
         margin-bottom: $spacer-xl;
       }
       @include media-breakpoint-down(sm) {
-        margin-bottom: $spacer-sm;
+        margin-bottom: $spacer-sm/2;
       }
       a {
         text-transform: uppercase;
@@ -3649,6 +4131,10 @@ body.contact {
         @extend %small;
         font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 1;
         transition: font-variation-settings 0.1s ease-in;
+        @include media-breakpoint-down(sm) {
+          font-size: 10vw;
+          line-height: 0.8;
+        }
         &:hover {
           font-variation-settings: 'wght' 700, 'wdth' 25, 'ital' 12;
         }
@@ -3683,12 +4169,25 @@ body.contact {
       @include media-breakpoint-down(sm) {
         margin-bottom: $spacer-sm;
       }
+      p {
+        font-variation-settings: 'wght' 700, 'wdth' 25;
+        strong {
+          @include media-breakpoint-down(sm) {
+            font-variation-settings: 'wght' 700, 'wdth' 55;
+          }
+        }
+      }
+    }
+    .footer-email {
+      a {
+        font-variation-settings: 'wght' 700, 'wdth' 25;
+      }
     }
     p {
       @extend %ultrasmall;
       margin-bottom: 0px;
       &.copyright {
-        @extend %micro;
+        // @extend %micro;
       }
     }
     a {

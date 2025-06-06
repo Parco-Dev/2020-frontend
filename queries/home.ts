@@ -8,12 +8,12 @@ export const homeQuery: KirbyQuerySchema = {
     id: true,
     isListed: true,
     intendedTemplate: true,
-    homeabouttext: 'page.homeabouttext',
+    homeabouttext: 'page?.homeabouttext?.kirbytext',
     homevideoimage: {
       query: 'page.homevideoimage.toFiles.first',
       select: ['url', 'alt'],
     },
-    homevideotext: 'page.homevideotext',
+    homevideotext: 'page?.homevideotext?.kirbytext',
     homevideobutton: true,
     homevideo: {
       query: 'page.homevideo.toFiles.first',
@@ -36,7 +36,7 @@ export const homeQuery: KirbyQuerySchema = {
       }
     },
     homefocusareasbutton: true,
-    hometext: true,
+    hometext: 'page?.hometext?.kirbytext',
     // homenewsletter: true
   },
 }

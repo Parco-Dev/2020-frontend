@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import imagesLoaded from 'imagesloaded';
 import { worksQuery } from '~/queries'
 
 const { queryApi, queryParams } = useQueryParams(worksQuery)
@@ -36,11 +37,14 @@ const toggleBodyClass = (className: string) => {
 
 const masonryGrid = ref(null);
 const transitionContainer = ref(null);
+const route = useRoute();
 let isotopeInstance: any = null;
 
-// Initialize Isotope
+// Initialize Isotope after images are loaded
 const initializeIsotope = () => {
-  if (masonryGrid.value && window.innerWidth >= 992) {
+  if (!masonryGrid.value || window.innerWidth < 992) return;
+
+  imagesLoaded(masonryGrid.value, () => {
     isotopeInstance = new Isotope(masonryGrid.value, {
       itemSelector: '.grid-item',
       layoutMode: 'masonry',
@@ -48,11 +52,11 @@ const initializeIsotope = () => {
         columnWidth: '.grid-item',
       },
     });
-    console.log('Isotope initialized');
-  }
+    console.log('Isotope initialized after images loaded');
+  });
 };
 
-// Destroy Isotope instance
+// Destroy instance
 const destroyIsotope = () => {
   if (isotopeInstance) {
     isotopeInstance.destroy();
@@ -61,7 +65,6 @@ const destroyIsotope = () => {
   }
 };
 
-// Check viewport width and toggle Isotope
 const checkViewportWidth = () => {
   if (window.innerWidth < 992) {
     destroyIsotope();
@@ -70,56 +73,53 @@ const checkViewportWidth = () => {
   }
 };
 
-// Recalculate Isotope layout
 const relayoutIsotope = () => {
   if (isotopeInstance) {
     isotopeInstance.layout();
-    console.log('Isotope layout recalculated');
   }
 };
 
-// Handle `transitionend` event
 const handleTransitionEnd = (event: TransitionEvent) => {
   if (event.propertyName === 'width' && transitionContainer.value?.contains(event.target)) {
     relayoutIsotope();
-    console.log('Transition ended, Isotope layout recalculated');
   }
 };
 
-
-
 onMounted(() => {
-
   destroyIsotope();
-  initializeIsotope();
-  window.removeEventListener("resize", initializeIsotope);
 
-  // Attach `transitionend` listener
+  nextTick(() => {
+    initializeIsotope();
+  });
+
+  window.addEventListener('resize', checkViewportWidth);
+
   if (transitionContainer.value) {
     transitionContainer.value.addEventListener('transitionend', handleTransitionEnd);
   }
 
- 
-
-  // Observe changes to the body's class attribute
-  const observer = new MutationObserver(() => {
-    handleClassChange();
-  });
-  observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-  // Attach `resize` event listener
-  window.addEventListener('resize', checkViewportWidth);
-
-  // Cleanup
   onUnmounted(() => {
     destroyIsotope();
-    observer.disconnect();
+    window.removeEventListener('resize', checkViewportWidth);
     if (transitionContainer.value) {
       transitionContainer.value.removeEventListener('transitionend', handleTransitionEnd);
     }
-    window.removeEventListener('resize', checkViewportWidth);
   });
 });
+
+// 🔁 WATCH ROUTE CHANGE IN COMPONENT (because Nuxt page keeps component mounted)
+watch(
+  () => route.fullPath,
+  async () => {
+    await nextTick();
+    destroyIsotope();
+
+    // Delay a bit to ensure DOM + images are ready
+    setTimeout(() => {
+      initializeIsotope();
+    }, 100);
+  }
+);
 
 </script>
 
@@ -131,6 +131,9 @@ onMounted(() => {
         <p>Works</p>
       </div>
       <div class="section-content">
+        <div class="works-text-text">
+          <p>How we add real-world <strong>value</strong> through experience strategy <sup>tm</sup></p>
+        </div>
         <div class="works-list grid" ref="masonryGrid">
           <div
             v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
@@ -153,45 +156,8 @@ onMounted(() => {
             </NuxtLink>
           </div>
         </div>
+        <AppFooter/>
       </div>
     </div>
-    <!-- 
-    <div class="single-section-inner">
-      <NuxtLink to="/works" class="section-header" @click="closeMenu"></NuxtLink>
-      <div class="section-title">
-        <p>Work</p>
-      </div>
-      <div class="section-content">
-        <div class="cases-list grid" ref="masonryGrid">
-          <div
-            v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
-            :key="id"
-            class="single-case"
-            :class="`grid-item ${casethumbnailsize}`"
-          >
-            <NuxtLink :to="`/${id}`">
-              <div class="case-image">
-                <img :src="casethumbnail?.url" />
-              </div>
-              <div class="case-info">
-                <div class="case-title">
-                  <p>{{ title }}</p>
-                </div>
-                <div class="case-subtitle">
-                  <p v-html="casesubtitle"></p>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="cases-view-all">
-          <div class="cta expand-cases-button" @click="handleButtonClick">
-            <span class="view-all">View all</span>
-            <span class="view-less">View less</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    -->
   </section>
 </template>

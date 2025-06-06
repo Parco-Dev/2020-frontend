@@ -33,6 +33,16 @@ const toggle = (index: number) => {
   openIndex.value = openIndex.value === index ? null : index
 }
 
+
+
+const isPlaying = ref(false)
+const videoRef = ref<HTMLVideoElement | null>(null)
+
+function playVideo() {
+  isPlaying.value = true
+  videoRef.value?.play()
+}
+
 </script>
 
 <template>
@@ -57,7 +67,9 @@ const toggle = (index: number) => {
           <div class="about-text">
             <div class="row">
               <div class="col-lg-10 col-12">
-                <p v-html="page?.homeabouttext"></p>
+                <client-only>
+                  <p v-html="page?.homeabouttext"></p>
+                </client-only>
                 <NuxtLink to="/about" class="button">Learn more</NuxtLink>
               </div>
               <div class="col-lg-2 col-12"></div>
@@ -65,19 +77,23 @@ const toggle = (index: number) => {
           </div>
         </div>
         <div class="block-video">
-          <div class="video-container">
+          <div class="video-container"
+          :class="{ hidden: isPlaying }"
+          @click="playVideo">
             <div class="video-container-image">
               <img :src="page?.homevideoimage?.url" />
             </div>
             <div class="video-container-text">
-              <p v-html="page?.homevideotext"></p>
+              <client-only>
+                <p v-html="page?.homevideotext"></p>
+              </client-only>
               <div class="video-container-text-button">
                 <p v-html="page?.homevideobutton"></p>
               </div>
             </div>
           </div>
           <div class="video-container-video">
-            <video controls>
+            <video ref="videoRef">
               <source :src="`${page?.homevideo?.url}`" type="video/mp4">
             </video>
           </div>
@@ -121,7 +137,35 @@ const toggle = (index: number) => {
                   <img :src="focusareas.homefocusareasimage?.url" />
                 </div>
                 <div class="focus-area-content-info">
-                  <p v-html="focusareas.homefocusareastext"></p>
+                  <div class="focus-area-content-info-list">
+                    <div class="list-item">
+                      <div class="list-number">
+                        <p>1</p>
+                      </div>
+                      <div class="list-text">
+                        <p>Narrative & storyworld development</p>
+                      </div>
+                    </div>
+                    <div class="list-item">
+                      <div class="list-number">
+                        <p>2</p>
+                      </div>
+                      <div class="list-text">
+                        <p>Cultural programming & activation</p>
+                      </div>
+                    </div>
+                    <div class="list-item">
+                      <div class="list-number">
+                        <p>3</p>
+                      </div>
+                      <div class="list-text">
+                        <p>Brand expression & experiential tone</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="focus-area-content-info-text">
+                    <p v-html="focusareas.homefocusareastext"></p>
+                  </div>
                 </div>
                 <div class="gradient-overlay-bottom"></div>
               </div>
@@ -133,7 +177,9 @@ const toggle = (index: number) => {
         </div>
         <div class="block-big-text">
           <div class="big-text">
-            <p v-html="page?.hometext"></p>
+            <client-only>
+              <p v-html="page?.hometext"></p>
+            </client-only>
           </div>
         </div>
 

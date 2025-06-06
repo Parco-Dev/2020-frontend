@@ -9,7 +9,7 @@ export const aboutQuery: KirbyQuerySchema = {
     isListed: true,
     intendedTemplate: true,
     aboutmaintext: true,
-    abouttext: true,
+    abouttext: 'page?.abouttext?.kirbytext',
     aboutapproachtitle: true,
     aboutapproachtext: true,
     aboutapproach: {

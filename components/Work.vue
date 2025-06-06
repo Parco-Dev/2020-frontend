@@ -18,8 +18,7 @@ watchEffect(() => console.log(page.value))
     <div class="single-section-inner">
       <NuxtLink to="/" class="section-header"></NuxtLink>
       <div class="site-header">
-        <img src="https://davideg29.sg-host.com/2020/media/site/145c3ed371-1702824530/logo-2020.svg" />
-        <p>Work</p>
+        <p>Case study</p>
       </div>
       <div class="section-content">
         <div class="work-title">
@@ -87,6 +86,33 @@ watchEffect(() => console.log(page.value))
             <div v-else-if="block.type === 'spacerblock'" class="module-spacer"></div>
           </div>
         </div>
+      </div>
+      <div class="section-related">
+        <div class="block-main-text">
+          <p>LATEST CASE STUDIES</p>
+        </div>
+        <div class="block-related-works-list">
+          <div
+            v-for="(works, index) in page?.worksrelated"
+            :key="index"
+            :class="`single-work columns-${works?.columns}`"
+          >
+            <NuxtLink :to="`/works/${works?.work[0]?.url}`">
+              <div class="work-image">
+                <img :src="works?.work[0]?.workthumbnail?.url" />
+              </div>
+              <div class="work-info">
+                <div class="work-title">
+                  <p>{{ works?.work[0]?.title }}</p>
+                </div>
+                <div class="work-subtitle">
+                  <p v-html="works?.work[0]?.worksubtitle"></p>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+        </div>
+        <NuxtLink to="/works" class="button">View all</NuxtLink>
       </div>
       <AppFooter />
     </div>

@@ -21,6 +21,6 @@ export const siteQuery: KirbyQuerySchema = {
     sitetitle: true,
     address: true,
     footeremail: true,
-    privacycookies: true,
+    privacycookies: 'site?.privacycookies?.kirbytext',
   },
 }
