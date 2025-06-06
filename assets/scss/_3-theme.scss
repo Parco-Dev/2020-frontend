@@ -1241,6 +1241,7 @@ body {
               margin-bottom: 0px;
               @extend %small;
               font-size: 3.5vw;
+              line-height: 0.9;
               @include media-breakpoint-down(sm) {
                 font-size: 5vw;
                 line-height: 0.9;
