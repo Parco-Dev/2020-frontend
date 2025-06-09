@@ -34,6 +34,37 @@ const toggle = (index: number) => {
 }
 
 
+const route = useRoute()
+
+const setMinHeight = () => {
+  nextTick(() => {
+    const button = document.querySelector('.focus-area-button')
+    const target = document.querySelector('.single-focus-area')
+    if (button && target) {
+      target.style.minHeight = `${button.offsetHeight}px`
+    }
+  })
+}
+
+const handleResize = () => {
+  setMinHeight()
+}
+
+onMounted(() => {
+  setMinHeight()
+  window.addEventListener('resize', handleResize)
+})
+
+// Optional: update on route change
+watch(() => route.fullPath, () => {
+  setMinHeight()
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
+
+/* VIDEO */
 
 const isPlaying = ref(false)
 const videoRef = ref<HTMLVideoElement | null>(null)
@@ -42,6 +73,8 @@ function playVideo() {
   isPlaying.value = true
   videoRef.value?.play()
 }
+
+
 
 </script>
 
