@@ -28,6 +28,9 @@ export const homeQuery: KirbyQuerySchema = {
       select: {
         homefocusareastitletitle: true,
         homefocusareassubtitle: true,
+        homefocusareasfeatureone: true,
+        homefocusareasfeaturetwo: true,
+        homefocusareasfeaturethree: true,
         homefocusareastext: true,
         homefocusareasimage: {
           query: 'structureItem.homefocusareasimage.toFiles.first',

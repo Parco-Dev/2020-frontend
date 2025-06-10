@@ -176,7 +176,7 @@ function playVideo() {
                         <p>1</p>
                       </div>
                       <div class="list-text">
-                        <p>Narrative & storyworld development</p>
+                        <p v-html="focusareas.homefocusareasfeatureone"></p>
                       </div>
                     </div>
                     <div class="list-item">
@@ -184,7 +184,7 @@ function playVideo() {
                         <p>2</p>
                       </div>
                       <div class="list-text">
-                        <p>Cultural programming & activation</p>
+                        <p v-html="focusareas.homefocusareasfeaturetwo"></p>
                       </div>
                     </div>
                     <div class="list-item">
@@ -192,7 +192,7 @@ function playVideo() {
                         <p>3</p>
                       </div>
                       <div class="list-text">
-                        <p>Brand expression & experiential tone</p>
+                        <p v-html="focusareas.homefocusareasfeaturethree"></p>
                       </div>
                     </div>
                   </div>

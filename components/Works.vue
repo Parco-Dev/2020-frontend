@@ -2,6 +2,13 @@
 import imagesLoaded from 'imagesloaded';
 import { worksQuery } from '~/queries'
 
+// Declare Isotope type for TypeScript
+declare global {
+  interface Window {
+    Isotope: any;
+  }
+}
+
 const { queryApi, queryParams } = useQueryParams(worksQuery)
 
 const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
@@ -35,91 +42,137 @@ const toggleBodyClass = (className: string) => {
   }
 };
 
-const masonryGrid = ref(null);
-const transitionContainer = ref(null);
-const route = useRoute();
-let isotopeInstance: any = null;
+const masonryGrid = ref<HTMLElement | null>(null)
+const transitionContainer = ref<HTMLElement | null>(null)
+const route = useRoute()
+let isotopeInstance: any = null
 
-// Initialize Isotope after images are loaded
+// Check if Isotope is loaded
+const isIsotopeLoaded = () => {
+  return typeof window.Isotope !== 'undefined'
+}
+
+// Initialize Isotope with safety checks
 const initializeIsotope = () => {
-  if (!masonryGrid.value || window.innerWidth < 992) return;
-
+  if (!masonryGrid.value || window.innerWidth < 992 || isotopeInstance || !isIsotopeLoaded()) return
+  
+  // Wait for images to load
   imagesLoaded(masonryGrid.value, () => {
-    isotopeInstance = new Isotope(masonryGrid.value, {
+    isotopeInstance = new window.Isotope(masonryGrid.value, {
       itemSelector: '.grid-item',
       layoutMode: 'masonry',
       masonry: {
         columnWidth: '.grid-item',
       },
-    });
-    console.log('Isotope initialized after images loaded');
-  });
-};
+      transitionDuration: '0.4s'
+    })
+    
+    console.log('Isotope initialized')
+    
+    // Double layout to ensure proper rendering
+    setTimeout(() => {
+      isotopeInstance?.layout()
+      setTimeout(() => isotopeInstance?.layout(), 50)
+    }, 100)
+  })
+}
 
 // Destroy instance
 const destroyIsotope = () => {
   if (isotopeInstance) {
-    isotopeInstance.destroy();
-    isotopeInstance = null;
-    console.log('Isotope destroyed');
+    isotopeInstance.destroy()
+    isotopeInstance = null
+    console.log('Isotope destroyed')
   }
-};
+}
 
-const checkViewportWidth = () => {
+// Handle viewport changes
+const checkViewportWidth = debounce(() => {
   if (window.innerWidth < 992) {
-    destroyIsotope();
-  } else if (!isotopeInstance) {
-    initializeIsotope();
+    destroyIsotope()
+  } else if (!isotopeInstance && isIsotopeLoaded()) {
+    initializeIsotope()
   }
-};
+}, 100)
 
+// Relayout Isotope
 const relayoutIsotope = () => {
   if (isotopeInstance) {
-    isotopeInstance.layout();
+    isotopeInstance.layout()
   }
-};
+}
 
+// Handle transitions
 const handleTransitionEnd = (event: TransitionEvent) => {
-  if (event.propertyName === 'width' && transitionContainer.value?.contains(event.target)) {
-    relayoutIsotope();
+  if (event.propertyName === 'width' && transitionContainer.value?.contains(event.target as Node)) {
+    relayoutIsotope()
   }
-};
+}
+
+// Debounce helper
+function debounce(fn: Function, delay: number) {
+  let timeout: NodeJS.Timeout
+  return function() {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => fn.apply(this, arguments), delay)
+  }
+}
 
 onMounted(() => {
-  destroyIsotope();
+  // Wait for Isotope to load if it's not immediately available
+  const checkIsotope = setInterval(() => {
+    if (isIsotopeLoaded()) {
+      clearInterval(checkIsotope)
+      initializeIsotope()
+    }
+  }, 100)
 
-  nextTick(() => {
-    initializeIsotope();
-  });
-
-  window.addEventListener('resize', checkViewportWidth);
-
+  // Set up event listeners
+  window.addEventListener('resize', checkViewportWidth)
+  
   if (transitionContainer.value) {
-    transitionContainer.value.addEventListener('transitionend', handleTransitionEnd);
+    transitionContainer.value.addEventListener('transitionend', handleTransitionEnd)
   }
 
   onUnmounted(() => {
-    destroyIsotope();
-    window.removeEventListener('resize', checkViewportWidth);
+    destroyIsotope()
+    window.removeEventListener('resize', checkViewportWidth)
     if (transitionContainer.value) {
-      transitionContainer.value.removeEventListener('transitionend', handleTransitionEnd);
+      transitionContainer.value.removeEventListener('transitionend', handleTransitionEnd)
     }
-  });
-});
+  })
+})
 
-// 🔁 WATCH ROUTE CHANGE IN COMPONENT (because Nuxt page keeps component mounted)
+// Watch for route changes
 watch(
   () => route.fullPath,
   async () => {
-    await nextTick();
-    destroyIsotope();
-
-    // Delay a bit to ensure DOM + images are ready
-    setTimeout(() => {
-      initializeIsotope();
-    }, 100);
+    await nextTick()
+    
+    if (props.open) {
+      destroyIsotope()
+      if (isIsotopeLoaded()) {
+        initializeIsotope()
+      }
+    }
   }
-);
+)
+
+// Watch for open prop changes
+watch(
+  () => props.open,
+  (isOpen) => {
+    if (isOpen) {
+      nextTick(() => {
+        destroyIsotope()
+        if (isIsotopeLoaded()) {
+          initializeIsotope()
+        }
+      })
+    }
+  }
+)
+
 
 </script>
 
