@@ -14,9 +14,6 @@
   "lint-staged": {
     "**/*.{ts,vue}": "eslint --cache --ignore-path .gitignore"
   },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
-  },
   "devDependencies": {
     "@nuxt/devtools": "^1.0.8",
     "@nuxt/eslint-config": "^0.1.1",
