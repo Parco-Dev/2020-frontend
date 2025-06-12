@@ -429,15 +429,15 @@ body.works:not(.active-class) {
   z-index: 2;
   top: 0px;
   transition: right 0.2s linear;
-  padding: $spacer/2;
+  padding: calc(#{$spacer} / 2);;
   padding-top: $spacer*9;
   display: none;
   @include media-breakpoint-up(xl) {
-    padding: $spacer-xl/2;
+    padding: calc(#{$spacer-xl} / 2);
     padding-top: $spacer-xl*9;
   }
   @include media-breakpoint-down(sm) {
-    padding: $spacer-sm/2;
+    padding: calc(#{$spacer-sm} / 2);
     padding-top: $spacer-sm*9;
     display: block;
   }
@@ -477,16 +477,16 @@ body.works:not(.active-class) {
     display: flex;
     margin: 0px calc(-#{$spacer} / 4);
     margin-bottom: $spacer * 4;
-    padding: 0px $spacer/2;
+    padding: 0px calc(#{$spacer} / 2);;
     @include media-breakpoint-up(xl) {
       margin: 0px calc(-#{$spacer-xl} / 4);
       margin-bottom: $spacer-xl * 4;
-      padding: 0px $spacer-xl/2;
+      padding: 0px calc(#{$spacer-xl} / 2);;
     }
     @include media-breakpoint-down(sm) {
       margin: 0px calc(-#{$spacer-sm} / 4);
       margin-bottom: $spacer-sm * 4;
-      padding: 0px $spacer-sm/2;
+      padding: 0px calc(#{$spacer-sm} / 2);;
     }
    .block-address-text {
     width: 75%;
@@ -1136,7 +1136,7 @@ body {
       }
       .block-philosophy-text {
         p {
-          margin-bottom: $spacer/2;
+          margin-bottom: calc(#{$spacer} / 2);;
           text-align: center;
           text-transform: uppercase;
           @extend %extralarge;
@@ -1216,14 +1216,14 @@ body {
             padding: $spacer-sm;
           }
           .focus-area-button-title {
-            padding-top: $spacer/2;
+            padding-top: calc(#{$spacer} / 2);;
             margin-bottom: $spacer;
             @include media-breakpoint-up(xl) {
-              padding-top: $spacer-xl/2;
+              padding-top: calc(#{$spacer-xl} / 2);;
               margin-bottom: $spacer-xl;
             }
             @include media-breakpoint-down(sm) {
-              padding-top: $spacer-sm/2;
+              padding-top: calc(#{$spacer-sm} / 2);;
               margin-bottom: $spacer-sm;
             }
             p {
@@ -1321,7 +1321,7 @@ body {
               }
               .list-item {
                 display: flex;
-                padding: $spacer/2 0px;
+                padding: calc(#{$spacer} / 2) 0px;
                 border-top: 1px solid $color-white;
                 &:last-child {
                   border-bottom: 1px solid $color-white;
@@ -1513,9 +1513,9 @@ body {
         .featured-project {
           width: auto;
           height: 30vw;
-          margin-right: $spacer/2;
+          margin-right: calc(#{$spacer} / 2);
           @include media-breakpoint-up(xl) {
-            margin-right: $spacer-xl/2;
+            margin-right: calc(#{$spacer-xl} / 2);
           }
           @include media-breakpoint-down(sm) {
             margin-right: 0px;
@@ -1879,24 +1879,24 @@ body[data-template=clients] {
     .clients-logos {
       display: flex;
       flex-wrap: wrap;
-      margin: 0px -#{$spacer/4};
+      margin: 0px calc(-#{$spacer} / 4);
       @include media-breakpoint-up(xl) {
-        margin: 0px -#{$spacer-xl/4};
+        margin: 0px calc(-#{$spacer-xl} / 4);
       }
       @include media-breakpoint-down(sm) {
-        margin: 0px -#{$spacer-sm/4};
+        margin: 0px calc(-#{$spacer-sm} / 4);
       }
       .single-client {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 20%;
-        padding: 0px $spacer/4;
+        padding: 0px calc(#{$spacer} / 4);
         @include media-breakpoint-up(xl) {
-          padding: 0px $spacer-xl/4;
+          padding: 0px calc(#{$spacer-xl} / 4);
         }
         @include media-breakpoint-down(sm) {
-          padding: 0px $spacer-sm/4;
+          padding: 0px calc(#{$spacer-sm} / 4);
           width: 50%;
         }
         &:hover {
@@ -2075,12 +2075,12 @@ body.about {
                 text-transform: uppercase;
                 width: 100%;
                 justify-content: flex-end;
-                margin-top: $spacer/2;
+                margin-top: calc(#{$spacer} / 2);
                 @include media-breakpoint-up(xl) {
-                  margin-top: $spacer-xl/2;
+                  margin-top: calc(#{$spacer-xl} / 2);
                 }
                 @include media-breakpoint-down(sm) {
-                  margin-top: $spacer-sm/2;
+                  margin-top: calc(#{$spacer-sm} / 2);
                   margin-left: $spacer-sm;
                   font-size: 18vw;
                 }
@@ -2246,11 +2246,11 @@ body.about {
             display: flex;
           }
           .circle {
-            width: $spacer/3*2;
-            height: $spacer/3*2;
+            width: calc(#{$spacer} / 3 * 2);
+            height: calc(#{$spacer} / 3 * 2);
             border-radius: 100vw;
             background-color: $color-white;
-            margin-right: $spacer/3*2;
+            margin-right: calc(#{$spacer} / 3 * 2);
             &.active-circle {
               background-color: $color-dark-grey;
             }
@@ -2303,12 +2303,12 @@ body.about {
         white-space: nowrap;
         .strength-image {
           flex: 0 0 auto;
-          margin-right: $spacer/2;
+          margin-right: calc(#{$spacer} / 2);
           @include media-breakpoint-up(xl) {
-            margin-right: $spacer-xl/2;
+            margin-right: calc(#{$spacer-xl} / 2);
           }
           @include media-breakpoint-down(sm) {
-            margin-right: $spacer-sm/2;
+            margin-right: calc(#{$spacer-sm} / 2);
             width: 55vw;
           }
           &:first-child {
@@ -2323,13 +2323,13 @@ body.about {
           img {
             height: 30vw;
             width: auto;
-            margin-bottom: $spacer/2;
+            margin-bottom: calc(#{$spacer} / 2);
             border-radius: 3px;
             @include media-breakpoint-up(xl) {
-              margin-bottom: $spacer-xl/2;
+              margin-bottom: calc(#{$spacer-xl} / 2);
             }
             @include media-breakpoint-down(sm) {
-              margin-bottom: $spacer-sm/2;
+              margin-bottom: calc(#{$spacer-sm} / 2);
               height: auto;
               width: 100%;
             }
@@ -2490,11 +2490,11 @@ body.about {
             display: flex;
           }
           .circle {
-            width: $spacer/3*2;
-            height: $spacer/3*2;
+            width: calc(#{$spacer} / 3 * 2);
+            height: calc(#{$spacer} / 3 * 2);
             border-radius: 100vw;
             background-color: $color-white;
-            margin-right: $spacer/3*2;
+            margin-right: calc(#{$spacer} / 3 * 2);
             &.active-circle {
               background-color: $color-dark-grey;
             }
@@ -2527,15 +2527,15 @@ body.about {
       .block-team-inner {
         display: flex;
         flex-wrap: wrap;
-        margin: 0px -#{$spacer/2};
+        margin: 0px calc(-#{$spacer} / 2);
         @include media-breakpoint-up(xl) {
-          margin: 0px -#{$spacer-xl/2};
+          margin: 0px calc(-#{$spacer-xl} / 2);
         }
         @include media-breakpoint-down(sm) {
-          margin: 0px -#{$spacer-sm/2};
+          margin: 0px calc(-#{$spacer-sm} / 2);
         }
         .single-person {
-          padding: 0px $spacer/2;
+          padding: 0px calc(#{$spacer} / 2);
           flex: 0 0 auto;
           width: 33.333%;
           transition: opacity 0.5s linear;
@@ -2544,11 +2544,11 @@ body.about {
           cursor: pointer;
           margin-bottom: $spacer;
           @include media-breakpoint-up(xl) {
-            padding: 0px $spacer-xl/2;
+            padding: 0px calc(#{$spacer-xl} / 2);
             margin-bottom: $spacer-xl;
           }
           @include media-breakpoint-down(sm) {
-            padding: 0px $spacer-sm/2;
+            padding: 0px calc(#{$spacer-sm} / 2);
             margin-bottom: $spacer-sm;
             width: 100%;
           }
@@ -2721,7 +2721,7 @@ body.about {
       .block-main-text {
         margin-bottom: $spacer*4;
         @include media-breakpoint-up(xl) {
-          margin-bottom: $spacer-xl/4;
+          margin-bottom: calc(#{$spacer-xl} / 4);
         }
         @include media-breakpoint-down(sm) {
           margin-bottom: $spacer-sm;
@@ -2826,12 +2826,12 @@ body.about {
               white-space: nowrap;
               width: 100vw;
               padding-right: 10vw;
-              margin: 0px -#{$spacer/4};
+              margin: 0px calc(-#{$spacer} / 4);
               @include media-breakpoint-up(xl) {
-                margin: 0px -#{$spacer-xl/4};
+                margin: 0px calc(-#{$spacer-xl} / 4);
               }
               @include media-breakpoint-down(sm) {
-                margin: 0px -#{$spacer-sm/4};
+                margin: 0px calc(-#{$spacer-sm} / 4);
                 padding-right: 0vw;
               }
               /* Center align when there is only one .single-person */
@@ -2844,7 +2844,7 @@ body.about {
                 justify-content: flex-start;
               }
               .single-person {
-                padding: 0px $spacer/4;
+                padding: 0px calc(#{$spacer} / 4);
                 flex: 0 0 auto;
                 width: 33.333vw;
                 transition: opacity 0.5s linear;
@@ -2852,10 +2852,10 @@ body.about {
                 position: relative;
                 cursor: pointer;
                 @include media-breakpoint-up(xl) {
-                  padding: 0px $spacer-xl/4;
+                  padding: 0px calc(#{$spacer-xl} / 4);
                 }
                 @include media-breakpoint-down(sm) {
-                  padding: 0px $spacer-sm/4;
+                  padding: 0px calc(#{$spacer-sm} / 4);
                   margin-bottom: $spacer-sm;
                   width: 80vw;
                 }
@@ -3552,7 +3552,7 @@ body {
         .module-text-one-column {
           .column-title {
             @include media-breakpoint-down(sm) {
-              margin-bottom: $spacer-sm/2;
+              margin-bottom: calc(#{$spacer-sm} / 2);
             }
             span {
               text-transform: uppercase;
@@ -3593,12 +3593,12 @@ body {
               }
               li {
                 display: flex;
-                margin-bottom: $spacer/4;
+                margin-bottom: calc(#{$spacer} / 4);
                 @include media-breakpoint-up(xl) {
-                  margin-bottom: $spacer-xl/4;
+                  margin-bottom: calc(#{$spacer-xl} / 4);
                 }
                 @include media-breakpoint-down(sm) {
-                  margin-bottom: $spacer-sm/4;
+                  margin-bottom: calc(#{$spacer-sm} / 4);
                 }
                 &::before {
                   display: inline-block;
@@ -3617,16 +3617,16 @@ body {
                   @extend %micro;
                   margin-right: $spacer*3;
                   width: $spacer*2;
-                  padding: $spacer/6;
+                  padding: calc(#{$spacer} / 6);
                   @include media-breakpoint-up(xl) {
                     margin-right: $spacer-xl*3;
                     width: $spacer-xl*2;
-                    padding: $spacer-xl/6;
+                    padding: calc(#{$spacer-xl} / 6);
                   }
                   @include media-breakpoint-down(sm) {
                     margin-right: $spacer-sm*3;
                     width: $spacer-sm*2;
-                    padding: $spacer-sm/6;
+                    padding: calc(#{$spacer-sm} / 6);
                   }
                 }
                 p {
@@ -3645,12 +3645,12 @@ body {
               p {
                 display: flex;
                 align-items: center;
-                margin-bottom: $spacer/2;
+                margin-bottom: calc(#{$spacer} / 2);
                 @include media-breakpoint-up(xl) {
-                  margin-bottom: $spacer-xl/2;
+                  margin-bottom: calc(#{$spacer-xl} / 2);
                 }
                 @include media-breakpoint-down(sm) {
-                  margin-bottom: $spacer-sm/2;
+                  margin-bottom: calc(#{$spacer-sm} / 2);
                 }
                 .circle {
                   display: inline-block;
@@ -3664,16 +3664,16 @@ body {
                   @extend %micro;
                   margin-right: $spacer*3;
                   width: $spacer*2;
-                  padding: $spacer/6;
+                  padding: calc(#{$spacer} / 6);
                   @include media-breakpoint-up(xl) {
                     margin-right: $spacer-xl*3;
                     width: $spacer-xl*2;
-                    padding: $spacer-xl/6;
+                    padding: calc(#{$spacer-xl} / 6);
                   }
                   @include media-breakpoint-down(sm) {
                     margin-right: $spacer-sm*3;
                     width: $spacer-sm*2;
-                    padding: $spacer-sm/6;
+                    padding: calc(#{$spacer-sm} / 6);
                   }
                 }
               }
@@ -3697,7 +3697,7 @@ body {
                 margin-bottom: $spacer-xl;
               }
               @include media-breakpoint-down(sm) {
-                margin-bottom: $spacer-sm/2;
+                margin-bottom: calc(#{$spacer-sm} / 2);
               }
             }
             p {
@@ -3716,7 +3716,7 @@ body {
                 margin-bottom: $spacer-xl;
               }
               @include media-breakpoint-down(sm) {
-                margin-bottom: $spacer-sm/2;
+                margin-bottom: calc(#{$spacer-sm} / 2);
               }
             }
           }
@@ -3730,23 +3730,23 @@ body {
             flex: 0 0 auto;
             // display: table;
             display: inline-block;
-            margin-right: $spacer/2;
+            margin-right: calc(#{$spacer} / 2);
             @include media-breakpoint-up(xl) {
-              margin-right: $spacer-xl/2;
+              margin-right: calc(#{$spacer-xl} / 2);
             }
             @include media-breakpoint-down(sm) {
-              margin-right: $spacer-sm/2;
+              margin-right: calc(#{$spacer-sm} / 2);
             }
             img {
               border-radius: 3px;
               width: auto;
               height: 30vw;
-              margin-bottom: $spacer/2;
+              margin-bottom: calc(#{$spacer} / 2);
               @include media-breakpoint-up(xl) {
-                margin-bottom: $spacer-xl/2;
+                margin-bottom: calc(#{$spacer-xl} / 2);
               }
               @include media-breakpoint-down(sm) {
-                margin-bottom: $spacer-sm/2;
+                margin-bottom: calc(#{$spacer-sm} / 2);
                 height: 90vw;
               }
             }
@@ -3763,12 +3763,12 @@ body {
         }
         .module-image {
           img {
-            margin-bottom: $spacer/2;
+            margin-bottom: calc(#{$spacer} / 2);
             @include media-breakpoint-up(xl) {
-              margin-bottom: $spacer-xl/2;
+              margin-bottom: calc(#{$spacer-xl} / 2);
             }
             @include media-breakpoint-down(sm) {
-              margin-bottom: $spacer-sm/2;
+              margin-bottom: calc(#{$spacer-sm} / 2);
             }
           }
           .caption {
@@ -3779,12 +3779,12 @@ body {
         }
         .module-double-image {
           img {
-            margin-bottom: $spacer/2;
+            margin-bottom: calc(#{$spacer} / 2);
             @include media-breakpoint-up(xl) {
-              margin-bottom: $spacer-xl/2;
+              margin-bottom: calc(#{$spacer-xl} / 2);
             }
             @include media-breakpoint-down(sm) {
-              margin-bottom: $spacer-sm/2;
+              margin-bottom: calc(#{$spacer-sm} / 2);
             }
           }
           .caption {
@@ -3824,9 +3824,9 @@ body {
         .single-work {
           width: auto;
           height: 30vw;
-          margin-right: $spacer/2;
+          margin-right: calc(#{$spacer} / 2);
           @include media-breakpoint-up(xl) {
-            margin-right: $spacer-xl/2;
+            margin-right: calc(#{$spacer-xl} / 2);
           }
           @include media-breakpoint-down(sm) {
             margin-right: 0px;
@@ -3978,16 +3978,16 @@ body.contact {
     display: flex;
     margin: 0px calc(-#{$spacer} / 4);
     margin-bottom: $spacer * 4;
-    padding: 0px $spacer/2;
+    padding: 0px calc(#{$spacer} / 2);
     @include media-breakpoint-up(xl) {
       margin: 0px calc(-#{$spacer-xl} / 4);
       margin-bottom: $spacer-xl * 4;
-      padding: 0px $spacer-xl/2;
+      padding: 0px calc(#{$spacer-xl} / 2);
     }
     @include media-breakpoint-down(sm) {
       margin: 0px calc(-#{$spacer-sm} / 4);
       margin-bottom: $spacer-sm * 4;
-      padding: 0px $spacer-sm/2;
+      padding: 0px calc(#{$spacer-sm} / 2);
     }
    .block-address-text {
     width: 66.666%;
@@ -4124,7 +4124,7 @@ body.contact {
         margin-bottom: $spacer-xl;
       }
       @include media-breakpoint-down(sm) {
-        margin-bottom: $spacer-sm/2;
+        margin-bottom: calc(#{$spacer-sm} / 2);
       }
       a {
         text-transform: uppercase;
