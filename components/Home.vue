@@ -110,9 +110,10 @@ function playVideo() {
           </div>
         </div>
         <div class="block-video">
-          <div class="video-container"
-          :class="{ hidden: isPlaying }"
-          @click="playVideo">
+          <div
+            class="video-container"
+            :class="{ hidden: isPlaying }"
+            @click="playVideo">
             <div class="video-container-image">
               <img :src="page?.homevideoimage?.url" />
             </div>
@@ -125,7 +126,7 @@ function playVideo() {
               </div>
             </div>
           </div>
-          <div class="video-container-video">
+          <div v-if="page?.homevideo?.url" class="video-container-video">
             <video ref="videoRef">
               <source :src="`${page?.homevideo?.url}`" type="video/mp4">
             </video>
@@ -162,8 +163,8 @@ function playVideo() {
             </div>
             <transition name="collapse">
               <div
-                class="focus-area-content"
                 v-show="openIndex === index"
+                class="focus-area-content"
               >
                 <div class="gradient-overlay-top"></div>
                 <div class="focus-area-content-image">
