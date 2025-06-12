@@ -1,19 +1,7 @@
 <script setup lang="ts">
-import { homeQuery } from '~/queries'
-import { worksQuery } from '~/queries'
-import { BASE_DELAY } from '~/data/constants'
+const page = await useWorksPage();
 
-const { isMobile } = useDevice()
-const { queryApi, queryParams } = useQueryParams(worksQuery)
-const { data } = await useFetch(queryApi, queryParams)
-const page = (data?.value as any)?.result
-const hoveredProject = ref(-1)
-
-setPage(page)
-
-onMounted(() => {})
-
-onUnmounted(() => {})
+setPage(page.value)
 </script>
 
 <template>

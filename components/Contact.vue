@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { contactQuery } from '~/queries'
 import Clock from '~/components/Clock.vue'
 
-const { queryApi, queryParams } = useQueryParams(contactQuery)
-// TODO: type any
-const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
-const page = computed(() => data.value?.result)
+const page = await useContactPage();
 
-defineProps<{
-  open: boolean
-}>()
+defineProps<{ open: boolean }>()
 
 // Inject the closeMenuMobile method provided by the parent component
 const closeMenuMobile = inject<() => void>('closeMenuMobile');
@@ -20,8 +14,6 @@ const closeMenu = () => {
     closeMenuMobile();
   }
 };
-
-
 
 </script>
 

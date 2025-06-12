@@ -1,29 +1,23 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { aboutQuery } from '~/queries'
+import { ref } from 'vue';
 
-const { queryApi, queryParams } = useQueryParams(aboutQuery)
+defineProps<{ open?: boolean }>()
 
-const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
-const page = computed(() => data.value?.result)
-defineProps<{
-  open?: boolean
-}>()
+const page = await useAboutPage();
 
 /* Focus areas */
-const activeIndexFocusAreas = ref(0)
-const setActiveFocusAreas = (index: number) => {
-  activeIndexFocusAreas.value = index
-}
-const focusAreas = computed(() => page.value?.aboutfocusareas || [])
+// const activeIndexFocusAreas = ref(0)
+// const setActiveFocusAreas = (index: number) => {
+//   activeIndexFocusAreas.value = index
+// }
+// const focusAreas = computed(() => page.value?.aboutfocusareas || [])
 
 /* Methodology */
-const activeIndexMethodology = ref(0) 
-const setActiveMethodology = (index: number) => {
-  activeIndexMethodology.value = index
-}
-const methodologySections = computed(() => page.value?.aboutmethodology || [])
+// const activeIndexMethodology = ref(0) 
+// const setActiveMethodology = (index: number) => {
+//   activeIndexMethodology.value = index
+// }
+// const methodologySections = computed(() => page.value?.aboutmethodology || [])
 
 
 
@@ -36,31 +30,31 @@ const closeMenu = () => {
 };
 
 /* Networks */
-const firstThreeNetworks = computed(() => page.value?.aboutnetworklist.slice(0, 3) || [])
-const remainingNetworks = computed(() => page.value?.aboutnetworklist.slice(3) || [])
-const showAllNetworks = ref(false)
-const toggleNetworksVisibility = () => {
-  showAllNetworks.value = !showAllNetworks.value
-}
+// const firstThreeNetworks = computed(() => page.value?.aboutnetworklist.slice(0, 3) || [])
+// const remainingNetworks = computed(() => page.value?.aboutnetworklist.slice(3) || [])
+// const showAllNetworks = ref(false)
+// const toggleNetworksVisibility = () => {
+//   showAllNetworks.value = !showAllNetworks.value
+// }
 
 /* TEAM */
 
-const teamGroups = computed(() => page.value?.aboutteamgroups || []);
+// const teamGroups = computed(() => page.value?.aboutteamgroups || []);
 
 // Reactive variables
 const activeIndexTeam = ref<number | null>(null);
 const groupPeopleRefs = ref<HTMLElement[]>([]);
-const activePersons = ref<Record<number, number | null>>({});
+// const activePersons = ref<Record<number, number | null>>({});
 
 // Function to set the active team
-function setActiveTeam(index: number) {
-  activeIndexTeam.value = activeIndexTeam.value === index ? null : index;
-}
+// function setActiveTeam(index: number) {
+//   activeIndexTeam.value = activeIndexTeam.value === index ? null : index;
+// }
 
-function handleTitleClick(index: number, event: MouseEvent) {
-  event.stopPropagation(); // Stop the event from reaching the document level
-  setActiveTeam(index);
-}
+// function handleTitleClick(index: number, event: MouseEvent) {
+//   event.stopPropagation(); // Stop the event from reaching the document level
+//   setActiveTeam(index);
+// }
 
 // Function to handle clicks outside
 function handleClickOutside(event: MouseEvent) {

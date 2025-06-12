@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { homeQuery, siteQuery } from '~/queries'
+import { siteQuery } from '~/queries'
 
 defineProps<{ open: boolean }>()
 
-const { queryApi, queryParams } = useQueryParams(homeQuery)
-const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
-const page = computed(() => data!.value!.result)
+const page = await useHomePage();
 
 const siteQueryData = useQueryParams(siteQuery)
 // console.log(siteQueryData)
@@ -15,14 +13,14 @@ const { data: site } = await useFetch<{ result: any }>(
 )
 // watchEffect(() => console.log(site.value))
 
-const latestcases = computed(() =>
-  page.value.homelatestcases?.map((item: any) => {
-    return {
-      ...item.case[0],
-      columns: item.columns,
-    }
-  })
-)
+// const latestcases = computed(() =>
+//   page.value.homelatestcases?.map((item: any) => {
+//     return {
+//       ...item.case[0],
+//       columns: item.columns,
+//     }
+//   })
+// )
 
 const shortbio = computed(() => site.value?.result?.shortbio || '');
 

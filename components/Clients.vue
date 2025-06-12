@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import { clientsQuery } from '~/queries'
 
-const { queryApi, queryParams } = useQueryParams(clientsQuery)
-// TODO: type any
-const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
-const page = computed(() => data.value?.result)
+defineProps<{ open: boolean }>()
 
-defineProps<{
-  open: boolean
-}>()
+const page = await useClientsPage();
 
 // Inject the closeMenuMobile method provided by the parent component
 const closeMenuMobile = inject<() => void>('closeMenuMobile');

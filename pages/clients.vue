@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import { clientsQuery } from '~/queries'
+const page = await useClientsPage();
 
-const { queryApi, queryParams } = useQueryParams(clientsQuery)
-const { data } = await useFetch(queryApi, queryParams)
-const page = (data?.value as any)?.result
-const site = useSite()
-
-setPage(page)
+setPage(page.value)
 </script>
 
 <template>
@@ -18,5 +13,3 @@ setPage(page)
     <Contact :open="false" />
   </div>
 </template>
-
-<style scoped lang="scss"></style>
