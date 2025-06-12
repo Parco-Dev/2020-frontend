@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getWorkQuery } from '~/queries'
+await useHomePage();
 
 const kirbyPath = useRoute().path
 const { queryApi, queryParams } = useQueryParams(getWorkQuery(kirbyPath))

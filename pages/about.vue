@@ -1,4 +1,5 @@
 <script setup lang="ts">
+await useHomePage();
 const page = await useAboutPage();
 
 setPage(page.value)

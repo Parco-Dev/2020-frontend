@@ -30,7 +30,6 @@ const toggle = (index: number) => {
   openIndex.value = openIndex.value === index ? null : index
 }
 
-
 const route = useRoute()
 
 const setMinHeight = () => {
@@ -70,8 +69,6 @@ function playVideo() {
   isPlaying.value = true
   videoRef.value?.play()
 }
-
-
 
 </script>
 
@@ -123,7 +120,7 @@ function playVideo() {
                 </div>
               </div>
             </div>
-            <div v-if="isPlaying &&page?.homevideo?.url" class="video-container-video">
+            <div class="video-container-video">
               <video ref="videoRef">
                 <source :src="`${page?.homevideo?.url}`" type="video/mp4">
               </video>
