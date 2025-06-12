@@ -24,22 +24,26 @@ const closeMenu = () => {
         <p>Clients</p>
       </div>
       <div class="section-content">
-        <div class="block-clients-text">
-          <client-only>
-            <p v-html="page?.clientstext"></p>
-          </client-only>
-        </div>
-        <div class="clients-logos">
-          <div
-            v-for="client in page?.clients"
-            :key="client.id"
-            class="single-client"
-          >
-            <a :href="client.clientslink">
-              <img :src="client.clientslogo?.url" />
-            </a>
+        <ClientOnly>
+
+          <div class="block-clients-text">
+            <client-only>
+              <p v-html="page?.clientstext"></p>
+            </client-only>
           </div>
-        </div>
+          <div class="clients-logos">
+            <div
+              v-for="client in page?.clients"
+              :key="client.id"
+              class="single-client"
+            >
+              <a :href="client.clientslink">
+                <img :src="client.clientslogo?.url" />
+              </a>
+            </div>
+          </div>
+
+        </ClientOnly>
         <AppFooter/>
       </div>
     </div>

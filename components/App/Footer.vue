@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const site = useSite()
+const site = useSite();
 </script>
 
 <template>
@@ -66,5 +66,3 @@ const site = useSite()
     </ClientOnly>
   </footer>
 </template>
-
-<style scoped lang="scss"></style>

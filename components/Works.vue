@@ -12,7 +12,6 @@ const props = defineProps<{ open: boolean }>()
 
 const page = await useWorksPage();
 
-
 // Inject the closeMenuMobile method provided by the parent component
 const closeMenuMobile = inject<() => void>('closeMenuMobile');
 
@@ -183,28 +182,32 @@ watch(
         <div class="works-text-text">
           <p>How we add real-world <strong>value</strong> through experience strategy <sup>tm</sup></p>
         </div>
-        <div ref="masonryGrid" class="works-list grid">
-          <div
-            v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
-            :key="id"
-            class="single-work"
-            :class="`grid-item ${casethumbnailsize}`"
-          >
-            <NuxtLink :to="`/${id}`">
-              <div class="work-image">
-                <img :src="casethumbnail?.url" />
-              </div>
-              <div class="work-info">
-                <div class="work-title">
-                  <p>{{ title }}</p>
+
+        <ClientOnly>
+          <div ref="masonryGrid" class="works-list grid">
+            <div
+              v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
+              :key="id"
+              class="single-work"
+              :class="`grid-item ${casethumbnailsize}`"
+            >
+              <NuxtLink :to="`/${id}`">
+                <div class="work-image">
+                  <img :src="casethumbnail?.url" />
                 </div>
-                <div class="work-subtitle">
-                  <p v-html="casesubtitle"></p>
+                <div class="work-info">
+                  <div class="work-title">
+                    <p>{{ title }}</p>
+                  </div>
+                  <div class="work-subtitle">
+                    <p v-html="casesubtitle"></p>
+                  </div>
                 </div>
-              </div>
-            </NuxtLink>
+              </NuxtLink>
+            </div>
           </div>
-        </div>
+        </ClientOnly>
+
         <AppFooter/>
       </div>
     </div>

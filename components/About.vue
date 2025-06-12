@@ -129,101 +129,102 @@ function toggleCollapse(index: number) {
         <p>About</p>
       </div>
       <div class="section-content">
-        <div class="block-about-text">
-          <div class="about-text-main">
-            <p v-html="page?.aboutmaintext"></p>
-          </div>
-          <div class="about-text">
-            <client-only>
-              <p v-html="page?.abouttext"></p>
-            </client-only>
-          </div>
-        </div>
-        <div class="block-approach">
-          <div class="block-approach-title">
-            <p v-html="page?.aboutapproachtitle"></p>
-          </div>
-          <div class="block-approach-text">
-            <p v-html="page?.aboutapproachtext"></p>
-          </div>
-          <div class="block-approach-inner">
-            <div class="collapses-container">
-              <div
-                v-for="(approach, index) in page?.aboutapproach"
-                :key="index"
-                class="single-collapse"
-                :class="{ opencollapse: activeIndex === index }"
-              >
-                <div class="collapse-link">
-                  <a href="#" @click.prevent="toggleCollapse(index)">
-                    {{ approach.aboutapproachword }}
-                  </a>
-                </div>
-                <div
-                  class="collapse-content"
-                  :class="{ open: activeIndex === index }"
-                >
-                  <div class="approach-text">
-                    <p v-html="approach.aboutapproachtexttop"></p>
-                  </div>
-                  <div class="approach-icon">
-                    <img :src="approach.aboutapproachicon?.url" />
-                  </div>
-                  <div class="approach-text">
-                    <p v-html="approach.aboutapproachtextbottom"></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="block-team">
-          <div class="row">
-            <div class="col-lg-6 col-12">
-              <div class="block-team-title">
-                <p v-html="page?.aboutteamtitle"></p>
-              </div>
-              <div class="block-team-text">
-                <p v-html="page?.aboutteamtext"></p>
-              </div>
-            </div>
-            <div class="col-lg-6 col-12"></div>
-          </div>
-          <div class="block-team-inner">
-            
-            <div
-              v-for="(person, personIndex) in page?.aboutteampeople"
-              :key="person.id"
-              class="single-person"
-              :class="{ active: isActiveBio[personIndex] }"
-              @click="toggleBio(personIndex)"
-            >
-              <div class="single-person-inner">
-                <img :src="person.aboutteampeopleimage?.url" />
-                <div class="person-info">
-                  <div class="person-name">
-                    <p v-html="person.aboutteampeoplename"></p>
-                  </div>
-                  <div class="person-role">
-                    <p v-html="person.aboutteampeoplerole"></p>
-                  </div>
-                </div>
-                <div class="person-biography">
-                  <div class="person-name">
-                    <p v-html="person.aboutteampeoplename"></p>
-                  </div>
-                  <div class="person-contact">
-                    <p v-html="person.aboutteampeoplecontact"></p>
-                  </div>
-                  <div class="person-bio">
-                    <p v-html="person.aboutteampeoplebio"></p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <ClientOnly>
 
+          <div class="block-about-text">
+            <div class="about-text-main">
+              <p v-html="page?.aboutmaintext"></p>
+            </div>
+            <div class="about-text">
+              <p v-html="page?.abouttext"></p>
+            </div>
           </div>
-        </div>
+          <div class="block-approach">
+            <div class="block-approach-title">
+              <p v-html="page?.aboutapproachtitle"></p>
+            </div>
+            <div class="block-approach-text">
+              <p v-html="page?.aboutapproachtext"></p>
+            </div>
+            <div class="block-approach-inner">
+              <div class="collapses-container">
+                <div
+                  v-for="(approach, index) in page?.aboutapproach"
+                  :key="index"
+                  class="single-collapse"
+                  :class="{ opencollapse: activeIndex === index }"
+                >
+                  <div class="collapse-link">
+                    <a href="#" @click.prevent="toggleCollapse(index)">
+                      {{ approach.aboutapproachword }}
+                    </a>
+                  </div>
+                  <div
+                    class="collapse-content"
+                    :class="{ open: activeIndex === index }"
+                  >
+                    <div class="approach-text">
+                      <p v-html="approach.aboutapproachtexttop"></p>
+                    </div>
+                    <div class="approach-icon">
+                      <img :src="approach.aboutapproachicon?.url" />
+                    </div>
+                    <div class="approach-text">
+                      <p v-html="approach.aboutapproachtextbottom"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="block-team">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div class="block-team-title">
+                  <p v-html="page?.aboutteamtitle"></p>
+                </div>
+                <div class="block-team-text">
+                  <p v-html="page?.aboutteamtext"></p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12"></div>
+            </div>
+            <div class="block-team-inner">
+              
+              <div
+                v-for="(person, personIndex) in page?.aboutteampeople"
+                :key="person.id"
+                class="single-person"
+                :class="{ active: isActiveBio[personIndex] }"
+                @click="toggleBio(personIndex)"
+              >
+                <div class="single-person-inner">
+                  <img :src="person.aboutteampeopleimage?.url" />
+                  <div class="person-info">
+                    <div class="person-name">
+                      <p v-html="person.aboutteampeoplename"></p>
+                    </div>
+                    <div class="person-role">
+                      <p v-html="person.aboutteampeoplerole"></p>
+                    </div>
+                  </div>
+                  <div class="person-biography">
+                    <div class="person-name">
+                      <p v-html="person.aboutteampeoplename"></p>
+                    </div>
+                    <div class="person-contact">
+                      <p v-html="person.aboutteampeoplecontact"></p>
+                    </div>
+                    <div class="person-bio">
+                      <p v-html="person.aboutteampeoplebio"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </ClientOnly>
         <AppFooter/>
       </div>
     </div>
