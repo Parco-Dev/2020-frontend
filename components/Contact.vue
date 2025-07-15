@@ -33,6 +33,13 @@ const closeMenu = () => {
         <p>Contact</p>
       </div>
       <div class="section-content">
+        <div class="close-button">
+          <NuxtLink to="/">
+            <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 15.6 15.6" style="enable-background:new 0 0 15.6 15.6;" xml:space="preserve">
+              <polygon class="st0" points="15.6,1.4 14.2,0 7.8,6.4 1.4,0 0,1.4 6.4,7.8 0,14.2 1.4,15.6 7.8,9.2 14.2,15.6 15.6,14.2 9.2,7.8 "/>
+            </svg>
+          </NuxtLink>
+        </div>
         <div class="block-contacts">
           <client-only>
             <p v-html="page?.contactgeneral"></p>

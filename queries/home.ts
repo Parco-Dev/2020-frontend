@@ -20,8 +20,11 @@ export const homeQuery: KirbyQuerySchema = {
       select: ['url', 'alt'],
     },
     homephilosophytitle: true,
-    homephilosophytext: true,
+    homephilosophytext: 'page.homephilosophytext',
     homephilosophysubtitle: true,
+    homephilosophybusiness: true,
+    homephilosophyspace: true,
+    homephilosophyemotion: true,
     homefocusareastitle: true,
     homefocusareas: {
       query: 'page.homefocusareas.toStructure',

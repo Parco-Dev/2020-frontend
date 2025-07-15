@@ -36,32 +36,47 @@ const toggle = (index: number) => {
 
 const route = useRoute()
 
-const setMinHeight = () => {
+const focusAreas = ref<NodeListOf<HTMLElement>>()
+const buttons = ref<NodeListOf<HTMLElement>>()
+
+const setMinHeights = (): void => {
   nextTick(() => {
-    const button = document.querySelector('.focus-area-button')
-    const target = document.querySelector('.single-focus-area')
-    if (button && target) {
-      target.style.minHeight = `${button.offsetHeight}px`
-    }
+    buttons.value = document.querySelectorAll('.focus-area-button')
+    focusAreas.value = document.querySelectorAll('.single-focus-area')
+    
+    focusAreas.value?.forEach((target: HTMLElement, index: number) => {
+      const button = buttons.value?.[index]
+      if (button && target) {
+        target.style.minHeight = `${button.offsetHeight}px`
+      }
+    })
   })
 }
 
-const handleResize = () => {
-  setMinHeight()
-}
+// Add a small debounce to handle rapid resizes
+const debouncedResize = useDebounceFn(() => {
+  setMinHeights()
+}, 100)
 
 onMounted(() => {
-  setMinHeight()
-  window.addEventListener('resize', handleResize)
-})
-
-// Optional: update on route change
-watch(() => route.fullPath, () => {
-  setMinHeight()
+  setMinHeights()
+  window.addEventListener('resize', debouncedResize)
+  
+  // This ensures it runs when coming back to the page
+  useNuxtApp().hook('page:transition:finish', () => {
+    setMinHeights()
+  })
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize)
+  window.removeEventListener('resize', debouncedResize)
+})
+
+// Watch route changes with nextTick to ensure DOM is ready
+watch(() => useRoute().path, () => {
+  nextTick(() => {
+    setMinHeights()
+  })
 })
 
 /* VIDEO */
@@ -74,7 +89,17 @@ function playVideo() {
   videoRef.value?.play()
 }
 
+/* Business */
 
+const activeSection = ref(null)
+
+const toggleSection = (sectionName) => {
+  if (activeSection.value === sectionName) {
+    activeSection.value = null
+  } else {
+    activeSection.value = sectionName
+  }
+}
 
 </script>
 
@@ -136,7 +161,47 @@ function playVideo() {
             <p v-html="page?.homephilosophytitle"></p>
           </div>
           <div class="block-philosophy-text">
+            <p>We Unite: 
+              <span ref="businessWord" class="word">
+                Business
+                <span class="philosophy-text philosophy-text-business" :class="{ visible: activeSection === 'business' }">
+                  <p>business text Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                </span>
+                <span class="plus plus-business" @click="toggleSection('business')" :class="{ active: activeSection === 'business' }">
+                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
+                </span>
+              </span>, 
+              <span class="word">
+                Space
+                <span class="philosophy-text philosophy-text-space" :class="{ visible: activeSection === 'space' }">
+                  <p>business text Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                </span>
+                <span class="plus plus-space" @click="toggleSection('space')" :class="{ active: activeSection === 'space' }">
+                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
+                </span>
+              </span> &amp; 
+              <span class="word">
+                Emotion
+                <span class="philosophy-text philosophy-text-emotion" :class="{ visible: activeSection === 'emotion' }">
+                  <p>business text Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                </span>
+                <span class="plus plus-emotion" @click="toggleSection('emotion')" :class="{ active: activeSection === 'emotion' }">
+                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
+                </span>
+              </span>
+            </p>
+            <!--
             <p v-html="page?.homephilosophytext"></p>
+            <div class="philosphy-text philosophy-text-business" style="display: none;">
+              <p v-html="page?.homephilosophybusiness"></p>
+            </div>
+            <div class="philosphy-text philosophy-text-space" style="display: none;">
+              <p v-html="page?.homephilosophyspace"></p>
+            </div>
+            <div class="philosphy-text philosophy-text-emotion" style="display: none;">
+              <p v-html="page?.homephilosophyemotion"></p>
+            </div>
+            -->
           </div>
           <div class="block-philosophy-subtitle">
             <p v-html="page?.homephilosophysubtitle"></p>
@@ -205,7 +270,7 @@ function playVideo() {
             </transition>
           </div>
           <div class="focus-areas-button">
-            <NuxtLink to="/about" class="button">{{ page?.homefocusareasbutton }}</NuxtLink>
+            <NuxtLink to="/works" class="button">{{ page?.homefocusareasbutton }}</NuxtLink>
           </div>
         </div>
         <div class="block-big-text">

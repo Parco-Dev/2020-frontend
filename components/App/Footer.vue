@@ -33,7 +33,9 @@ const site = useSite()
         </div>
         <div class="col-lg-3 col-12">
           <p class="footer-email" v-html="site?.footeremail"></p>
-          <p v-html="site?.privacycookies"></p>
+          <client-only>
+            <p v-if="site?.privacycookies" v-html="site?.privacycookies"></p>
+          </client-only>
         </div>
       </div>
     </div>
