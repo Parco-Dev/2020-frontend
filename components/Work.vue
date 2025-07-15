@@ -10,7 +10,7 @@ const { queryApi, queryParams } = useQueryParams(getWorkQuery(route.path))
 // TODO: type any
 const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
 const page = computed(() => data.value?.result)
-watchEffect(() => console.log(page.value))
+// watchEffect(() => console.log(page.value))
 </script>
 
 <template>

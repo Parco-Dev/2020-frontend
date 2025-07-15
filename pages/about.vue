@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { aboutQuery } from '~/queries'
+await useHomePage();
+const page = await useAboutPage();
 
-const { queryApi, queryParams } = useQueryParams(aboutQuery)
-const { data } = await useFetch(queryApi, queryParams)
-const page = (data?.value as any)?.result
-const site = useSite()
-
-setPage(page)
-// console.log(page)
+setPage(page.value)
 </script>
 
 <template>
@@ -19,5 +14,3 @@ setPage(page)
     <Contact :open="false" />
   </div>
 </template>
-
-<style scoped lang="scss"></style>

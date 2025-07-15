@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import imagesLoaded from 'imagesloaded';
-import { worksQuery } from '~/queries'
 
 // Declare Isotope type for TypeScript
 declare global {
@@ -9,14 +8,9 @@ declare global {
   }
 }
 
-const { queryApi, queryParams } = useQueryParams(worksQuery)
+const props = defineProps<{ open: boolean }>()
 
-const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
-const page = computed(() => data.value?.result)
-
-const props = defineProps<{
-  open: boolean
-}>()
+const page = await useWorksPage();
 
 // Inject the closeMenuMobile method provided by the parent component
 const closeMenuMobile = inject<() => void>('closeMenuMobile');
@@ -29,18 +23,18 @@ const closeMenu = () => {
 };
 
 // Add a class to the body when the button is clicked
-const toggleBodyClass = (className: string) => {
-  const body = document.body;
-  if (body) {
-    if (body.classList.contains(className)) {
-      body.classList.remove(className);
-    } else {
-      body.classList.add(className);
-    }
-  } else {
-    console.warn('Body element is not available');
-  }
-};
+// const toggleBodyClass = (className: string) => {
+//   const body = document.body;
+//   if (body) {
+//     if (body.classList.contains(className)) {
+//       body.classList.remove(className);
+//     } else {
+//       body.classList.add(className);
+//     }
+//   } else {
+//     console.warn('Body element is not available');
+//   }
+// };
 
 const masonryGrid = ref<HTMLElement | null>(null)
 const transitionContainer = ref<HTMLElement | null>(null)
@@ -114,6 +108,7 @@ function debounce(fn: Function, delay: number) {
   let timeout: NodeJS.Timeout
   return function() {
     clearTimeout(timeout)
+    // eslint-disable-next-line prefer-rest-params
     timeout = setTimeout(() => fn.apply(this, arguments), delay)
   }
 }
@@ -177,7 +172,7 @@ watch(
 </script>
 
 <template>
-  <section :class="{ open }" class="single-section section-works" ref="transitionContainer">
+  <section ref="transitionContainer" :class="{ open }" class="single-section section-works">
     <div class="single-section-inner">
       <NuxtLink to="/works" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
@@ -187,28 +182,32 @@ watch(
         <div class="works-text-text">
           <p>How we add real-world <strong>value</strong> through experience strategy <sup>tm</sup></p>
         </div>
-        <div class="works-list grid" ref="masonryGrid">
-          <div
-            v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
-            :key="id"
-            class="single-work"
-            :class="`grid-item ${casethumbnailsize}`"
-          >
-            <NuxtLink :to="`/${id}`">
-              <div class="work-image">
-                <img :src="casethumbnail?.url" />
-              </div>
-              <div class="work-info">
-                <div class="work-title">
-                  <p>{{ title }}</p>
+
+        <ClientOnly>
+          <div ref="masonryGrid" class="works-list grid">
+            <div
+              v-for="{ id, title, casethumbnail, casethumbnailsize, casesubtitle } of page?.children"
+              :key="id"
+              class="single-work"
+              :class="`grid-item ${casethumbnailsize}`"
+            >
+              <NuxtLink :to="`/${id}`">
+                <div class="work-image">
+                  <img :src="casethumbnail?.url" />
                 </div>
-                <div class="work-subtitle">
-                  <p v-html="casesubtitle"></p>
+                <div class="work-info">
+                  <div class="work-title">
+                    <p>{{ title }}</p>
+                  </div>
+                  <div class="work-subtitle">
+                    <p v-html="casesubtitle"></p>
+                  </div>
                 </div>
-              </div>
-            </NuxtLink>
+              </NuxtLink>
+            </div>
           </div>
-        </div>
+        </ClientOnly>
+
         <AppFooter/>
       </div>
     </div>

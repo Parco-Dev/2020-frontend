@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { BASE_DELAY } from '~/data/constants'
 import { useToggleStore } from '@/stores/toggleStore';
 import { siteQuery } from '~/queries'
 import { contactQuery } from '~/queries'
@@ -7,12 +6,7 @@ import Clock from '~/components/Clock.vue'
 
 const { toggleBodyClass } = useToggleStore();
 
-const route = useRoute()
-// const page = usePage()
-const project = useProject() as any
-
 const siteQueryData = useQueryParams(siteQuery)
-// console.log(siteQueryData)
 const { data: site } = await useFetch<{ result: any }>(
   siteQueryData.queryApi,
   siteQueryData.queryParams

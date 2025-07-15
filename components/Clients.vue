@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import { clientsQuery } from '~/queries'
 
-const { queryApi, queryParams } = useQueryParams(clientsQuery)
-// TODO: type any
-const { data } = await useFetch<{ result: any }>(queryApi, queryParams)
-const page = computed(() => data.value?.result)
+defineProps<{ open: boolean }>()
 
-defineProps<{
-  open: boolean
-}>()
+const page = await useClientsPage();
 
 // Inject the closeMenuMobile method provided by the parent component
 const closeMenuMobile = inject<() => void>('closeMenuMobile');
@@ -30,22 +24,26 @@ const closeMenu = () => {
         <p>Clients</p>
       </div>
       <div class="section-content">
-        <div class="block-clients-text">
-          <client-only>
-            <p v-html="page?.clientstext"></p>
-          </client-only>
-        </div>
-        <div class="clients-logos">
-          <div
-            v-for="client in page?.clients"
-            :key="client.id"
-            class="single-client"
-          >
-            <a :href="client.clientslink">
-              <img :src="client.clientslogo?.url" />
-            </a>
+        <ClientOnly>
+
+          <div class="block-clients-text">
+            <client-only>
+              <p v-html="page?.clientstext"></p>
+            </client-only>
           </div>
-        </div>
+          <div class="clients-logos">
+            <div
+              v-for="client in page?.clients"
+              :key="client.id"
+              class="single-client"
+            >
+              <a :href="client.clientslink">
+                <img :src="client.clientslogo?.url" />
+              </a>
+            </div>
+          </div>
+
+        </ClientOnly>
         <AppFooter/>
       </div>
     </div>

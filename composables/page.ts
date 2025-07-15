@@ -23,7 +23,7 @@ export function setPage<T extends Record<string, any>>(page?: T) {
   // Build the page meta tags
 
   const { siteUrl } = useRuntimeConfig().public
-  const site = useSite()
+  // const site = useSite()
 
   // const title = page.title
   //  ? `${page.title} – ${site.value.title}`
@@ -40,8 +40,8 @@ export function setPage<T extends Record<string, any>>(page?: T) {
     link: [{ rel: 'canonical', href: url }],
   })
 
-  console.log('Page:', page)
-  console.log('Intended Template:', page.intendedTemplate)
+  // console.log('Page:', page)
+  // console.log('Intended Template:', page.intendedTemplate)
 
   /*
   useSeoMeta({
