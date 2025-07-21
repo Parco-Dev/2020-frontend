@@ -24,7 +24,7 @@
 <template>
   <Html lang="en">
     <Head>
-      <Link rel="icon" href="/favicon.jpg" type="image/jpeg" />
+      <Link rel="icon" href="/favicon.png" type="image/png" />
       <link rel="preload" href="/fonts/Baikal-VF.ttf" as="font" type="font/ttf" crossorigin="anonymous">
     </Head>
 

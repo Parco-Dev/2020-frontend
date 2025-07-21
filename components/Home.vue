@@ -109,7 +109,7 @@ const toggleSection = (sectionName) => {
       <NuxtLink to="/" class="section-header" @mouseenter="useHomePage()"></NuxtLink>
       <div class="site-header">
         <div class="site-header-heading">
-          <img :src="site?.result.sitelogo?.url" />
+          <img :src="site?.result.sitelogo?.url" loading="lazy" />
           <client-only>
             <p v-if="shortbio" v-html="shortbio"></p>
           </client-only>
@@ -152,14 +152,16 @@ const toggleSection = (sectionName) => {
             </div>
           </div>
           <div class="video-container-video">
-            <video ref="videoRef">
+            <video ref="videoRef" loading="lazy">
               <source :src="`${page?.homevideo?.url}`" type="video/mp4">
             </video>
           </div>
         </div>
         <div class="block-philosophy">
           <div class="block-philosophy-title">
-            <p v-html="page?.homephilosophytitle"></p>
+            <ClientOnly>
+              <p v-html="page?.homephilosophytitle"></p>
+            </ClientOnly>
           </div>
           <div class="block-philosophy-text">
             <p>We Unite: 
@@ -168,8 +170,8 @@ const toggleSection = (sectionName) => {
                 <span class="philosophy-text philosophy-text-business" :class="{ visible: activeSection === 'business' }">
                   <p>business text Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                 </span>
-                <span class="plus plus-business" @click="toggleSection('business')" :class="{ active: activeSection === 'business' }">
-                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
+                <span class="plus plus-business" :class="{ active: activeSection === 'business' }" @click="toggleSection('business')">
+                  <svg id="Livello_1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
                 </span>
               </span>, 
               <span class="word">
@@ -177,8 +179,8 @@ const toggleSection = (sectionName) => {
                 <span class="philosophy-text philosophy-text-space" :class="{ visible: activeSection === 'space' }">
                   <p>business text Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                 </span>
-                <span class="plus plus-space" @click="toggleSection('space')" :class="{ active: activeSection === 'space' }">
-                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
+                <span class="plus plus-space" :class="{ active: activeSection === 'space' }" @click="toggleSection('space')">
+                  <svg id="Livello_1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
                 </span>
               </span> &amp; 
               <span class="word">
@@ -186,8 +188,8 @@ const toggleSection = (sectionName) => {
                 <span class="philosophy-text philosophy-text-emotion" :class="{ visible: activeSection === 'emotion' }">
                   <p>business text Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                 </span>
-                <span class="plus plus-emotion" @click="toggleSection('emotion')" :class="{ active: activeSection === 'emotion' }">
-                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
+                <span class="plus plus-emotion" :class="{ active: activeSection === 'emotion' }" @click="toggleSection('emotion')">
+                  <svg id="Livello_1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.1 21.6" style="enable-background:new 0 0 29.1 21.6;" xml:space="preserve"> <polygon points="29.1,9.3 16,9.3 16,0 13,0 13,9.3 0,9.3 0,12.3 13,12.3 13,21.6 16,21.6 16,12.3 29.1,12.3 "/> </svg>
                 </span>
               </span>
             </p>
