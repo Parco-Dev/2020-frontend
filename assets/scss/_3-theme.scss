@@ -555,7 +555,7 @@ body.works:not(.active-class) {
     }
    }
   }
-} 
+}
 
 body.active-class {
   &[data-template=about] {
@@ -692,7 +692,7 @@ body.active-class {
         }
       }
       .section-content {
-        opacity: 1;
+        // opacity: 1;
         .section-content-body {
           // opacity: 1;
         }
@@ -750,11 +750,11 @@ body.active-class {
     }
     .section-content {
       width: 100%;
-      opacity: 0;
+      // opacity: 0;
       transition: opacity 0.3s linear;
-      transition-delay: 1s;
+      transition-delay: .5s;
       @include media-breakpoint-down(sm) {
-        opacity: 1;
+        // opacity: 1;
       }
       .section-content-body {
         
@@ -767,14 +767,14 @@ body {
   .section-home {
     .single-section-inner {
       .section-content {
-        opacity: 1;
+        // opacity: 1;
       }
     }
   }
   .section-work {
     .single-section-inner {
       .section-content {
-        opacity: 1;
+        // opacity: 1;
       }
     }
   }
@@ -1885,7 +1885,7 @@ body[data-template=about].active-class {
 body.clients {
   .section-clients {
     .section-content {
-      opacity: 1;
+      // opacity: 1;
     }
   }
 }
@@ -1894,7 +1894,7 @@ body[data-template=clients] {
 	.section-home {
 		right: 0px;
     .section-content {
-      opacity: 0;
+      // opacity: 0;
     }
 	}
 	.section-work {
@@ -1925,8 +1925,7 @@ body[data-template=clients] {
 .section-clients {
   .section-content {
     transition: opacity 0.5s linear;
-    transition-delay: 1s;
-    opacity: 0;
+    // opacity: 0;
     padding-right: 10vw;
     overflow-x: hidden;
     @include media-breakpoint-down(sm) {
@@ -2025,12 +2024,12 @@ body[data-template=about] {
 body.about {
   .section-home {
     .section-content {
-      opacity: 0;
+      // opacity: 0;
     }
   }
   .section-about {
     .section-content {
-      opacity: 1;
+      // opacity: 1;
     }
   }
 }
@@ -2038,8 +2037,7 @@ body.about {
 .section-about {
   .section-content {
     transition: opacity 0.5s linear;
-    transition-delay: 1s;
-    opacity: 0;
+    // opacity: 0;
     padding-right: 5vw;
     overflow-x: hidden;
     @include media-breakpoint-down(sm) {
@@ -3212,111 +3210,13 @@ body[data-template=default] {
      z-index:1;
   }
 }
-
+  
 body[data-template=works] {
   .section-works {
     right: 0px;
     width: 95vw;
     @include media-breakpoint-down(sm) {
       width: 100vw;
-    }
-    .works-text-text {
-      height: auto !important;
-      padding: 0px $spacer;
-      @include media-breakpoint-up(xl) {
-        padding: 0px $spacer-xl;
-      }
-      @include media-breakpoint-down(sm) {
-        padding: 0px $spacer-sm;
-      }
-      p {
-        @extend %extralarge;
-        text-transform: uppercase;
-        sup {
-          font-size: 4vw;
-          top: -3.5vw;
-          @include media-breakpoint-down(sm) {
-            top: -5.5vw;
-          }
-        }
-      }
-      strong {
-        font-variation-settings: 'wght' 700, 'wdth' 130, 'ital' 1;
-      }
-    }
-    .works-list {
-      display: flex;
-      flex: wrap;
-      margin: 0px calc(-#{$spacer} / 4);
-      @include media-breakpoint-up(xl) {
-        margin: 0px calc(-#{$spacer-xl} / 4);
-      }
-      @include media-breakpoint-down(sm) {
-        margin: 0px calc(-#{$spacer-sm} / 4);
-      }
-      .single-work {
-        width: 33.333%;
-        margin-bottom: 0px;
-        padding: 0px calc($spacer / 4);
-        @include media-breakpoint-up(xl) {
-          padding: 0px calc($spacer-xl / 4);
-        }
-        @include media-breakpoint-down(sm) {
-          padding: 0px calc($spacer-sm / 4);
-          width: 100%;
-        }
-        a {
-          height: 100%;
-          .work-image {
-            height: 100%;
-          }
-        }
-      }
-      &.grid {
-        display: flex;
-        flex-wrap: wrap; /* Backup if JS fails */
-        padding: 10px;
-      }
-      .grid-item {
-        overflow: hidden;
-        @include media-breakpoint-down(sm) {
-          margin-bottom: 10px;
-        }
-      }
-      .grid-item.vertical {
-        width: calc(33.333% - 10px); /* Adjust for 3 columns */
-        height: calc(40vw - 10px)!important;
-        margin-bottom: 5px;
-        @include media-breakpoint-down(sm) {
-          width: 100%;
-          height: 40vh !important;
-          margin-bottom: 10px;
-        }
-      }
-      .grid-item.horizontal-small {
-        width: calc(33.333% - 10px);
-        height: calc(20vw - 7.5px)!important;
-        margin-bottom: 5px;
-        @include media-breakpoint-down(sm) {
-          width: 100%;
-          height: 20vh !important;
-          margin-bottom: 10px;
-        }
-      }
-      .grid-item.horizontal-large {
-        width: calc(66.666% - 20px); /* Span 2 columns */
-        height: calc(40vw - 10px)!important;
-        margin-bottom: 10px;
-        @include media-breakpoint-down(sm) {
-          width: 100%;
-          height: 60vh !important;
-        }
-      }
-      .grid-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
   }
   &.expand-works-active {
@@ -3346,10 +3246,112 @@ body[data-template=works] {
     */
 }
 
+
+.section-works {
+  .works-text-text {
+    height: auto !important;
+    padding: 0px $spacer;
+    @include media-breakpoint-up(xl) {
+      padding: 0px $spacer-xl;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 0px $spacer-sm;
+    }
+    p {
+      @extend %extralarge;
+      text-transform: uppercase;
+      sup {
+        font-size: 4vw;
+        top: -3.5vw;
+        @include media-breakpoint-down(sm) {
+          top: -5.5vw;
+        }
+      }
+    }
+    strong {
+      font-variation-settings: 'wght' 700, 'wdth' 130, 'ital' 1;
+    }
+  }
+  .works-list {
+    display: flex;
+    flex: wrap;
+    margin: 0px calc(-#{$spacer} / 4);
+    @include media-breakpoint-up(xl) {
+      margin: 0px calc(-#{$spacer-xl} / 4);
+    }
+    @include media-breakpoint-down(sm) {
+      margin: 0px calc(-#{$spacer-sm} / 4);
+    }
+    .single-work {
+      width: 33.333%;
+      margin-bottom: 0px;
+      padding: 0px calc($spacer / 4);
+      @include media-breakpoint-up(xl) {
+        padding: 0px calc($spacer-xl / 4);
+      }
+      @include media-breakpoint-down(sm) {
+        padding: 0px calc($spacer-sm / 4);
+        width: 100%;
+      }
+      a {
+        height: 100%;
+        .work-image {
+          height: 100%;
+        }
+      }
+    }
+    &.grid {
+      display: flex;
+      flex-wrap: wrap; /* Backup if JS fails */
+      padding: 10px;
+    }
+    .grid-item {
+      overflow: hidden;
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 10px;
+      }
+    }
+    .grid-item.vertical {
+      width: calc(33.333% - 10px); /* Adjust for 3 columns */
+      height: calc(40vw - 10px)!important;
+      margin-bottom: 5px;
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+        height: 40vh !important;
+        margin-bottom: 10px;
+      }
+    }
+    .grid-item.horizontal-small {
+      width: calc(33.333% - 10px);
+      height: calc(20vw - 7.5px)!important;
+      margin-bottom: 5px;
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+        height: 20vh !important;
+        margin-bottom: 10px;
+      }
+    }
+    .grid-item.horizontal-large {
+      width: calc(66.666% - 20px); /* Span 2 columns */
+      height: calc(40vw - 10px)!important;
+      margin-bottom: 10px;
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+        height: 60vh !important;
+      }
+    }
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
 body.default {
   .section-home {
     .section-content {
-      opacity: 0;
+      // opacity: 0;
     }
   }
 }
@@ -3357,12 +3359,12 @@ body.default {
 body.works {
   .section-home {
     .section-content {
-      opacity: 0;
+      // opacity: 0;
     }
   }
   .section-works {
     .section-content {
-      opacity: 1;
+      // opacity: 1;
     }
 	}
 }
@@ -3370,45 +3372,46 @@ body.works {
 .section-works {
   .section-content {
     transition: opacity 0.5s linear;
-    transition-delay: 1s;
-    opacity: 0;
+    // opacity: 0;
     padding-right: calc(15vw - 15px);
     overflow-x: hidden;
     // overflow-y: hidden;
     @include media-breakpoint-down(sm) {
       padding-right: 0px;
     }
-    .works-list {
-      padding: $spacer;
-      @include media-breakpoint-up(xl) {
-        padding: $spacer-xl;
-      }
-      @include media-breakpoint-down(sm) {
-        padding: $spacer-sm;
-      }
+    
+  }
+}
+
+.works-list {
+  padding: $spacer;
+  @include media-breakpoint-up(xl) {
+    padding: $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: $spacer-sm;
+  }
+}
+.works-view-all {
+  margin-bottom: $spacer*2;
+  padding: $spacer;
+  @include media-breakpoint-up(xl) {
+    margin-bottom: $spacer-xl*2;
+    padding: $spacer-xl;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-bottom: $spacer-sm*2;
+    padding: $spacer-sm;
+    display: none;
+  }
+  .cta {
+    display: inline;
+    cursor: pointer;
+    .view-all {
+      display: inline;
     }
-    .works-view-all {
-      margin-bottom: $spacer*2;
-      padding: $spacer;
-      @include media-breakpoint-up(xl) {
-        margin-bottom: $spacer-xl*2;
-        padding: $spacer-xl;
-      }
-      @include media-breakpoint-down(sm) {
-        margin-bottom: $spacer-sm*2;
-        padding: $spacer-sm;
-        display: none;
-      }
-      .cta {
-        display: inline;
-        cursor: pointer;
-        .view-all {
-          display: inline;
-        }
-        .view-less {
-          display: none;
-        }
-      }
+    .view-less {
+      display: none;
     }
   }
 }
@@ -4053,12 +4056,12 @@ body[data-template=contact] {
 body.contact {
   .section-home {
     .section-content {
-      opacity: 0;
+      // opacity: 0;
     }
   }
   .section-contact {
     .section-content {
-      opacity: 1;
+      // opacity: 1;
     }
 	}
 }
@@ -4066,8 +4069,7 @@ body.contact {
 .section-contact {
   .section-content {
     transition: opacity 0.5s linear;
-    transition-delay: 1s;
-    opacity: 0;
+    // opacity: 0;
   }
   .block-title {
     p {

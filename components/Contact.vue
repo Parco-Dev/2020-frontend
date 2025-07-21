@@ -20,11 +20,11 @@ const closeMenu = () => {
 <template>
   <section :class="{ open }" class="single-section section-contact">
     <div class="single-section-inner">
-      <NuxtLink to="/contact" class="section-header" @click="closeMenu"></NuxtLink>
+      <NuxtLink to="/contact" class="section-header" @click="closeMenu" @mouseenter="useContactPage()"></NuxtLink>
       <div class="section-title">
         <p>Contact</p>
       </div>
-      <div class="section-content">
+      <div v-if="open" class="section-content">
         <div class="close-button">
           <NuxtLink to="/">
             <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 15.6 15.6" style="enable-background:new 0 0 15.6 15.6;" xml:space="preserve">

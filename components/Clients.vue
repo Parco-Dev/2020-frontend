@@ -23,7 +23,7 @@ const closeMenu = () => {
       <div class="section-title">
         <p>Clients</p>
       </div>
-      <div class="section-content">
+      <div v-if="open" class="section-content">
         <ClientOnly>
 
           <div class="block-clients-text">

@@ -124,11 +124,11 @@ function toggleCollapse(index: number) {
 <template>
   <section :class="{ open }" class="single-section section-about">
     <div class="single-section-inner">
-      <NuxtLink to="/about" class="section-header" @click="closeMenu"></NuxtLink>
+      <NuxtLink to="/about" class="section-header" @click="closeMenu" @mouseenter="useAboutPage()"></NuxtLink>
       <div class="section-title">
         <p>About</p>
       </div>
-      <div class="section-content">
+      <div v-if="open" class="section-content">
         <ClientOnly>
 
           <div class="block-about-text">

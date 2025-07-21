@@ -106,7 +106,7 @@ const toggleSection = (sectionName) => {
 <template>
   <section :class="{ open }" class="single-section section-home">
     <div class="single-section-inner">
-      <NuxtLink to="/" class="section-header"></NuxtLink>
+      <NuxtLink to="/" class="section-header" @mouseenter="useHomePage()"></NuxtLink>
       <div class="site-header">
         <div class="site-header-heading">
           <img :src="site?.result.sitelogo?.url" />
@@ -120,7 +120,7 @@ const toggleSection = (sectionName) => {
           <div class="line"></div>
         </div>
       </div>
-      <div class="section-content">
+      <div v-if="open" class="section-content">
         <div class="block-about">
           <div class="about-text">
             <div class="row">
@@ -135,7 +135,8 @@ const toggleSection = (sectionName) => {
           </div>
         </div>
         <div class="block-video">
-          <div class="video-container"
+          <div
+          class="video-container"
           :class="{ hidden: isPlaying }"
           @click="playVideo">
             <div class="video-container-image">

@@ -61,7 +61,7 @@ const initializeIsotope = () => {
       transitionDuration: '0.4s'
     })
     
-    console.log('Isotope initialized')
+    // console.log('Isotope initialized')
     
     // Double layout to ensure proper rendering
     setTimeout(() => {
@@ -76,7 +76,7 @@ const destroyIsotope = () => {
   if (isotopeInstance) {
     isotopeInstance.destroy()
     isotopeInstance = null
-    console.log('Isotope destroyed')
+    // console.log('Isotope destroyed')
   }
 }
 
@@ -174,11 +174,11 @@ watch(
 <template>
   <section ref="transitionContainer" :class="{ open }" class="single-section section-works">
     <div class="single-section-inner">
-      <NuxtLink to="/works" class="section-header" @click="closeMenu"></NuxtLink>
+      <NuxtLink to="/works" @mouseenter="useWorksPage()" class="section-header" @click="closeMenu"></NuxtLink>
       <div class="section-title">
         <p>Works</p>
       </div>
-      <div class="section-content">
+      <div v-if="open" class="section-content">
         <div class="works-text-text">
           <p>How we add real-world <strong>value</strong> through experience strategy <sup>tm</sup></p>
         </div>
@@ -193,7 +193,7 @@ watch(
             >
               <NuxtLink :to="`/${id}`">
                 <div class="work-image">
-                  <img :src="casethumbnail?.url" />
+                  <img :src="casethumbnail?.url" loading="lazy" />
                 </div>
                 <div class="work-info">
                   <div class="work-title">

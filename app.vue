@@ -41,10 +41,29 @@
 <style lang="scss">
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.5s;
+  transition: all .5s;
 }
-.page-enter-from,
-.page-leave-to {
+
+.page-leave-active {
+  .section-content {
+    animation: fade-out 2s linear 1;
+    transition: all 0.5s;
+    opacity: 0;
+  }
+}
+
+.page-enter-active {
+  .section-content {
+    transition: all 0.25s;
+    opacity: 1;
+  }
+}
+
+.page-enter-from {
+  .section-content {
+    transition: all 0.25s;
+    opacity: 0;
+  }
   /* opacity: 0;
   transform: translateY(5px); */
 }
@@ -59,6 +78,18 @@
     &:after {
       width: 101%;
     }
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>
